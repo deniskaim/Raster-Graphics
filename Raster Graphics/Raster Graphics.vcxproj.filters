@@ -105,6 +105,9 @@
     <ClCompile Include="SaveAsCommand.cpp">
       <Filter>Commands\SaveAs</Filter>
     </ClCompile>
+    <ClCompile Include="CloseCommand.cpp">
+      <Filter>Commands\Close</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyVector.hpp">
@@ -175,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="SaveAsCommand.h">
       <Filter>Commands\SaveAs</Filter>
+    </ClInclude>
+    <ClInclude Include="CloseCommand.h">
+      <Filter>Commands\Close</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CloseCommand.cpp" />
     <ClCompile Include="CommandExecutor.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="DynamicSet.cpp" />
@@ -144,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="CloseCommand.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandExecutor.h" />
     <ClInclude Include="CommandFactory.h" />
