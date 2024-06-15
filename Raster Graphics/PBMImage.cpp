@@ -1,11 +1,11 @@
 #include "PBMImage.h"
 #include <fstream>
 
-PBMImage::PBMImage(const DynamicSet& pixels, const MyString& fileName) : pixels(pixels), Image(fileName)
+PBMImage::PBMImage(const DynamicSet& pixels, const MyString& fileName) : pixels(pixels), TransformableImage(fileName)
 {}
-PBMImage::PBMImage(DynamicSet&& pixels, const MyString& fileName) : pixels(std::move(pixels)), Image(fileName)
+PBMImage::PBMImage(DynamicSet&& pixels, const MyString& fileName) : pixels(std::move(pixels)), TransformableImage(fileName)
 {}
-void PBMImage::write(const MyString& fileName) const
+void PBMImage::save(const MyString& fileName) const
 {
 	std::ofstream ofs(fileName.c_str());
 	if (!ofs.is_open())
@@ -22,13 +22,13 @@ void PBMImage::write(const MyString& fileName) const
 	ofs.close();
 }
 
-void PBMImage::grayscale()
+void PBMImage::applyGrayscale()
 {}
 
-void PBMImage::monochrome()
+void PBMImage::applyMonochrome()
 {}
 
-void PBMImage::negative()
+void PBMImage::applyNegative()
 {
 	for (unsigned i = 0; i < rows * columns; i++)
 	{
@@ -38,7 +38,7 @@ void PBMImage::negative()
 			pixels.add(i);
 	}
 }
-Image* PBMImage::clone() const
+TransformableImage* PBMImage::clone() const
 {
 	return new PBMImage(*this);
 }

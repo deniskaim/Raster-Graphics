@@ -1,21 +1,22 @@
 #pragma once
-#include "Image.h"
+#include "TransformableImage.h"
 #include "MyVector.hpp"
 
-class PGMImage : public Image
+class PGMImage : public TransformableImage
 {
 public:
 
 	PGMImage(const MyVector<int8_t>& pixels, const MyString& fileName);
 	PGMImage(MyVector<int8_t>&& pixels, const MyString& fileName);
-	void grayscale() override;
-	void monochrome() override;
-	void negative() override;
-	void rotate(Direction direction) override;
+	void applyGrayscale() override;
+	void applyMonochrome() override;
+	void applyNegative() override;
+	void rotateLeft() override;
+	void rotateRight() override;
 
 	// void read(const MyString& fileName) override;
-	void write(const MyString& fileName) const override;
-	Image* clone() const override;
+	void save(const MyString& fileName) const override;
+	TransformableImage* clone() const override;
 
 private:
 	MyVector<int8_t> pixels;
