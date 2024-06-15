@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{86c61c16-17b1-412d-bf2d-720dee24ffce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images">
+      <UniqueIdentifier>{ad31c6ae-654c-4f1e-a071-8a8b675b8b46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Session">
+      <UniqueIdentifier>{9465c747-66fb-4a46-9a14-99cc94e886ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DynamicBitset">
+      <UniqueIdentifier>{75e7d977-955d-4973-8e8c-a5c72ff7403a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MyString">
+      <UniqueIdentifier>{c9c0bb94-7b61-44f6-95e7-d751217a3fed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory">
+      <UniqueIdentifier>{8646aa9d-c5c0-42c7-ae5f-a14fc892448c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images\ImagePool">
+      <UniqueIdentifier>{2e1bd557-c519-4fb1-9605-f19214d738d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images\PBMImage">
+      <UniqueIdentifier>{a73fa387-6bbf-4b4d-a8fa-57cecd0edc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images\ImageCollection">
+      <UniqueIdentifier>{03f9b8d7-7374-448d-bd53-c1794e5d8306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images\PGMImage">
+      <UniqueIdentifier>{835b331f-9d27-4bb0-a7c9-83ab1981a15d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images\PPMImage">
+      <UniqueIdentifier>{decf12ce-71fe-4f1d-be6e-0f786816e5c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\Save">
+      <UniqueIdentifier>{b9e8f3b5-f8c4-427e-935d-d3baef364dc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\Help">
+      <UniqueIdentifier>{59ab62e4-b2da-4507-92a4-d3fc57f8f411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\Load">
+      <UniqueIdentifier>{db814727-bbdb-4af0-be3c-d08a294b2c2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\SaveAs">
+      <UniqueIdentifier>{2e8a9bce-b189-4815-a0fb-58a2f5dd77e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\Close">
+      <UniqueIdentifier>{3f9d3a04-2cd8-4ac4-a0b0-7063461b28b9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Raster Graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandExecutor.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicSet.cpp">
+      <Filter>Header Files\DynamicBitset</Filter>
+    </ClCompile>
+    <ClCompile Include="MyString.cpp">
+      <Filter>Header Files\MyString</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageFactory.cpp">
+      <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="ImagePool.cpp">
+      <Filter>Images\ImagePool</Filter>
+    </ClCompile>
+    <ClCompile Include="PBMImage.cpp">
+      <Filter>Images\PBMImage</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageCollection.cpp">
+      <Filter>Images\ImageCollection</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandFactory.cpp">
+      <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Session</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveCommand.cpp">
+      <Filter>Commands\Save</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadCommand.cpp">
+      <Filter>Commands\Load</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpCommand.cpp">
+      <Filter>Commands\Help</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveAsCommand.cpp">
+      <Filter>Commands\SaveAs</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MyVector.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyQueue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandExecutor.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Polymorphic_ptr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Images</Filter>
+    </ClInclude>
+    <ClInclude Include="Session.h">
+      <Filter>Session</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicSet.h">
+      <Filter>Header Files\DynamicBitset</Filter>
+    </ClInclude>
+    <ClInclude Include="Grayscale.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Session</Filter>
+    </ClInclude>
+    <ClInclude Include="MyString.h">
+      <Filter>Header Files\MyString</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ImagePool.h">
+      <Filter>Images\ImagePool</Filter>
+    </ClInclude>
+    <ClInclude Include="PBMImage.h">
+      <Filter>Images\PBMImage</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageCollection.h">
+      <Filter>Images\ImageCollection</Filter>
+    </ClInclude>
+    <ClInclude Include="PGMImage.h">
+      <Filter>Images\PGMImage</Filter>
+    </ClInclude>
+    <ClInclude Include="PPMImage.h">
+      <Filter>Images\PPMImage</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveCommand.h">
+      <Filter>Commands\Save</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadCommand.h">
+      <Filter>Commands\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpCommand.h">
+      <Filter>Commands\Help</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveAsCommand.h">
+      <Filter>Commands\SaveAs</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
