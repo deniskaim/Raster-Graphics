@@ -26,8 +26,8 @@ public:
 	void addImageToCurrentSession(Image*& image);
 
 	void undo(); // 1
-	void addTransformation(const Transformation*); // transformation nasledqva komanda ()()()()()
-
+	void addTransformation(const Transformation& transformation); // transformation nasledqva komanda ()()()()()
+	void addTransformation(Transformation*& transformation);
 	/*const Session& getCurrentSession() const;
 	Session& getCurrentSession();
 

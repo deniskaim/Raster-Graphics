@@ -2,6 +2,7 @@
 #include "ImageCollection.h"
 #include "CommandExecutor.h"
 #include "MyString.h"
+#include "Transformation.h"
 
 class Session
 {
@@ -15,7 +16,9 @@ public:
 	//void addCommand(const Command& command); // ?
 	//void addCommand(Command*&& command); // ?
 
-	void addTransformation(Transformation transformation);
+	void addTransformation(const Transformation& transformation);
+	void addTransformation(Transformation*& transformation);
+	void undo();
 
 	void save();
 	void saveAs(const MyString& fileName); // only the first image under this name

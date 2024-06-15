@@ -158,7 +158,11 @@ void Application::undo()
 {
 	sessions[currentSessionIndex].undo();
 }
-void Application::addTransformation(const Command* transformation) // should be Transformation*
+void Application::addTransformation(const Transformation& transformation) // should be Transformation*
+{
+	sessions[currentSessionIndex].addTransformation(transformation);
+}
+void Application::addTransformation(Transformation*& transformation)
 {
 	sessions[currentSessionIndex].addTransformation(transformation);
 }
