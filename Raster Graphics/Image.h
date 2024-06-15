@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
+#include "ITransformable.h"
 #include "MyQueue.hpp"
 #include "MyString.h"
-
+#include "Transformation.h"
+/*
 enum class Direction
 {
 	left,
@@ -16,16 +18,14 @@ enum class Transformation
 	rotateLeft,
 	rotateRight
 };
-class Image
+*/
+
+class Image : public ITransformable
 {
 public:
 	// virtual void applyTransformation(Transformation transformation); ?
 	
 	Image(const MyString& fileName) : fileName(fileName){}
-	virtual void grayscale() = 0;
-	virtual void monochrome() = 0;
-	virtual void negative() = 0;
-	virtual void rotate(Direction direction) = 0;
 
 	//virtual void read(const MyString& fileName) = 0;
 	virtual void write(const MyString& fileName) const = 0;
@@ -33,7 +33,7 @@ public:
 	virtual ~Image() = default;
 
 protected:
-	MyQueue<Transformation> pendingTranformations;
+	MyQueue<Polymorphic_ptr<Transformation>> pendingTranformations;
 	MyString fileName;
 };
 
