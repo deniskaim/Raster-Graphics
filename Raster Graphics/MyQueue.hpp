@@ -28,16 +28,27 @@ public:
 	void push(const T& value);
 	void push(T&& value);
 	void pop();
+	void clear();
 
 	T& peek();
 	const T& peek() const;
 	bool empty() const;
+
 private:
 	void copyFrom(const MyQueue<T>& other);
 	void moveFrom(MyQueue<T>&& other);
 	void free();
 };
-
+template <typename T>
+void MyQueue<T>::clear()
+{
+	free();
+	data = new T[INITIAL_CAPACITY];
+	capacity = INITIAL_CAPACITY;
+	size = 0;
+	get = 0;
+	put = 0;
+}
 template<typename T>
 void MyQueue<T>::resize() {
 	T* newData = new T[capacity * RESIZE_COEF];

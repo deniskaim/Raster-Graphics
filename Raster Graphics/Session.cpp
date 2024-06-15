@@ -39,3 +39,35 @@ void Session::saveAs(const MyString& fileName)
 	//transformationExecutor.executeAll();
 	// TODO: set fileName to the first image 
 }
+void Session::close()
+{
+	reset();
+}
+void Session::printInfo() const
+{
+	printID();
+	printImagesNames();
+	printPendingTransformations();
+}
+
+// private 
+void Session::printID() const
+{
+	std::cout << "Session ID = " << ID << std::endl;
+}
+void Session::printImagesNames() const
+{
+	std::cout << "Name of images in the session: ";
+	// ...
+	std::cout << '\n';
+}
+void Session::printPendingTransformations() const
+{
+	std::cout << "Pending transformations: ";
+	// ...
+}
+void Session::reset()
+{
+	imageCollection.clear();
+	transformationExecutor.clear();
+}

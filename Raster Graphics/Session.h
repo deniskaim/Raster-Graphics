@@ -28,6 +28,7 @@ private:
 	static size_t sessionsCount; // must initialize in cpp
 
 	void reset();
+	void printID() const;
 	void printImagesNames() const;
 	void printPendingTransformations() const;
 };

@@ -40,3 +40,8 @@ bool TransformationExecutor::isEmpty() const
 {
 	return toExecute.empty();
 }
+void TransformationExecutor::clear()
+{
+	toExecute.clear();
+	executed.clear();
+}

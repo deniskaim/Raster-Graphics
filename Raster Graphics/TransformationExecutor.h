@@ -19,6 +19,7 @@ public:
 	void undo();
 
 	bool isEmpty() const;
+	void clear();
 
 private:
 	MyQueue<Polymorphic_ptr<Transformation>> toExecute;
