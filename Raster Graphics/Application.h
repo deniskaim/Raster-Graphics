@@ -6,7 +6,7 @@
 class Application
 {
 public:
-	void executeCommand(const Command* command); // not const since the command will change the application class
+	// void executeCommand(const Command* command); // not const since the command will change the application class
 	
 	void loadSession(const Session& newSession);
 	void loadSession(Session&& newSession);
@@ -22,12 +22,13 @@ public:
 	void switchSession(size_t sessionIndex) const;
 	void collage(Direction idk, Image* first, Image* second); //?
 
-	void addImageToCurrentSession(const Image& image);
-	void addImageToCurrentSession(Image*& image);
+	void addImageToCurrentSession(const Polymorphic_ptr<Image>& image);
+	void addImageToCurrentSession(Polymorphic_ptr<Image>&& image);
 
 	void undo(); // 1
-	void addTransformation(const Transformation& transformation); // transformation nasledqva komanda ()()()()()
-	void addTransformation(Transformation*& transformation);
+	void addTransformation(const Polymorphic_ptr<Transformation>& transformation); // transformation nasledqva komanda ()()()()()
+	void addTransformation(Polymorphic_ptr<Transformation>&& transformation);
+
 	/*const Session& getCurrentSession() const;
 	Session& getCurrentSession();
 

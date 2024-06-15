@@ -146,11 +146,11 @@ void Application::getCurrentSessionInfo() const
 {
 	sessions[currentSessionIndex].printInfo();
 }
-void Application::addImageToCurrentSession(const Image& image)
+void Application::addImageToCurrentSession(const Polymorphic_ptr<Image>& image)
 {
 	sessions[currentSessionIndex].addImage(image);
 }
-void Application::addImageToCurrentSession(Image*& image)
+void Application::addImageToCurrentSession(Polymorphic_ptr<Image>&& image)
 {
 	sessions[currentSessionIndex].addImage(image);
 }
@@ -158,11 +158,11 @@ void Application::undo()
 {
 	sessions[currentSessionIndex].undo();
 }
-void Application::addTransformation(const Transformation& transformation) // should be Transformation*
+void Application::addTransformation(const Polymorphic_ptr<Transformation>& transformation) // should be Transformation*
 {
 	sessions[currentSessionIndex].addTransformation(transformation);
 }
-void Application::addTransformation(Transformation*& transformation)
+void Application::addTransformation(Polymorphic_ptr<Transformation>&& transformation)
 {
 	sessions[currentSessionIndex].addTransformation(transformation);
 }
