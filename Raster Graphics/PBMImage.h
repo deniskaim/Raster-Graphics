@@ -16,12 +16,8 @@ public:
 	void rotateRight() override;
 
 	// void read(const MyString& fileName) override;
-	void save() override;
 	void write(const MyString& fileName) const override;
 	TransformableImage* clone() const override;
-	
-protected:
-	void applyAllTransformations() override;
 
 private:
 	int32_t rows = 0;

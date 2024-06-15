@@ -13,7 +13,7 @@ public:
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void undoLastTransformation();
 
-	virtual void save() = 0;
+	void save();
 	virtual void write(const MyString& fileName) const = 0;
 
 	virtual TransformableImage* clone() const = 0;
@@ -21,5 +21,8 @@ public:
 
 protected:
 	MyQueue<Polymorphic_ptr<Transformation>> pendingTranformations;
-	virtual void applyAllTransformations() = 0; // called by save()
+
+private:
+	void applyAllTransformations(); // called by save()
+	void applyTransformation();
 };
