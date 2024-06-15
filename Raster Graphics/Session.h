@@ -8,12 +8,9 @@ class Session
 public:
 
 	// friend class Application;
-
+	Session();
 	void addImage(const Polymorphic_ptr<Image>& image);
 	void addImage(Polymorphic_ptr<Image>&& image);
-
-	//void addCommand(const Command& command); // ?
-	//void addCommand(Command*&& command); // ?
 
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void addTransformation(Polymorphic_ptr<Transformation>&& transformation);
@@ -30,5 +27,7 @@ private:
 	size_t ID = 0;
 	static size_t sessionsCount; // must initialize in cpp
 
-
+	void reset();
+	void printImagesNames() const;
+	void printPendingTransformations() const;
 };

@@ -152,7 +152,7 @@ void Application::addImageToCurrentSession(const Polymorphic_ptr<Image>& image)
 }
 void Application::addImageToCurrentSession(Polymorphic_ptr<Image>&& image)
 {
-	sessions[currentSessionIndex].addImage(image);
+	sessions[currentSessionIndex].addImage(std::move(image));
 }
 void Application::undo()
 {
@@ -164,7 +164,7 @@ void Application::addTransformation(const Polymorphic_ptr<Transformation>& trans
 }
 void Application::addTransformation(Polymorphic_ptr<Transformation>&& transformation)
 {
-	sessions[currentSessionIndex].addTransformation(transformation);
+	sessions[currentSessionIndex].addTransformation(std::move(transformation));
 }
 
 

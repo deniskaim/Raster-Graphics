@@ -34,5 +34,9 @@ void TransformationExecutor::undo()
 	Polymorphic_ptr<Transformation>& lastTransformation = executed.peek();
 	// lastTransformation.undo(); TODO: Make this work
 	executed.popBack();
+}
 
+bool TransformationExecutor::isEmpty() const
+{
+	return toExecute.empty();
 }

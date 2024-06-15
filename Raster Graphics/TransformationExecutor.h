@@ -18,6 +18,8 @@ public:
 	void executeAll();
 	void undo();
 
+	bool isEmpty() const;
+
 private:
 	MyQueue<Polymorphic_ptr<Transformation>> toExecute;
 	MyStack<Polymorphic_ptr<Transformation>> executed;
