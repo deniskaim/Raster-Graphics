@@ -11,6 +11,6 @@ public:
 	virtual ~Image() = default;
 
 protected:
-	MyString fileName;
+	const MyString fileName;
 };
 

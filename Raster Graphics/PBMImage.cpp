@@ -5,7 +5,7 @@ PBMImage::PBMImage(const DynamicSet& pixels, const MyString& fileName) : pixels(
 {}
 PBMImage::PBMImage(DynamicSet&& pixels, const MyString& fileName) : pixels(std::move(pixels)), TransformableImage(fileName)
 {}
-void PBMImage::save(const MyString& fileName) const
+void PBMImage::write(const MyString& fileName) const
 {
 	std::ofstream ofs(fileName.c_str());
 	if (!ofs.is_open())
