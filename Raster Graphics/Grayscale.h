@@ -1,10 +1,8 @@
 #pragma once
-#include "Command.h"
+#include "Transformation.h"
 
-class Grayscale : public Command
+class Grayscale: public Transformation
 {
 public:
-	void execute() override;
-private:
-
+	void execute(Application& application) const override;
 };
