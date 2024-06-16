@@ -20,5 +20,5 @@ public:
 	void printTransformations() const;
 
 private:
-	MyVector<Polymorphic_ptr<Transformation>> transformationsInSession;
+	MyVector<Polymorphic_ptr<Transformation>> transformationsInSession; // necessery for the print function !
 };

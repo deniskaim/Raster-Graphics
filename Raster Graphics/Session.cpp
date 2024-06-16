@@ -16,39 +16,25 @@ void Session::addImage(Polymorphic_ptr<TransformableImage>&& image)
 }
 void Session::addTransformation(const Polymorphic_ptr<Transformation>& transformation)
 {
-	// transformationHandler.add(transformation);
-	transformations.pushBack(transformation);
-	addTransformationInTransformableImages(transformation);
+	transformationExecutor.addTransformation(transformation);
+	imageCollection.addTransformationInCollection(transformation);
 }
 void Session::addTransformation(Polymorphic_ptr<Transformation>&& transformation)
 {
-	// transformationHandler.add(std::move(transformation));
-	transformations.pushBack(std::move(transformation));
-	addTransformationInTransformableImages(transformation);
-}
-void Session::addTransformationInTransformableImages(const Polymorphic_ptr<Transformation>& transformation)
-{
-	for (size_t i = 0; i < imageCollection.getSize(); i++)
-	{
-		imageCollection[i]->addTransformation(transformation);
-	}
+	transformationExecutor.addTransformation(std::move(transformation));
+	imageCollection.addTransformationInCollection(transformation);
 }
 void Session::undo()
 {
-	transformationHandler.undo();
+	// transformationExecutor.undo();
 }
 void Session::save()
 {
-	//while (!transformationExecutor.isEmpty())
-	//{
-	//	transformationExecutor.
-	//}
-	
+	transformationExecutor.executeAll(imageCollection);
 }
 void Session::saveAs(const MyString& fileName)
 {
-	//transformationExecutor.executeAll();
-	// TODO: set fileName to the first image 
+	transformationExecutor.executeAll(imageCollection); // TODO: add fileName
 }
 void Session::close()
 {
@@ -69,13 +55,15 @@ void Session::printID() const
 void Session::printImagesNames() const
 {
 	std::cout << "Name of images in the session: ";
-	// ...
+	for (size_t i = 0; i < imageCollection.getSize(); i++)
+		std::cout << imageCollection[i]->getFileName() << " ";
+
 	std::cout << '\n';
 }
 void Session::printPendingTransformations() const
 {
-	std::cout << "Pending transformations: ";
-	// ...
+	transformationExecutor.printTransformations();
+	std::cout << '\n';
 }
 void Session::reset()
 {
