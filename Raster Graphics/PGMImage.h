@@ -19,6 +19,6 @@ public:
 	TransformableImage* clone() const override;
 
 private:
-	MyVector<int8_t> pixels;
-	int8_t maxValueColour = 0;
+	MyVector<uint8_t> pixels;
+	uint8_t maxValueColour = 0;
 };

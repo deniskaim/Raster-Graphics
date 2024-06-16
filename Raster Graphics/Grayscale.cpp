@@ -1,4 +1,5 @@
 #include "Grayscale.h"
+#include "Application.h"
 
 Grayscale::Grayscale()
 {
@@ -6,9 +7,12 @@ Grayscale::Grayscale()
 }
 void Grayscale::execute(Application& application) const
 {
-	Transformation* cloned = clone();
-	Polymorphic_ptr<Transformation> transformation(cloned);
+	Polymorphic_ptr<Transformation> transformation(clone());
 	application.addTransformation(std::move(transformation));
+}
+void Grayscale::printType() const
+{
+	std::cout << "grayscale";
 }
 Transformation* Grayscale::clone() const
 {

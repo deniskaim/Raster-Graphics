@@ -1,4 +1,5 @@
 #include "Negative.h"
+#include "Application.h"
 
 Negative::Negative()
 {
@@ -6,9 +7,12 @@ Negative::Negative()
 }
 void Negative::execute(Application& application) const
 {
-	Transformation* cloned = clone();
-	Polymorphic_ptr<Transformation> transformation(cloned);
+	Polymorphic_ptr<Transformation> transformation(clone());
 	application.addTransformation(transformation);
+}
+void Negative::printType() const
+{
+	std::cout << "negative";
 }
 Transformation* Negative::clone() const
 {
