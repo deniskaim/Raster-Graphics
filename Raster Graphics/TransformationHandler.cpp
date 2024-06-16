@@ -1,14 +1,14 @@
-#include "TransformationExecutor.h"
+#include "TransformationHandler.h"
 
-void TransformationExecutor::add(const Polymorphic_ptr<Transformation>& transformation)
+void TransformationHandler::add(const Polymorphic_ptr<Transformation>& transformation)
 {
 	toExecute.push(transformation);
 }
-void TransformationExecutor::add(Polymorphic_ptr<Transformation>&& transformation)
+void TransformationHandler::add(Polymorphic_ptr<Transformation>&& transformation)
 {
 	toExecute.push(std::move(transformation));
 }
-void TransformationExecutor::execute()
+void TransformationHandler::execute(const ImagesCollection& imageCollection)
 {
 	if (toExecute.empty())
 		return;
@@ -19,14 +19,14 @@ void TransformationExecutor::execute()
 	executed.pushBack(std::move(current)); // use the allocated memory
 	toExecute.pop();
 }
-void TransformationExecutor::executeAll()
+void TransformationHandler::executeAll()
 {
 	while (!toExecute.empty())
 	{
 		execute();
 	}
 }
-void TransformationExecutor::undo()
+void TransformationHandler::undo()
 {
 	if (executed.empty())
 		return;
@@ -36,11 +36,11 @@ void TransformationExecutor::undo()
 	executed.popBack();
 }
 
-bool TransformationExecutor::isEmpty() const
+bool TransformationHandler::isEmpty() const
 {
 	return toExecute.empty();
 }
-void TransformationExecutor::clear()
+void TransformationHandler::clear()
 {
 	toExecute.clear();
 	executed.clear();

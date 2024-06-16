@@ -74,6 +74,7 @@ void Application::saveAs(const MyString& fileName)
 }
 void Application::close()
 {
+
 	sessions[currentSessionIndex].close();
 }
 void Application::help()
@@ -146,11 +147,11 @@ void Application::getCurrentSessionInfo() const
 {
 	sessions[currentSessionIndex].printInfo();
 }
-void Application::addImageToCurrentSession(const Polymorphic_ptr<Image>& image)
+void Application::addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image)
 {
 	sessions[currentSessionIndex].addImage(image);
 }
-void Application::addImageToCurrentSession(Polymorphic_ptr<Image>&& image)
+void Application::addImageToCurrentSession(Polymorphic_ptr<TransformableImage>&& image)
 {
 	sessions[currentSessionIndex].addImage(std::move(image));
 }

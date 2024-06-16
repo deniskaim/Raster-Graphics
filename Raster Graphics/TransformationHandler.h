@@ -4,13 +4,13 @@
 #include "MyQueue.hpp"
 #include "MyStack.hpp"
 
-class TransformationExecutor
+class TransformationHandler
 {
 public:
-	TransformationExecutor() = default;
-	TransformationExecutor(const TransformationExecutor& other) = delete;
-	TransformationExecutor& operator=(const TransformationExecutor& other) = delete;
-	~TransformationExecutor() = default;
+	TransformationHandler() = default;
+	TransformationHandler(const TransformationHandler& other) = delete;
+	TransformationHandler& operator=(const TransformationHandler& other) = delete;
+	~TransformationHandler() = default;
 
 	void add(const Polymorphic_ptr<Transformation>& transformation);
 	void add(Polymorphic_ptr<Transformation>&& transformation);
