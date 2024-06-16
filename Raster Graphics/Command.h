@@ -1,27 +1,7 @@
 #pragma once
-#include "Application.h"
 
-enum class Commands
-{
-	grayscale,
-	monochrome,
-	negative,
-	rotateLeft,
-	rotateRight,
-	undo,
-	add,
-	sessionInfo,
-	switchSession,
-	collage,
-	load,
-	close,
-	save,
-	saveAs,
-	help,
-	exit,
-	ERROR
+class Application;
 
-};
 class Command
 {
 public:

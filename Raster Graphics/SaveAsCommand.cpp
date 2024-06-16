@@ -1,4 +1,5 @@
 #include "SaveAsCommand.h"
+#include "Application.h"
 
 SaveAsCommand::SaveAsCommand(const MyString& fileName) : fileName(fileName)
 {}

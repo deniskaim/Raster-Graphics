@@ -1,4 +1,5 @@
 #include "LoadCommand.h"
+#include "Application.h"
 
 void LoadCommand::execute(Application& application) const
 {

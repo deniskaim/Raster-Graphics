@@ -1,7 +1,7 @@
 #include "SaveCommand.h"
+#include "Application.h"
 
 void SaveCommand::execute(Application& application) const
 {
-	Session& currentSession = application.getCurrentSession();
-	currentSession.save();
+	application.save();
 }
