@@ -6,8 +6,8 @@ class PBMImage : public TransformableImage
 {
 public:
 
-	PBMImage(const DynamicSet& pixels, const MyString& fileName);
-	PBMImage(DynamicSet&& pixels, const MyString& fileName);
+	PBMImage(const DynamicSet& pixels, int32_t height, int32_t width, const MyString& fileName);
+	PBMImage(DynamicSet&& pixels, int32_t height, int32_t width, const MyString& fileName);
 
 	void applyGrayscale() override;
 	void applyMonochrome() override;

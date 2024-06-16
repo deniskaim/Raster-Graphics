@@ -6,7 +6,7 @@
 class Image 
 {
 public:
-	Image(const MyString& fileName) : fileName(fileName){}
+	Image(int32_t height, int32_t width, const MyString& fileName) : height(height), width(width), fileName(fileName){}
 	const MyString& getFileName() const { return fileName; }
 	//virtual Image* clone() const = 0;
 	virtual ~Image() = default;

@@ -5,15 +5,16 @@
 class PPMImage : public TransformableImage
 {
 public:
-	PPMImage(const MyVector<int8_t>& pixels, const MyString& fileName);
-	PPMImage(MyVector<int8_t>&& pixels, const MyString& fileName);
+	PPMImage(const MyVector<uint8_t>& pixels,int32_t height, int32_t width, const MyString& fileName);
+	PPMImage(MyVector<uint8_t>&& pixels, int32_t height, int32_t width, const MyString& fileName);
+
 	void applyGrayscale() override;
 	void applyMonochrome() override;
 	void applyNegative() override;
 	void rotateLeft() override;
 	void rotateRight() override;
 
-	void save(const MyString& fileName) const override;
+	void write(const MyString& fileName) const override;
 	TransformableImage* clone() const override;
 
 private:

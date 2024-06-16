@@ -8,7 +8,7 @@
 class TransformableImage : public Image, ITransformable
 {
 public: 
-	TransformableImage(const MyString& fileName) : Image(fileName) {}
+	TransformableImage(int32_t height, int32_t width, const MyString& fileName);
 
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void undoLastTransformation();

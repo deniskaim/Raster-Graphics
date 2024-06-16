@@ -1,5 +1,8 @@
 #include "TransformableImage.h"
 
+TransformableImage::TransformableImage(int32_t height, int32_t width, const MyString& fileName) 
+	: Image(height, width, fileName) {}
+
 void TransformableImage::addTransformation(const Polymorphic_ptr<Transformation>& transformation)
 {
 	pendingTranformations.push(transformation);
