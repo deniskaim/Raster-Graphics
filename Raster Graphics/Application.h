@@ -22,8 +22,8 @@ public:
 	void switchSession(size_t sessionIndex) const;
 	void collage(Direction idk, Image* first, Image* second); //?
 
-	void addImageToCurrentSession(const Polymorphic_ptr<Image>& image);
-	void addImageToCurrentSession(Polymorphic_ptr<Image>&& image);
+	void addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image);
+	void addImageToCurrentSession(Polymorphic_ptr<TransformableImage>&& image);
 
 	void undo(); // 1
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation); // transformation nasledqva komanda ()()()()()

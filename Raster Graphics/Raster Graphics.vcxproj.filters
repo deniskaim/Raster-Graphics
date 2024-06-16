@@ -61,12 +61,24 @@
     <Filter Include="Commands\Close">
       <UniqueIdentifier>{3f9d3a04-2cd8-4ac4-a0b0-7063461b28b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands\ImageTransformations">
+      <UniqueIdentifier>{6bfea552-7b20-40ff-84fa-a1e30a702924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\ImageTransformations\Grayscale">
+      <UniqueIdentifier>{d56b2094-71de-4f36-a9c4-c716edfe9bb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\ImageTransformations\Monochrome">
+      <UniqueIdentifier>{04859cc0-089a-4927-99fa-88b0d35980e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\ImageTransformations\Negative">
+      <UniqueIdentifier>{13b1eed3-7c19-4a8f-836c-3ca7e3603f43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Raster Graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CommandExecutor.cpp">
+    <ClCompile Include="TransformationExecutor.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="DynamicSet.cpp">
@@ -108,6 +120,21 @@
     <ClCompile Include="CloseCommand.cpp">
       <Filter>Commands\Close</Filter>
     </ClCompile>
+    <ClCompile Include="Grayscale.cpp">
+      <Filter>Commands\ImageTransformations\Grayscale</Filter>
+    </ClCompile>
+    <ClCompile Include="Monochrome.cpp">
+      <Filter>Commands\ImageTransformations\Monochrome</Filter>
+    </ClCompile>
+    <ClCompile Include="Negative.cpp">
+      <Filter>Commands\ImageTransformations\Negative</Filter>
+    </ClCompile>
+    <ClCompile Include="Session.cpp">
+      <Filter>Session</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformableImage.cpp">
+      <Filter>Images</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyVector.hpp">
@@ -116,7 +143,7 @@
     <ClInclude Include="MyQueue.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CommandExecutor.h">
+    <ClInclude Include="TransformationExecutor.h">
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
@@ -136,9 +163,6 @@
     </ClInclude>
     <ClInclude Include="DynamicSet.h">
       <Filter>Header Files\DynamicBitset</Filter>
-    </ClInclude>
-    <ClInclude Include="Grayscale.h">
-      <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="Application.h">
       <Filter>Session</Filter>
@@ -181,6 +205,27 @@
     </ClInclude>
     <ClInclude Include="CloseCommand.h">
       <Filter>Commands\Close</Filter>
+    </ClInclude>
+    <ClInclude Include="Transformation.h">
+      <Filter>Commands\ImageTransformations</Filter>
+    </ClInclude>
+    <ClInclude Include="Grayscale.h">
+      <Filter>Commands\ImageTransformations\Grayscale</Filter>
+    </ClInclude>
+    <ClInclude Include="Monochrome.h">
+      <Filter>Commands\ImageTransformations\Monochrome</Filter>
+    </ClInclude>
+    <ClInclude Include="Negative.h">
+      <Filter>Commands\ImageTransformations\Negative</Filter>
+    </ClInclude>
+    <ClInclude Include="ImagesCollection.h">
+      <Filter>Images\ImageCollection</Filter>
+    </ClInclude>
+    <ClInclude Include="ITransformable.h">
+      <Filter>Images</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformableImage.h">
+      <Filter>Images</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -52,10 +52,10 @@ void Application::executeCommand(Commands toExecute)
 	}
 } */
 
-void Application::executeCommand(const Command* command)
-{
-	command->execute(*this);
-}
+//void Application::executeCommand(const Command* command)
+//{
+//	command->execute(*this);
+//}
 void Application::loadSession(const Session& newSession)
 {
 	sessions.pushBack(newSession);

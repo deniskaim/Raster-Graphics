@@ -128,26 +128,34 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CloseCommand.cpp" />
-    <ClCompile Include="CommandExecutor.cpp" />
+    <ClCompile Include="TransformableImage.cpp" />
+    <ClCompile Include="TransformationExecutor.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="DynamicSet.cpp" />
+    <ClCompile Include="Grayscale.cpp" />
     <ClCompile Include="HelpCommand.cpp" />
     <ClCompile Include="ImageCollection.cpp" />
     <ClCompile Include="ImageFactory.cpp" />
     <ClCompile Include="ImagePool.cpp" />
     <ClCompile Include="LoadCommand.cpp" />
+    <ClCompile Include="Monochrome.cpp" />
     <ClCompile Include="MyString.cpp" />
+    <ClCompile Include="Negative.cpp" />
     <ClCompile Include="PBMImage.cpp" />
     <ClCompile Include="Raster Graphics.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="SaveAsCommand.cpp" />
     <ClCompile Include="SaveCommand.cpp" />
+    <ClCompile Include="Session.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="CloseCommand.h" />
     <ClInclude Include="Command.h" />
-    <ClInclude Include="CommandExecutor.h" />
+    <ClInclude Include="ImagesCollection.h" />
+    <ClInclude Include="ITransformable.h" />
+    <ClInclude Include="TransformableImage.h" />
+    <ClInclude Include="TransformationExecutor.h" />
     <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="DynamicSet.h" />
     <ClInclude Include="Grayscale.h" />
@@ -157,10 +165,12 @@
     <ClInclude Include="ImageFactory.h" />
     <ClInclude Include="ImagePool.h" />
     <ClInclude Include="LoadCommand.h" />
+    <ClInclude Include="Monochrome.h" />
     <ClInclude Include="MyQueue.hpp" />
     <ClInclude Include="MyStack.hpp" />
     <ClInclude Include="MyString.h" />
     <ClInclude Include="MyVector.hpp" />
+    <ClInclude Include="Negative.h" />
     <ClInclude Include="PBMImage.h" />
     <ClInclude Include="PGMImage.h" />
     <ClInclude Include="Polymorphic_ptr.h" />
@@ -168,6 +178,7 @@
     <ClInclude Include="SaveAsCommand.h" />
     <ClInclude Include="SaveCommand.h" />
     <ClInclude Include="Session.h" />
+    <ClInclude Include="Transformation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

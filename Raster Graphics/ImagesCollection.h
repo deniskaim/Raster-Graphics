@@ -1,8 +1,8 @@
 #pragma once
 #include "MyVector.hpp"
 #include "Polymorphic_ptr.h"
-#include "Image.h"
+#include "TransformableImage.h"
 
-class ImagesCollection : public MyVector<Polymorphic_ptr<Image>>
+class ImagesCollection : public MyVector<Polymorphic_ptr<TransformableImage>>
 {
 };
