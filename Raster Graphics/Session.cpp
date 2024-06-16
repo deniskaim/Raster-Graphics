@@ -38,7 +38,8 @@ void Session::saveAs(const MyString& fileName)
 }
 void Session::close()
 {
-	reset();
+	imageCollection.clear();
+	transformationExecutor.close();
 }
 void Session::printInfo() const
 {
@@ -64,9 +65,4 @@ void Session::printPendingTransformations() const
 {
 	transformationExecutor.printTransformations();
 	std::cout << '\n';
-}
-void Session::reset()
-{
-	imageCollection.clear();
-	transformationExecutor.clear();
 }

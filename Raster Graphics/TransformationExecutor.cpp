@@ -25,7 +25,8 @@ void TransformationExecutor::printTransformations() const
 	}
 
 }
+
 void TransformationExecutor::close()
 {
-	//TODO: implementation
+	transformationsInSession.clear();
 }
