@@ -18,12 +18,12 @@ Image* imageFactory()
 		}
 		else if (extension == "pgm")
 		{
-			MyVector<int8_t>* pixels = readGrayMapAndPixMapPixels(fileName);
+			MyVector<uint8_t>* pixels = readGrayMapAndPixMapPixels(fileName);
 			return new PGMImage(std::move(*pixels), fileName);
 		}
 		else if (extension == "ppm")
 		{
-			MyVector<int8_t>* pixels = readGrayMapAndPixMapPixels(fileName);
+			MyVector<uint8_t>* pixels = readGrayMapAndPixMapPixels(fileName);
 			return new PPMImage(std::move(*pixels), fileName);
 		}
 	}
@@ -68,7 +68,7 @@ static DynamicSet* readBitMapPixelsFromASCIIFile(std::ifstream& ifs)
 	ifs.close();
 	return set;
 }
-static MyVector<int8_t>* readGrayMapAndPixMapPixels(const MyString& fileName)
+static MyVector<uint8_t>* readGrayMapAndPixMapPixels(const MyString& fileName)
 {
 	std::ifstream ifs(fileName.c_str());
 	if (!ifs.is_open())
@@ -80,7 +80,7 @@ static MyVector<int8_t>* readGrayMapAndPixMapPixels(const MyString& fileName)
 	else
 		throw std::logic_error("Incorrect formmat for a PGM / PPM file!");
 }
-static MyVector<int8_t>* readGrayMapAndPixMapPixelsFromASCIIFile(std::ifstream& ifs)
+static MyVector<uint8_t>* readGrayMapAndPixMapPixelsFromASCIIFile(std::ifstream& ifs)
 {
 	int32_t columns, rows;
 	ifs >> columns >> rows;
@@ -90,11 +90,11 @@ static MyVector<int8_t>* readGrayMapAndPixMapPixelsFromASCIIFile(std::ifstream& 
 
 
 	size_t pixelsCount = columns * rows;
-	MyVector<int8_t>* pixels = new MyVector<int8_t>;
+	MyVector<uint8_t>* pixels = new MyVector<uint8_t>;
 
 	for (int i = 0; i < pixelsCount; i++)
 	{
-		int8_t currentPixel;
+		uint8_t currentPixel;
 		ifs >> currentPixel;
 		pixels->pushBack(currentPixel);
 	}

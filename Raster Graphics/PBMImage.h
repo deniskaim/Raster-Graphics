@@ -20,8 +20,6 @@ public:
 	TransformableImage* clone() const override;
 
 private:
-	int32_t rows = 0;
-	int32_t columns = 0;
 	DynamicSet pixels;
 
 	

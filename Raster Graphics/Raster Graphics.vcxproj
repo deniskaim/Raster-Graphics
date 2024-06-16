@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -130,13 +130,12 @@
     <ClCompile Include="CloseCommand.cpp" />
     <ClCompile Include="TransformableImage.cpp" />
     <ClCompile Include="TransformationExecutor.cpp" />
+    <ClCompile Include="TransformationHandler.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="DynamicSet.cpp" />
     <ClCompile Include="Grayscale.cpp" />
     <ClCompile Include="HelpCommand.cpp" />
-    <ClCompile Include="ImageCollection.cpp" />
     <ClCompile Include="ImageFactory.cpp" />
-    <ClCompile Include="ImagePool.cpp" />
     <ClCompile Include="LoadCommand.cpp" />
     <ClCompile Include="Monochrome.cpp" />
     <ClCompile Include="MyString.cpp" />
@@ -153,17 +152,16 @@
     <ClInclude Include="CloseCommand.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="ImagesCollection.h" />
+    <ClInclude Include="TransformationExecutor.h" />
     <ClInclude Include="ITransformable.h" />
     <ClInclude Include="TransformableImage.h" />
-    <ClInclude Include="TransformationExecutor.h" />
+    <ClInclude Include="TransformationHandler.h" />
     <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="DynamicSet.h" />
     <ClInclude Include="Grayscale.h" />
     <ClInclude Include="HelpCommand.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="ImageCollection.h" />
     <ClInclude Include="ImageFactory.h" />
-    <ClInclude Include="ImagePool.h" />
     <ClInclude Include="LoadCommand.h" />
     <ClInclude Include="Monochrome.h" />
     <ClInclude Include="MyQueue.hpp" />

@@ -59,10 +59,12 @@ void Application::executeCommand(Commands toExecute)
 void Application::loadSession(const Session& newSession)
 {
 	sessions.pushBack(newSession);
+	currentSessionIndex++;
 }
 void Application::loadSession(Session&& newSession)
 {
 	sessions.pushBack(std::move(newSession));
+	currentSessionIndex++;
 }
 void Application::save()
 {
