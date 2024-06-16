@@ -6,25 +6,36 @@ Session::Session()
 {
 	ID = sessionsCount++;
 }
-void Session::addImage(const Polymorphic_ptr<Image>& image)
+void Session::addImage(const Polymorphic_ptr<TransformableImage>& image)
 {
 	imageCollection.pushBack(image);
 }
-void Session::addImage(Polymorphic_ptr<Image>&& image)
+void Session::addImage(Polymorphic_ptr<TransformableImage>&& image)
 {
 	imageCollection.pushBack(std::move(image));
 }
 void Session::addTransformation(const Polymorphic_ptr<Transformation>& transformation)
 {
-	transformationExecutor.add(transformation);
+	// transformationHandler.add(transformation);
+	transformations.pushBack(transformation);
+	addTransformationInTransformableImages(transformation);
 }
 void Session::addTransformation(Polymorphic_ptr<Transformation>&& transformation)
 {
-	transformationExecutor.add(std::move(transformation));
+	// transformationHandler.add(std::move(transformation));
+	transformations.pushBack(std::move(transformation));
+	addTransformationInTransformableImages(transformation);
+}
+void Session::addTransformationInTransformableImages(const Polymorphic_ptr<Transformation>& transformation)
+{
+	for (size_t i = 0; i < imageCollection.getSize(); i++)
+	{
+		imageCollection[i]->addTransformation(transformation);
+	}
 }
 void Session::undo()
 {
-	transformationExecutor.undo();
+	transformationHandler.undo();
 }
 void Session::save()
 {
