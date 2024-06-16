@@ -1,6 +1,6 @@
 #pragma once
 #include "ImagesCollection.h"
-#include "TransformationHandler.h"
+#include "TransformationExecutor.h"
 #include "MyString.h"
 
 class Session
@@ -21,9 +21,8 @@ public:
 	void printInfo() const;
 
 private:
-	TransformationHandler transformationHandler;
-	// ImagesCollection imageCollection;
-	// MyVector<Polymorphic_ptr<Transformation>> transformations;
+	TransformationExecutor transformationExecutor;
+	ImagesCollection imageCollection;
 
 	size_t ID = 0;
 	static size_t sessionsCount; // must initialize in cpp
@@ -33,5 +32,4 @@ private:
 	void printImagesNames() const;
 	void printPendingTransformations() const;
 
-	void addTransformationInTransformableImages(const Polymorphic_ptr<Transformation>& transformation);
 };

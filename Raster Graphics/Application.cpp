@@ -74,7 +74,6 @@ void Application::saveAs(const MyString& fileName)
 }
 void Application::close()
 {
-
 	sessions[currentSessionIndex].close();
 }
 void Application::help()
