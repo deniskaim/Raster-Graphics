@@ -128,6 +128,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CloseCommand.cpp" />
+    <ClCompile Include="PGMImage.cpp" />
+    <ClCompile Include="PPMImage.cpp" />
     <ClCompile Include="TransformableImage.cpp" />
     <ClCompile Include="TransformationExecutor.cpp" />
     <ClCompile Include="TransformationHandler.cpp" />

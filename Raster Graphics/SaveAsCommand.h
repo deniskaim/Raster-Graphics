@@ -1,8 +1,8 @@
 #pragma once
-#include "Command.h"
+#include "SaveCommand.h"
 #include "MyString.h"
 
-class SaveAsCommand : public Command
+class SaveAsCommand : public SaveCommand
 {
 public:
 	SaveAsCommand(const MyString& fileName);

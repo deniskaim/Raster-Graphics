@@ -135,7 +135,7 @@ void Application::help()
 }
 void Application::exit()
 {
-
+	runApp = false;
 }
 void Application::switchSession(size_t newSessionIndex) const
 {
