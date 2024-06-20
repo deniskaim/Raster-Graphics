@@ -8,6 +8,12 @@ class Application
 public:
 	// void executeCommand(const Command* command); // not const since the command will change the application class
 	
+	static Application& getInstance();
+	Application(const Application& other) = delete;
+	Application& operator=(const Application& other) = delete;
+
+	void run();
+
 	void loadSession(const Session& newSession);
 	void loadSession(Session&& newSession);
 
@@ -35,9 +41,11 @@ public:
 	void loadNewSession(const Session& newSession);*/
 
 private:
+	Application() = default;
+	~Application() = default;
 	MyVector<Session> sessions;
 	mutable size_t currentSessionIndex = 0;
-
+	bool runApp = true;
 	/*
 	void loadSession(const Image* const* images, size_t count);
 	void save(); // images in current session

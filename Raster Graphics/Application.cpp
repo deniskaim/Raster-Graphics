@@ -1,57 +1,18 @@
 #include "Application.h"
+#include "CommandFactory.h" // necessary for the run function 
 
-/*
-void Application::executeCommand(Commands toExecute)
+Application& Application::getInstance()
 {
-	switch (toExecute)
-	{
-	case Commands::close:
-		return close();
-
-	case Commands::exit:
-		return exit();
-
-	case Commands::grayscale:
-		return addTransformation(Transformation::grayscale);
-
-	case Commands::monochrome:
-		return addTransformation(Transformation::monochrome);
-
-	case Commands::negative:
-		return addTransformation(Transformation::negative);
-
-	case Commands::rotateLeft:
-		return addTransformation(Transformation::rotateLeft);
-
-	case Commands::rotateRight:
-		return addTransformation(Transformation::rotateRight);
-
-	case Commands::help:
-		return help();
-
-	case Commands::load:
-		return loadSession(); // TODO: read the images and put them as arguments
-		
-	case Commands::save:
-		return save();
-
-	case Commands::saveAs:
-		return saveAs(); // TODO: read the file path and put it as an argument
-
-	case Commands::sessionInfo:
-		return getCurrentSessionInfo();
-
-	case Commands::switchSession:
-		return switchSession(); // TODO: add the index as an argument
-
-	case Commands::undo:
-		return undo();
-
-	default:
-		throw std::logic_error("Invalid command!");
-	}
-} */
-
+	static Application instance;
+	return instance;
+}
+void Application::run()
+{
+	//while (runApp)
+	//{
+	//	Polymorphic_ptr<Command> currentCommand = CommandFactory::commandFactory()
+	//}
+}
 //void Application::executeCommand(const Command* command)
 //{
 //	command->execute(*this);
