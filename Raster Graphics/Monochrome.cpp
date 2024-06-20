@@ -11,7 +11,7 @@ void Monochrome::execute() const
 
 	application.addTransformation(Polymorphic_ptr<Transformation> (clone()));
 }
-void Transformation::printType() const
+void Monochrome::printType() const
 {
 	std::cout << "monochrome";
 }
