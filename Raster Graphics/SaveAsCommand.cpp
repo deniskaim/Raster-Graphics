@@ -4,7 +4,8 @@
 SaveAsCommand::SaveAsCommand(const MyString& fileName) : fileName(fileName)
 {}
 
-void SaveAsCommand::execute(Application& application) const
+void SaveAsCommand::execute() const
 {
+	Application& application = Application::getInstance();
 	application.saveAs(fileName);
 }

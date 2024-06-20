@@ -5,10 +5,11 @@ Negative::Negative()
 {
 	type = Type::negative;
 }
-void Negative::execute(Application& application) const
+void Negative::execute() const
 {
-	Polymorphic_ptr<Transformation> transformation(clone());
-	application.addTransformation(transformation);
+	Application& application = Application::getInstance();
+
+	application.addTransformation(Polymorphic_ptr<Transformation>(clone()));
 }
 void Negative::printType() const
 {

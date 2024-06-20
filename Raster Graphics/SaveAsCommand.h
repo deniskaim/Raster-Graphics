@@ -6,7 +6,7 @@ class SaveAsCommand : public SaveCommand
 {
 public:
 	SaveAsCommand(const MyString& fileName);
-	void execute(Application& application) const override;
+	void execute() const override;
 
 private:
 	const MyString fileName;

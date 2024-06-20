@@ -5,7 +5,7 @@ class Negative : public Transformation
 {
 public:
 	Negative();
-	void execute(Application& application) const override;
+	void execute() const override;
 	void printType() const override;
 	Transformation* clone() const override;
 };

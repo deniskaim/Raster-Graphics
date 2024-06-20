@@ -3,6 +3,6 @@
 class LoadCommand : public Command
 {
 public:
-	void execute(Application& application) const override;
+	void execute() const override;
 
 };

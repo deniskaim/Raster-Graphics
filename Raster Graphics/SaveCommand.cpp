@@ -1,7 +1,8 @@
 #include "SaveCommand.h"
 #include "Application.h"
 
-void SaveCommand::execute(Application& application) const
+void SaveCommand::execute() const
 {
+	Application& application = Application::getInstance();
 	application.save();
 }

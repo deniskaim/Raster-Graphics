@@ -5,11 +5,11 @@ Monochrome::Monochrome()
 {
 	type = Type::monochrome;
 }
-void Monochrome::execute(Application& application) const
+void Monochrome::execute() const
 {
-	Transformation* cloned = clone();
-	Polymorphic_ptr<Transformation> transformation(cloned);
-	application.addTransformation(std::move(transformation));
+	Application& application = Application::getInstance();
+
+	application.addTransformation(Polymorphic_ptr<Transformation> (clone()));
 }
 void Transformation::printType() const
 {

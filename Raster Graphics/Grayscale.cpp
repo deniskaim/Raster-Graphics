@@ -5,10 +5,11 @@ Grayscale::Grayscale()
 {
 	type = Type::grayscale;
 }
-void Grayscale::execute(Application& application) const
+void Grayscale::execute() const
 {
-	Polymorphic_ptr<Transformation> transformation(clone());
-	application.addTransformation(std::move(transformation));
+	Application& application = Application::getInstance();
+
+	application.addTransformation(Polymorphic_ptr<Transformation>(clone()));
 }
 void Grayscale::printType() const
 {

@@ -5,7 +5,7 @@ class Grayscale: public Transformation
 {
 public:
 	Grayscale();
-	void execute(Application& application) const override;
+	void execute() const override;
 	void printType() const override;
 	Transformation* clone() const override;
 };

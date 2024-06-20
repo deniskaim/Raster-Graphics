@@ -4,5 +4,5 @@
 class SaveCommand : public Command
 {
 public:
-	void execute(Application&) const override;
+	void execute() const override;
 };
