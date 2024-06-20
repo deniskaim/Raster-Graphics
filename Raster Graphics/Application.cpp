@@ -8,10 +8,10 @@ Application& Application::getInstance()
 }
 void Application::run()
 {
-	//while (runApp)
-	//{
-	//	Polymorphic_ptr<Command> currentCommand = CommandFactory::commandFactory()
-	//}
+	while (runApp)
+	{
+		Polymorphic_ptr<Command> currentCommand = CommandFactory::commandFactory()
+	}
 }
 //void Application::executeCommand(const Command* command)
 //{
@@ -37,7 +37,8 @@ void Application::saveAs(const MyString& fileName)
 }
 void Application::close()
 {
-	sessions[currentSessionIndex].close();
+	// important to check in the other functions if the index is valid
+	currentSessionIndex = -1;
 }
 void Application::help()
 {

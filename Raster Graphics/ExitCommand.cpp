@@ -6,3 +6,7 @@ void ExitCommand::execute() const
 	Application& application = Application::getInstance();
 	application.exit();
 }
+Command* ExitCommand::clone() const
+{
+	return new ExitCommand(*this);
+}
