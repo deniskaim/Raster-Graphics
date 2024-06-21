@@ -1,5 +1,7 @@
 #pragma once
 #include "Command.h"
+
+class Session;
 class LoadCommand : public Command
 {
 public:

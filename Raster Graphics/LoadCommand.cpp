@@ -48,6 +48,7 @@ void LoadCommand::copyFrom(const LoadCommand& other)
 void LoadCommand::moveFrom(LoadCommand&& other)
 {
 	sessionPtr = other.sessionPtr;
+	other.sessionPtr = nullptr;
 }
 void LoadCommand::execute() const
 {

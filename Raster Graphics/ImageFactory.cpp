@@ -5,9 +5,8 @@
 #include "PPMImage.h"
 #include <fstream>
 
-Image* imageFactory()
+Polymorphic_ptr<TransformableImage> imageFactory(const MyString& fileName)
 {
-	MyString fileName = readString();
 	MyString extension = getExtension(fileName);
 	try
 	{

@@ -1,6 +1,6 @@
 #pragma once
-#include "Image.h"
+#include "TransformableImage.h"
 
-Image* imageFactory();
+Polymorphic_ptr<TransformableImage> imageFactory(const MyString& fileName);
 
 MyString readString();
