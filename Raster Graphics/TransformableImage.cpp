@@ -7,7 +7,7 @@ void TransformableImage::addTransformation(const Polymorphic_ptr<Transformation>
 {
 	pendingTranformations.push(transformation);
 }
-void TransformableImage::save()
+void TransformableImage::serialize()
 {
 	applyAllTransformations();
 	write(fileName);

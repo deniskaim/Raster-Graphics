@@ -13,7 +13,7 @@ public:
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void undoLastTransformation();
 
-	void save();
+	void serialize();
 	virtual void write(const MyString& fileName) const = 0;
 
 	virtual TransformableImage* clone() const = 0;

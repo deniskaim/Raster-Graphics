@@ -1,16 +1,17 @@
 #pragma once
 #include "Command.h"
-// #include "Polymorphic_ptr.h"
+#include "Polymorphic_ptr.h"
 
 class CommandFactory
 {
 public:
-	static Command* createCommand();
+	static Polymorphic_ptr<Command> createCommand();
 
 private:
-	static Command* createLoadCommand();
-	static Command* createSaveAsCommand();
-	static Command* createAddCommand();
-	static Command* createSessionInfoCommand();
-	static Command* createCollageCommand();
+	static Polymorphic_ptr<Command> createLoadCommand();
+	static Polymorphic_ptr<Command> createSaveAsCommand();
+	static Polymorphic_ptr<Command> createRotateCommand();
+	static Polymorphic_ptr<Command> createAddCommand();
+	static Polymorphic_ptr<Command> createSessionInfoCommand();
+	static Polymorphic_ptr<Command> createCollageCommand();
 };

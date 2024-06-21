@@ -1,51 +1,87 @@
 #include "CommandFactory.h"
-#include "ImageFactory.h"
+#include "SessionFactory.h" // necessary for the loadCommand
+#include <sstream>
 
 #include "LoadCommand.h"
-Command* commandFactory()
+#include "CloseCommand.h"
+#include "SaveCommand.h"
+#include "SaveAsCommand.h"
+#include "HelpCommand.h"
+#include "ExitCommand.h"
+
+#include "Grayscale.h"
+#include "Monochrome.h"
+#include "Negative.h"
+
+Polymorphic_ptr<Command> CommandFactory::createCommand()
 {
-	// Directly put the desired command
+	printCommandKey();
 
-	/*try
-	{
-		checkCommandKey();
-	}
-	catch (const std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-		return nullptr;
-	}*/
+	MyString commandString;
+	std::cin >> commandString;
 
-	
-	const MyString commandString = readString();
-	
 	if (commandString == "load")
-		return new LoadCommand;
+		return createLoadCommand();
 
 	else if (commandString == "close")
-		return new Close;
-
-	else if (commandString == "exit")
-		return new Exit;
-
-	else if (commandString == "help")
-		return new Help;
+		return new CloseCommand;
 
 	else if (commandString == "save")
-		return new Save;
+		return new SaveCommand;
 
-	else if (commandString == "save as")
-		return new SaveAs;
+	else if (commandString == "saveas")
+		return createSaveAsCommand();
 
-	else if (commandString == )
+	else if (commandString == "help")
+		return new HelpCommand;
+
+	else if (commandString == "exit")
+		return new ExitCommand;
+
+	else if (commandString == "grayscale")
+		return new Grayscale;
+
+	else if (commandString == "monochrome")
+		return new Monochrome;
+
+	else if (commandString == "negative")
+		return new Negative;
+
+	else if (commandString == "rotate")
+	{
+		return createRotateCommand();
+		/*
+		if (commandLine == "rotate left")
+			return new RotateLeft;
+
+		else if (commandLine == "rotate right")
+			return new RotateRight;*/
+	}
+	else if (commandString == "undo")
+		return new UndoCommand;
+
+	else if (commandString == "add")
+		return createAddCommand();
+
+	else if (commandLine == "session info")
+		return new SessionInfoCommand();
+
+	else if (commandString == "switch")
+		return new createSwitchSessionCommand();
+
+	else if (commandString == "collage")
+		return new createCollageCommand();
+
 }
-//static void checkCommandKey()
-//{
-//	char ch;
-//	std::cin >> ch;
-//	if (ch != '>')
-//		throw std::exception("Incorrect way to enter a command!");
-//}
+Polymorphic_ptr<Command> CommandFactory::createLoadCommand()
+{
+	Session* sessionPtr = createSession();
+	return new LoadCommand(sessionPtr);
+}
+static void printCommandKey()
+{
+	std::cout << "> ";
+}
 static MyString getLine()
 {
 	const size_t NAME_SIZE = 1024;
@@ -55,60 +91,3 @@ static MyString getLine()
 	
 	return MyString(str);
 }
-/*
-Commands commandFactory()
-{
-	MyString input = readFileName();
-
-	if (input == "grayscale")
-		return Commands::grayscale;
-
-	else if (input == "monochrome")
-		return Commands::monochrome;
-
-	else if (input == "negative")
-		return Commands::negative;
-
-	else if (input == "rotate left")
-		return Commands::rotateLeft;
-
-	else if (input == "rotate right")
-		return Commands::rotateRight;
-
-	else if (input == "undo")
-		return Commands::undo;
-
-	else if (input == "add")
-		return Commands::add;
-
-	else if (input == "session info")
-		return Commands::sessionInfo;
-
-	else if (input == "switch")
-		return Commands::switchSession;
-
-	else if (input == "collage")
-		return Commands::collage;
-
-	else if (input == "help")
-		return Commands::help;
-
-	else if (input == "close")
-		return Commands::close;
-
-	else if (input == "exit")
-		return Commands::exit;
-
-	else if (input == "load")
-		return Commands::load;
-
-	else if (input == "save")
-		return Commands::save;
-
-	else if (input == "save as")
-		return Commands::saveAs;
-
-	else
-		return Commands::ERROR;
-}
-*/
