@@ -7,10 +7,11 @@
 class TransformationExecutor
 {
 public:
+	/*
 	TransformationExecutor() = default;
 	TransformationExecutor(const TransformationExecutor& other) = delete;
 	TransformationExecutor& operator=(const TransformationExecutor& other) = delete;
-	~TransformationExecutor() = default;
+	~TransformationExecutor() = default;*/
 
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void addTransformation(Polymorphic_ptr<Transformation>&& transformation);
