@@ -43,10 +43,11 @@ public:
 
 private:
 	Application() = default;
-	~Application() = default;
 	MyVector<Session> sessions;
 	mutable size_t currentSessionIndex = 0;
 	bool runApp = true;
+
+	bool checkForActiveSession() const;
 	/*
 	void loadSession(const Image* const* images, size_t count);
 	void save(); // images in current session

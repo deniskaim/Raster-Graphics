@@ -2,10 +2,6 @@
 
 size_t Session::sessionsCount = 1;
 
-Session::Session()
-{
-	ID = sessionsCount++;
-}
 void Session::addImage(const Polymorphic_ptr<TransformableImage>& image)
 {
 	imageCollection.pushBack(image);
@@ -34,14 +30,17 @@ void Session::save()
 }
 void Session::saveAs(const MyString& fileName)
 {
-	transformationHandler.executeAll(imageCollection); // TODO: add fileName
+	imageCollection[0]->setImageName(fileName);
+	transformationHandler.executeAll(imageCollection);
 }
+/*
 void Session::close()
 {
 	imageCollection.clear();
 	transformationHandler.close();
 	// just popAt() in the Application class?
 }
+*/
 void Session::printInfo() const
 {
 	printID();
@@ -53,7 +52,14 @@ size_t Session::getID() const
 {
 	return ID;
 }
-
+void Session::initializeID()
+{
+	ID = getNextSessionID();
+}
+size_t Session::getNextSessionID()
+{
+	return sessionsCount++;
+}
 // private 
 void Session::printID() const
 {

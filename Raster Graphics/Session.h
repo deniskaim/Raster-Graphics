@@ -7,7 +7,6 @@ class Session
 {
 public:
 
-	Session();
 	void addImage(const Polymorphic_ptr<TransformableImage>& image);
 	void addImage(Polymorphic_ptr<TransformableImage>&& image);
 	
@@ -17,10 +16,11 @@ public:
 
 	void save();
 	void saveAs(const MyString& fileName); // only the first image under this name
-	void close();
+	// void close();
 	void printInfo() const;
 
 	size_t getID() const;
+	void initializeID();
 
 private:
 	TransformationHandler transformationHandler;
@@ -31,5 +31,5 @@ private:
 	void printID() const;
 	void printImagesNames() const;
 	void printPendingTransformations() const;
-
+	static size_t getNextSessionID();
 };

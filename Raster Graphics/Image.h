@@ -6,14 +6,15 @@
 class Image 
 {
 public:
-	Image(int32_t height, int32_t width, const MyString& fileName) : height(height), width(width), fileName(fileName){}
-	const MyString& getFileName() const { return fileName; }
+	Image(int32_t height, int32_t width, const MyString& imageName) : height(height), width(width), imageName(imageName){}
+	const MyString& getImageName() const { return imageName; }
+	const MyString& setImageName(const MyString& newName) { imageName = newName; }
 	//virtual Image* clone() const = 0;
 	virtual ~Image() = default;
 
 protected:
 	int32_t height = 0;
 	int32_t width = 0;
-	const MyString fileName;
+	MyString imageName;
 };
 

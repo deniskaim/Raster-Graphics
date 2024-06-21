@@ -27,6 +27,7 @@ void Application::loadSession(Session&& newSession)
 void Application::loadSession(const MyVector<MyString>& imagesNames)
 {
 	Session newSession;
+	newSession.initializeID();
 	switchSession(newSession.getID()); // shouldn't throw an exception
 	for (size_t i = 0; i < imagesNames.getSize(); i++)
 	{
@@ -46,6 +47,7 @@ void Application::saveAs(const MyString& fileName)
 void Application::close()
 {
 	// important to check in the other functions if the index is valid
+	sessions.popAt(currentSessionIndex - 1);
 	currentSessionIndex = -1;
 }
 void Application::help()
