@@ -10,7 +10,7 @@ public:
 	Session();
 	void addImage(const Polymorphic_ptr<TransformableImage>& image);
 	void addImage(Polymorphic_ptr<TransformableImage>&& image);
-
+	
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void addTransformation(Polymorphic_ptr<Transformation>&& transformation);
 	void undo();
@@ -20,10 +20,11 @@ public:
 	void close();
 	void printInfo() const;
 
+	size_t getID() const;
+
 private:
 	TransformationHandler transformationHandler;
 	ImagesCollection imageCollection;
-	
 	size_t ID = 0;
 	static size_t sessionsCount; // must initialize in cpp
 

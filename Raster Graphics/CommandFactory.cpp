@@ -127,7 +127,7 @@ Polymorphic_ptr<Command> CommandFactory::createSwitchSessionCommand()
 	int index;
 	std::cin >> index;
 	
-	if (!hasMoreInput())
+	if (!std::cin.fail() && !hasMoreInput())
 		return new SwitchSession(index);
 	else
 		return nullptr;

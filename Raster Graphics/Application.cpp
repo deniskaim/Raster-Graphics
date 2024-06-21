@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "CommandFactory.h" // necessary for the run function 
+#include "ImageFactory.h"
 
 Application& Application::getInstance()
 {
@@ -10,13 +11,11 @@ void Application::run()
 {
 	while (runApp)
 	{
-		Polymorphic_ptr<Command> currentCommand = CommandFactory::commandFactory()
+		Polymorphic_ptr<Command> currentCommand(CommandFactory::createCommand()); // use the already allocated memory
+		currentCommand->execute();
 	}
 }
-//void Application::executeCommand(const Command* command)
-//{
-//	command->execute(*this);
-//}
+
 void Application::loadSession(const Session& newSession)
 {
 	sessions.pushBack(newSession);
@@ -26,6 +25,15 @@ void Application::loadSession(Session&& newSession)
 {
 	sessions.pushBack(std::move(newSession));
 	currentSessionIndex++;
+}
+void Application::loadSession(const MyVector<MyString>& imagesNames)
+{
+	Session newSession;
+	switchSession(newSession.getID()); // shouldn't throw an exception
+	for (size_t i = 0; i < imagesNames.getSize(); i++)
+	{
+		addImageToCurrentSession(imagesNames[i]);
+	}
 }
 void Application::save()
 {
@@ -117,6 +125,11 @@ void Application::addImageToCurrentSession(const Polymorphic_ptr<TransformableIm
 void Application::addImageToCurrentSession(Polymorphic_ptr<TransformableImage>&& image)
 {
 	sessions[currentSessionIndex].addImage(std::move(image));
+}
+void Application::addImageToCurrentSession(const MyString& fileName)
+{
+	Polymorphic_ptr<TransformableImage> image(imageFactory(fileName));
+	addImageToCurrentSession(std::move(image));
 }
 void Application::undo()
 {

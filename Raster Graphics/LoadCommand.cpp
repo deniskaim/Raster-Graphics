@@ -1,6 +1,6 @@
 #include "LoadCommand.h"
 #include "Application.h"
-
+/*
 LoadCommand::LoadCommand(Session* ptr) 
 {
 	sessionPtr = ptr;
@@ -50,11 +50,18 @@ void LoadCommand::moveFrom(LoadCommand&& other)
 	sessionPtr = other.sessionPtr;
 	other.sessionPtr = nullptr;
 }
+LoadCommand::LoadCommand(const MyVector<MyString>& imagesNames)
+{
+}
+*/
+
+LoadCommand::LoadCommand(const MyVector<MyString>& imagesNames) : imagesNames(imagesNames)
+{}
+
 void LoadCommand::execute() const
 {
 	Application& application = Application::getInstance();
-	Session& currentSession = *sessionPtr;
-	application.loadSession(std::move(currentSession));
+	application.loadSession(imagesNames);
 }
 Command* LoadCommand::clone() const
 {

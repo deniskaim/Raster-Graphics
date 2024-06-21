@@ -49,6 +49,11 @@ void Session::printInfo() const
 	printPendingTransformations();
 }
 
+size_t Session::getID() const
+{
+	return ID;
+}
+
 // private 
 void Session::printID() const
 {
