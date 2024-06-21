@@ -11,6 +11,7 @@
 #include "UndoCommand.h"
 #include "SessionInfo.h"
 #include "SwitchSession.h"
+#include "AddImage.h"
 
 #include "Grayscale.h"
 #include "Monochrome.h"
@@ -65,7 +66,7 @@ Polymorphic_ptr<Command> CommandFactory::createCommand()
 		return createSessionInfoCommand();
 	
 	else if (commandString == "switch")
-		return new createSwitchSessionCommand();
+		return createSwitchSessionCommand();
 
 	else if (commandString == "collage")
 		return new createCollageCommand();
@@ -73,6 +74,26 @@ Polymorphic_ptr<Command> CommandFactory::createCommand()
 
 	return nullptr;
 
+}
+Polymorphic_ptr<Command> CommandFactory::createSaveAsCommand()
+{
+	MyString imageName;
+	std::cin >> imageName;
+
+	if (!hasMoreInput())
+		return new SaveAsCommand(imageName);
+	else
+		return nullptr;
+}
+Polymorphic_ptr<Command> CommandFactory::createAddCommand()
+{
+	MyString imageName;
+	std::cin >> imageName;
+	
+	if (isValidImageName() && !hasMoreInput())
+		return new AddImage(imageName);
+	else
+		return nullptr;
 }
 Polymorphic_ptr<Command> CommandFactory::createLoadCommand()
 {

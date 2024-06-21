@@ -13,5 +13,6 @@ private:
 	static Polymorphic_ptr<Command> createRotateCommand();
 	static Polymorphic_ptr<Command> createAddCommand();
 	static Polymorphic_ptr<Command> createSessionInfoCommand();
+	static Polymorphic_ptr<Command> createSwitchSessionCommand();
 	static Polymorphic_ptr<Command> createCollageCommand();
 };
