@@ -12,6 +12,8 @@
 #include "Grayscale.h"
 #include "Monochrome.h"
 #include "Negative.h"
+#include "RotateLeft.h"
+#include "RotateRight.h"
 
 Polymorphic_ptr<Command> CommandFactory::createCommand()
 {
@@ -77,6 +79,17 @@ Polymorphic_ptr<Command> CommandFactory::createLoadCommand()
 {
 	Session* sessionPtr = createSession();
 	return new LoadCommand(sessionPtr);
+}
+Polymorphic_ptr<Command> CommandFactory::createRotateCommand()
+{
+	MyString type;
+	std::cin >> type;
+	if (type == "left")
+		return new RotateLeft;
+	else
+		return new RotateRight;
+	else if (commandLine == "rotate right")
+		return new RotateRight;
 }
 static void printCommandKey()
 {
