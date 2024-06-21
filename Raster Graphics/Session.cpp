@@ -16,30 +16,31 @@ void Session::addImage(Polymorphic_ptr<TransformableImage>&& image)
 }
 void Session::addTransformation(const Polymorphic_ptr<Transformation>& transformation)
 {
-	transformationExecutor.addTransformation(transformation);
+	transformationHandler.addTransformation(transformation);
 	imageCollection.addTransformationInCollection(transformation);
 }
 void Session::addTransformation(Polymorphic_ptr<Transformation>&& transformation)
 {
-	transformationExecutor.addTransformation(std::move(transformation));
+	transformationHandler.addTransformation(std::move(transformation));
 	imageCollection.addTransformationInCollection(transformation);
 }
 void Session::undo()
 {
-	// transformationExecutor.undo();
+	transformationHandler.undoLastTransformation();
 }
 void Session::save()
 {
-	transformationExecutor.executeAll(imageCollection);
+	transformationHandler.executeAll(imageCollection);
 }
 void Session::saveAs(const MyString& fileName)
 {
-	transformationExecutor.executeAll(imageCollection); // TODO: add fileName
+	transformationHandler.executeAll(imageCollection); // TODO: add fileName
 }
 void Session::close()
 {
 	imageCollection.clear();
-	transformationExecutor.close();
+	transformationHandler.close();
+	// just popAt() in the Application class?
 }
 void Session::printInfo() const
 {
@@ -63,6 +64,6 @@ void Session::printImagesNames() const
 }
 void Session::printPendingTransformations() const
 {
-	transformationExecutor.printTransformations();
+	transformationHandler.printTransformations();
 	std::cout << '\n';
 }

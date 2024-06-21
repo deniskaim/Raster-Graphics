@@ -1,47 +1,49 @@
-//#include "TransformationHandler.h"
-//
-//void TransformationHandler::add(const Polymorphic_ptr<Transformation>& transformation)
-//{
-//	toExecute.push(transformation);
-//}
-//void TransformationHandler::add(Polymorphic_ptr<Transformation>&& transformation)
-//{
-//	toExecute.push(std::move(transformation));
-//}
-//void TransformationHandler::execute(const ImagesCollection& imageCollection)
-//{
-//	if (toExecute.empty())
-//		return;
-//
-//	Polymorphic_ptr<Transformation>& current = toExecute.peek();
-//	current->execute(); // TODO: find a proper way to make this work
-//
-//	executed.pushBack(std::move(current)); // use the allocated memory
-//	toExecute.pop();
-//}
-//void TransformationHandler::executeAll()
-//{
-//	while (!toExecute.empty())
-//	{
-//		execute();
-//	}
-//}
-//void TransformationHandler::undo()
-//{
-//	if (executed.empty())
-//		return;
-//
-//	Polymorphic_ptr<Transformation>& lastTransformation = executed.peek();
-//	// lastTransformation.undo(); TODO: Make this work
-//	executed.popBack();
-//}
-//
-//bool TransformationHandler::isEmpty() const
-//{
-//	return toExecute.empty();
-//}
-//void TransformationHandler::clear()
-//{
-//	toExecute.clear();
-//	executed.clear();
-//}
+#include "TransformationHandler.h"
+
+void TransformationHandler::addTransformation(const Polymorphic_ptr<Transformation>& transformation)
+{
+	transformationsInSession.pushBack(transformation);
+}
+void TransformationHandler::addTransformation(Polymorphic_ptr<Transformation>&& transformation)
+{
+	transformationsInSession.pushBack(std::move(transformation));
+}
+void TransformationHandler::executeAll(ImagesCollection& imageCollection)
+{
+	for (size_t i = 0; i < imageCollection.getSize(); i++)
+		imageCollection[i]->serialize();
+
+	std::cout << '\n';
+}
+void TransformationHandler::printTransformations() const
+{
+	std::cout << "Pending transformations: ";
+
+	for (size_t i = 0; i < transformationsInSession.getSize(); i++)
+	{
+		transformationsInSession[i]->printType();
+		std::cout << " ";
+	}
+
+}
+
+void TransformationHandler::undoLastTransformation(ImagesCollection& imageCollection)
+{
+	if (transformationsInSession.empty())
+		return;
+
+	else
+	{
+		std::cout << "Removed last transformation - ";
+		transformationsInSession.popBack()->printType();
+		std::cout << std::endl;
+
+		for (size_t i = 0; i < imageCollection.getSize(); i++)
+			imageCollection[i]->undoLastTransformation();
+	}
+}
+
+void TransformationHandler::close()
+{
+	transformationsInSession.clear();
+}

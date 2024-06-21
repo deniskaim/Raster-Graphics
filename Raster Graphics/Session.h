@@ -1,6 +1,6 @@
 #pragma once
 #include "ImagesCollection.h"
-#include "TransformationExecutor.h"
+#include "TransformationHandler.h"
 #include "MyString.h"
 
 class Session
@@ -21,9 +21,9 @@ public:
 	void printInfo() const;
 
 private:
-	TransformationExecutor transformationExecutor;
+	TransformationHandler transformationHandler;
 	ImagesCollection imageCollection;
-
+	
 	size_t ID = 0;
 	static size_t sessionsCount; // must initialize in cpp
 
