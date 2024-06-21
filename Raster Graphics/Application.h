@@ -14,9 +14,9 @@ public:
 
 	void run();
 
-	void loadSession(const Session& newSession);
-	void loadSession(Session&& newSession);
-
+	// void loadSession(const Session& newSession);
+	// void loadSession(Session&& newSession);
+	void loadSession(const MyVector<MyString>& imagesNames);
 	void save(); // images in current session
 	void saveAs(const MyString& fileName); // images in current session
 
@@ -30,6 +30,7 @@ public:
 
 	void addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image);
 	void addImageToCurrentSession(Polymorphic_ptr<TransformableImage>&& image);
+	void addImageToCurrentSession(const MyString& fileName);
 
 	void undo(); // 1
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation); // transformation nasledqva komanda ()()()()()

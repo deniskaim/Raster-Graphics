@@ -15,17 +15,15 @@ void Application::run()
 		currentCommand->execute();
 	}
 }
-
+/*
 void Application::loadSession(const Session& newSession)
 {
 	sessions.pushBack(newSession);
-	currentSessionIndex++;
 }
 void Application::loadSession(Session&& newSession)
 {
 	sessions.pushBack(std::move(newSession));
-	currentSessionIndex++;
-}
+}*/
 void Application::loadSession(const MyVector<MyString>& imagesNames)
 {
 	Session newSession;
@@ -37,10 +35,12 @@ void Application::loadSession(const MyVector<MyString>& imagesNames)
 }
 void Application::save()
 {
+	checkForActiveSession();
 	sessions[currentSessionIndex].save();
 }
 void Application::saveAs(const MyString& fileName)
 {
+	checkForActiveSession();
 	sessions[currentSessionIndex].saveAs(fileName);
 }
 void Application::close()
@@ -116,35 +116,46 @@ void Application::switchSession(size_t newSessionIndex) const
 }
 void Application::getCurrentSessionInfo() const
 {
+	checkForActiveSession();
 	sessions[currentSessionIndex].printInfo();
 }
 void Application::addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image)
 {
+	checkForActiveSession();
 	sessions[currentSessionIndex].addImage(image);
 }
 void Application::addImageToCurrentSession(Polymorphic_ptr<TransformableImage>&& image)
 {
+	checkForActiveSession();
 	sessions[currentSessionIndex].addImage(std::move(image));
 }
 void Application::addImageToCurrentSession(const MyString& fileName)
 {
+	checkForActiveSession();
 	Polymorphic_ptr<TransformableImage> image(imageFactory(fileName));
 	addImageToCurrentSession(std::move(image));
 }
 void Application::undo()
 {
+	checkForActiveSession();
 	sessions[currentSessionIndex].undo();
 }
 void Application::addTransformation(const Polymorphic_ptr<Transformation>& transformation) // should be Transformation*
 {
+	checkForActiveSession();
 	sessions[currentSessionIndex].addTransformation(transformation);
 }
 void Application::addTransformation(Polymorphic_ptr<Transformation>&& transformation)
 {
+	checkForActiveSession();
 	sessions[currentSessionIndex].addTransformation(std::move(transformation));
 }
 
-
+bool Application::checkForActiveSession() const
+{
+	if (currentSessionIndex == -1)
+		throw std::logic_error("No current session");
+}
 /*
 	const Session& Application::getCurrentSession() const
 	{
