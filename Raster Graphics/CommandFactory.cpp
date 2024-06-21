@@ -10,6 +10,7 @@
 #include "ExitCommand.h"
 #include "UndoCommand.h"
 #include "SessionInfo.h"
+#include "SwitchSession.h"
 
 #include "Grayscale.h"
 #include "Monochrome.h"
@@ -69,6 +70,9 @@ Polymorphic_ptr<Command> CommandFactory::createCommand()
 	else if (commandString == "collage")
 		return new createCollageCommand();
 
+
+	return nullptr;
+
 }
 Polymorphic_ptr<Command> CommandFactory::createLoadCommand()
 {
@@ -94,6 +98,16 @@ Polymorphic_ptr<Command> CommandFactory::createSessionInfoCommand()
 	bool extraSymbols = hasMoreInput();
 	if (nextWord == "info" && !extraSymbols)
 		return new SessionInfo;
+	else
+		return nullptr;
+}
+Polymorphic_ptr<Command> CommandFactory::createSwitchSessionCommand()
+{
+	int index;
+	std::cin >> index;
+	
+	if (!hasMoreInput())
+		return new SwitchSession(index);
 	else
 		return nullptr;
 }
