@@ -8,6 +8,8 @@
 #include "SaveAsCommand.h"
 #include "HelpCommand.h"
 #include "ExitCommand.h"
+#include "UndoCommand.h"
+#include "SessionInfo.h"
 
 #include "Grayscale.h"
 #include "Monochrome.h"
@@ -25,49 +27,42 @@ Polymorphic_ptr<Command> CommandFactory::createCommand()
 	if (commandString == "load")
 		return createLoadCommand();
 
-	else if (commandString == "close")
+	else if (commandString == "close" && !hasMoreInput())
 		return new CloseCommand;
 
-	else if (commandString == "save")
+	else if (commandString == "save" && !hasMoreInput())
 		return new SaveCommand;
 
-	else if (commandString == "saveas")
+	else if (commandString == "saveas" && !hasMoreInput())
 		return createSaveAsCommand();
 
-	else if (commandString == "help")
+	else if (commandString == "help" && !hasMoreInput())
 		return new HelpCommand;
 
-	else if (commandString == "exit")
+	else if (commandString == "exit" && !hasMoreInput())
 		return new ExitCommand;
 
-	else if (commandString == "grayscale")
+	else if (commandString == "grayscale" && !hasMoreInput())
 		return new Grayscale;
 
-	else if (commandString == "monochrome")
+	else if (commandString == "monochrome" && !hasMoreInput())
 		return new Monochrome;
 
-	else if (commandString == "negative")
+	else if (commandString == "negative" && !hasMoreInput())
 		return new Negative;
 
 	else if (commandString == "rotate")
-	{
 		return createRotateCommand();
-		/*
-		if (commandLine == "rotate left")
-			return new RotateLeft;
 
-		else if (commandLine == "rotate right")
-			return new RotateRight;*/
-	}
-	else if (commandString == "undo")
+	else if (commandString == "undo" && !hasMoreInput())
 		return new UndoCommand;
 
 	else if (commandString == "add")
 		return createAddCommand();
 
-	else if (commandLine == "session info")
-		return new SessionInfoCommand();
-
+	else if (commandString == "session")
+		return createSessionInfoCommand();
+	
 	else if (commandString == "switch")
 		return new createSwitchSessionCommand();
 
@@ -84,17 +79,40 @@ Polymorphic_ptr<Command> CommandFactory::createRotateCommand()
 {
 	MyString type;
 	std::cin >> type;
-	if (type == "left")
+	bool hasExtraSymbols = hasMoreInput();
+	if (type == "left" && !hasExtraSymbols)
 		return new RotateLeft;
+	else if (type == "right" && !hasExtraSymbols)
+		return new RotateRight;
 	else
-		return new RotateRight;
-	else if (commandLine == "rotate right")
-		return new RotateRight;
+		return nullptr;
+}
+Polymorphic_ptr<Command> CommandFactory::createSessionInfoCommand()
+{
+	MyString nextWord;
+	std::cin >> nextWord;
+	bool extraSymbols = hasMoreInput();
+	if (nextWord == "info" && !extraSymbols)
+		return new SessionInfo;
+	else
+		return nullptr;
 }
 static void printCommandKey()
 {
 	std::cout << "> ";
 }
+static bool hasMoreInput() 
+{
+	if (std::cin.peek() != '\n' && std::cin.peek() != EOF) 
+	{
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return true;
+	}
+	// Clear the newline character from the input buffer
+	std::cin.ignore();
+	return false;
+}
+
 static MyString getLine()
 {
 	const size_t NAME_SIZE = 1024;
