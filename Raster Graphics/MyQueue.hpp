@@ -133,7 +133,7 @@ void MyQueue<T>::push(T&& value) {
 
 template<typename T>
 void MyQueue<T>::pop() {
-	if (isEmpty()) {
+	if (empty()) {
 		throw std::logic_error("Queue is empty!");
 	}
 
@@ -143,7 +143,7 @@ void MyQueue<T>::pop() {
 
 template<typename T>
 T& MyQueue<T>::peek() {
-	if (isEmpty()) {
+	if (empty()) {
 		throw std::logic_error("Queue is empty!");
 	}
 
@@ -152,7 +152,7 @@ T& MyQueue<T>::peek() {
 
 template<typename T>
 const T& MyQueue<T>::peek() const {
-	if (isEmpty()) {
+	if (empty()) {
 		throw std::logic_error("Queue is empty!");
 	}
 

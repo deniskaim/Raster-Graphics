@@ -1,5 +1,4 @@
 #include "CommandFactory.h"
-// #include "SessionFactory.h" // necessary for the loadCommand
 #include <sstream>
 
 #include "LoadCommand.h"
@@ -19,6 +18,10 @@
 #include "RotateLeft.h"
 #include "RotateRight.h"
 
+static void printCommandKey()
+{
+	std::cout << "> ";
+}
 Polymorphic_ptr<Command> CommandFactory::createCommand()
 {
 	printCommandKey();
@@ -72,8 +75,8 @@ Polymorphic_ptr<Command> CommandFactory::createCommand()
 	else if (commandString == "switch")
 		return createSwitchSessionCommand(ss);
 
-	else if (commandString == "collage")
-		return createCollageCommand(ss);
+	// else if (commandString == "collage")
+		// return createCollageCommand(ss);
 
 
 	throw std::exception("Invalid try for creating a command!");
@@ -144,10 +147,6 @@ Polymorphic_ptr<Command> CommandFactory::createSwitchSessionCommand(std::strings
 
 	else
 		throw std::exception("Invalid try for creating a switch session command!");
-}
-static void printCommandKey()
-{
-	std::cout << "> ";
 }
 
 /*

@@ -1,6 +1,6 @@
 #pragma once
 #include "Command.h"
-#include "Polymorphic_ptr.h"
+#include "Polymorphic_ptr.hpp"
 #include "TransformableImage.h"
 
 class AddImage : public Command

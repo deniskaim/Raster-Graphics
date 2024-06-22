@@ -2,7 +2,7 @@
 #include "Image.h"
 #include "ITransformable.h"
 #include "MyQueue.hpp"
-#include "Polymorphic_ptr.h"
+#include "Polymorphic_ptr.hpp"
 #include "Transformation.h"
 
 class TransformableImage : public Image, ITransformable

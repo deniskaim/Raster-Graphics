@@ -5,26 +5,6 @@
 #include "PPMImage.h"
 #include <fstream>
 
-Polymorphic_ptr<TransformableImage> imageFactory(const MyString& fileName)
-{
-	MyString extension = getExtension(fileName);
-
-	if (extension == "pbm")
-	{
-		return createPBM(fileName);
-	}
-	else if (extension == "pgm")
-	{
-		return createPGM(fileName);
-	}
-	else if (extension == "ppm")
-	{
-		return createPPM(fileName);
-	}
-
-	
-	
-}
 static Polymorphic_ptr<TransformableImage> createPBMImageFromASCIIFile(const MyString& fileName)
 {
 	std::ifstream ifs(fileName.c_str());
@@ -175,4 +155,22 @@ static MyString getFileFormat(const MyString& fileName)
 	ifs >> format;
 	ifs.close();
 	return format;
+}
+
+Polymorphic_ptr<TransformableImage> imageFactory(const MyString& fileName)
+{
+	MyString extension = getExtension(fileName);
+
+	if (extension == "pbm")
+	{
+		return createPBM(fileName);
+	}
+	else if (extension == "pgm")
+	{
+		return createPGM(fileName);
+	}
+	else if (extension == "ppm")
+	{
+		return createPPM(fileName);
+	}
 }

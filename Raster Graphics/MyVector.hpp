@@ -134,7 +134,7 @@ MyVector<T>& MyVector<T>::operator=(MyVector&& other) noexcept
 }
 
 template <typename T>
-MyVector<T>::~MyVector()
+MyVector<T>::~MyVector() noexcept
 {
 	free();
 }

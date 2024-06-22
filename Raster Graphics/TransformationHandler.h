@@ -3,7 +3,7 @@
 #include "TransformableImageDataHolder.h"
 #include "Transformation.h"
 #include "MyVector.hpp"
-#include "Polymorphic_ptr.h"
+#include "Polymorphic_ptr.hpp"
 
 /*
 The idea of this class is to store all the transformations, but apply only those to a certain image,

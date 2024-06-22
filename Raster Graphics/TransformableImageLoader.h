@@ -1,6 +1,6 @@
 #pragma once
 #include "TransformableImage.h"
-#include "Polymorphic_ptr.h"
+#include "Polymorphic_ptr.hpp"
 #include "TransformableImageDataHolder.h"
 
 class TransformableImageLoader

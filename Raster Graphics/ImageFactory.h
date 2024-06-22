@@ -2,5 +2,3 @@
 #include "TransformableImage.h"
 
 Polymorphic_ptr<TransformableImage> imageFactory(const MyString& fileName);
-
-MyString readString();

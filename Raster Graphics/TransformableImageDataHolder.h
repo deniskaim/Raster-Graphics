@@ -1,7 +1,7 @@
 #pragma once
 #include "MyString.h"
 #include "MyVector.hpp"
-#include "Polymorphic_ptr.h"
+#include "Polymorphic_ptr.hpp"
 #include "Transformation.h"
 #include "TransformableImage.h"
 #include "ImageDataHolder.h"

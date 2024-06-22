@@ -1,7 +1,8 @@
 
 #include <iostream>
-
+#include "Application.h"
 int main()
 {
-    std::cout << "Hello World!\n";
+    Application& application = Application::getInstance();
+    application.run();
 }

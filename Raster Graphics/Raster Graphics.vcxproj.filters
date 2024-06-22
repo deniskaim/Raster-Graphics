@@ -70,13 +70,43 @@
     <Filter Include="Commands\ImageTransformations\Negative">
       <UniqueIdentifier>{13b1eed3-7c19-4a8f-836c-3ca7e3603f43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands\Exit">
+      <UniqueIdentifier>{db326dce-8a6f-47c5-9f68-1b854ca4edf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\ImageTransformations\Rotate">
+      <UniqueIdentifier>{54afea78-850d-4242-a388-8d657745592d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\ImageTransformations\Rotate\RotateLeft">
+      <UniqueIdentifier>{ff9660d0-fb4d-42dd-a92e-5f1d0473dac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\ImageTransformations\Rotate\RotateRight">
+      <UniqueIdentifier>{d4d06572-0ae5-495f-bee3-4341e8ada3ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\Undo">
+      <UniqueIdentifier>{f0241b27-3cbd-412d-8a4f-c8da264bf40b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\Switch Session">
+      <UniqueIdentifier>{c8a2206c-aaac-47bc-8d56-fdca9e27781d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\Session Info">
+      <UniqueIdentifier>{63aeb976-bcb2-4c01-a812-aef7242f04fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands\Add Image">
+      <UniqueIdentifier>{205bd602-c596-421e-a771-9bba4ba58711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images\DataHolder">
+      <UniqueIdentifier>{d702927e-70f4-44fd-a152-09f51e726b22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images\TransformableImageLoader">
+      <UniqueIdentifier>{9b1bc7c7-1bd9-4b29-af74-e9c8b047c541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images\PPMImage\Pixel">
+      <UniqueIdentifier>{662c91ab-bda1-44bd-b650-6889e86afe60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Raster Graphics.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TransformationExecutor.cpp">
-      <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="DynamicSet.cpp">
       <Filter>Header Files\DynamicBitset</Filter>
@@ -123,9 +153,6 @@
     <ClCompile Include="Session.cpp">
       <Filter>Session</Filter>
     </ClCompile>
-    <ClCompile Include="TransformableImage.cpp">
-      <Filter>Images</Filter>
-    </ClCompile>
     <ClCompile Include="TransformationHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -135,6 +162,42 @@
     <ClCompile Include="PPMImage.cpp">
       <Filter>Images\PPMImage</Filter>
     </ClCompile>
+    <ClCompile Include="ExitCommand.cpp">
+      <Filter>Commands\Exit</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformationHandler.cpp">
+      <Filter>Session</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateLeft.cpp">
+      <Filter>Commands\ImageTransformations\Rotate\RotateLeft</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateRight.cpp">
+      <Filter>Commands\ImageTransformations\Rotate\RotateRight</Filter>
+    </ClCompile>
+    <ClCompile Include="UndoCommand.cpp">
+      <Filter>Commands\Undo</Filter>
+    </ClCompile>
+    <ClCompile Include="SessionInfo.cpp">
+      <Filter>Commands\Session Info</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchSession.cpp">
+      <Filter>Commands\Switch Session</Filter>
+    </ClCompile>
+    <ClCompile Include="AddImage.cpp">
+      <Filter>Commands\Add Image</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformableImageDataHolder.cpp">
+      <Filter>Images\DataHolder</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformableImageLoader.cpp">
+      <Filter>Images\TransformableImageLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformableImage.cpp">
+      <Filter>Images\TransformableImageLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Pixel.cpp">
+      <Filter>Images\PPMImage\Pixel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyVector.hpp">
@@ -143,13 +206,10 @@
     <ClInclude Include="MyQueue.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TransformationExecutor.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>Commands</Filter>
     </ClInclude>
-    <ClInclude Include="Polymorphic_ptr.h">
+    <ClInclude Include="Polymorphic_ptr.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyStack.hpp">
@@ -212,17 +272,50 @@
     <ClInclude Include="Negative.h">
       <Filter>Commands\ImageTransformations\Negative</Filter>
     </ClInclude>
-    <ClInclude Include="ImagesCollection.h">
+    <ClInclude Include="ImageCollection.h">
       <Filter>Images\ImageCollection</Filter>
     </ClInclude>
     <ClInclude Include="ITransformable.h">
       <Filter>Images</Filter>
     </ClInclude>
-    <ClInclude Include="TransformableImage.h">
-      <Filter>Images</Filter>
+    <ClInclude Include="ExitCommand.h">
+      <Filter>Commands\Exit</Filter>
     </ClInclude>
     <ClInclude Include="TransformationHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Session</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateLeft.h">
+      <Filter>Commands\ImageTransformations\Rotate\RotateLeft</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateRIght.h">
+      <Filter>Commands\ImageTransformations\Rotate\RotateRight</Filter>
+    </ClInclude>
+    <ClInclude Include="UndoCommand.h">
+      <Filter>Commands\Undo</Filter>
+    </ClInclude>
+    <ClInclude Include="SessionInfo.h">
+      <Filter>Commands\Session Info</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchSession.h">
+      <Filter>Commands\Switch Session</Filter>
+    </ClInclude>
+    <ClInclude Include="AddImage.h">
+      <Filter>Commands\Add Image</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformableImageDataHolder.h">
+      <Filter>Images\DataHolder</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageDataHolder.h">
+      <Filter>Images\DataHolder</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformableImageLoader.h">
+      <Filter>Images\TransformableImageLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformableImage.h">
+      <Filter>Images\TransformableImageLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Pixel.h">
+      <Filter>Images\PPMImage\Pixel</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

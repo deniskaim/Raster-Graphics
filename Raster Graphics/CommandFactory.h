@@ -1,6 +1,7 @@
 #pragma once
 #include "Command.h"
-#include "Polymorphic_ptr.h"
+#include "Polymorphic_ptr.hpp"
+#include <fstream>
 
 class CommandFactory
 {
@@ -14,6 +15,6 @@ private:
 	static Polymorphic_ptr<Command> createAddCommand(std::stringstream& ss);
 	static Polymorphic_ptr<Command> createSessionInfoCommand(std::stringstream& ss);
 	static Polymorphic_ptr<Command> createSwitchSessionCommand(std::stringstream& ss);
-	static Polymorphic_ptr<Command> createCollageCommand(std::stringstream& ss);
+	// static Polymorphic_ptr<Command> createCollageCommand(std::stringstream& ss);
 
 };
