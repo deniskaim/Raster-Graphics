@@ -16,11 +16,15 @@ void Application::run()
 			Polymorphic_ptr<Command> currentCommand(CommandFactory::createCommand()); // use the already allocated memory
 			currentCommand->execute();
 		}
-		catch (const std::exception& e)
+		catch (const std::logic_error& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
-		catch(const std::logic_error& e)
+		catch (const std::out_of_range& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+		catch (const std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
@@ -132,21 +136,22 @@ void Application::getCurrentSessionInfo() const
 	checkForActiveSession();
 	sessions[currentSessionIndex].printInfo();
 }
-void Application::addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image)
+//void Application::addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image)
+//{
+//	checkForActiveSession();
+//	sessions[currentSessionIndex].addImage(image);
+//}
+//void Application::addImageToCurrentSession(Polymorphic_ptr<TransformableImage>&& image)
+//{
+//	checkForActiveSession();
+//	sessions[currentSessionIndex].addImage(std::move(image));
+//}
+void Application::addImageToCurrentSession(const MyString& imageName)
 {
-	checkForActiveSession();
-	sessions[currentSessionIndex].addImage(image);
-}
-void Application::addImageToCurrentSession(Polymorphic_ptr<TransformableImage>&& image)
-{
-	checkForActiveSession();
-	sessions[currentSessionIndex].addImage(std::move(image));
-}
-void Application::addImageToCurrentSession(const MyString& fileName)
-{
-	checkForActiveSession();
+	checkForActiveSession();/*
 	Polymorphic_ptr<TransformableImage> image(imageFactory(fileName));
-	addImageToCurrentSession(std::move(image));
+	addImageToCurrentSession(std::move(image));*/
+	sessions[currentSessionIndex].addImage(imageName);
 }
 void Application::undo()
 {

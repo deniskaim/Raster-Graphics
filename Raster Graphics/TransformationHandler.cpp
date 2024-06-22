@@ -27,7 +27,7 @@ void TransformationHandler::printTransformations() const
 
 }
 
-void TransformationHandler::undoLastTransformation(ImagesCollection& imageCollection)
+void TransformationHandler::undoLastTransformation(MyVector<TransformableImageDataHolder>& imageCollection)
 {
 	if (transformationsInSession.empty())
 		return;
@@ -39,11 +39,12 @@ void TransformationHandler::undoLastTransformation(ImagesCollection& imageCollec
 		std::cout << std::endl;
 
 		for (size_t i = 0; i < imageCollection.getSize(); i++)
-			imageCollection[i]->undoLastTransformation();
+			imageCollection[i].undoLastTransformation();
 	}
 }
-
+/*
 void TransformationHandler::close()
 {
 	transformationsInSession.clear();
 }
+*/

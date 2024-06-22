@@ -13,6 +13,12 @@ void TransformableImageDataHolder::addTransformation(Polymorphic_ptr<Transformat
 	pendingTransformations.pushBack(std::move(transformation));
 }
 
+void TransformableImageDataHolder::undoLastTransformation()
+{
+	if (!pendingTransformations.empty())
+		pendingTransformations.popBack();
+}
+
 const Polymorphic_ptr<Transformation>& TransformableImageDataHolder::getTransformationAtIndex(size_t index) const
 {
 	if (index >= pendingTransformations.getSize())

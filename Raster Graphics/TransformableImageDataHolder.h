@@ -13,9 +13,11 @@ public:
 
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void addTransformation(Polymorphic_ptr<Transformation>&& transformation);
+	void undoLastTransformation();
 
 	const Polymorphic_ptr<Transformation>& getTransformationAtIndex(size_t index) const;
 	size_t getTransformationsCount() const;
+
 private:
 	MyString imageName;
 	MyVector<Polymorphic_ptr<Transformation>> pendingTransformations;

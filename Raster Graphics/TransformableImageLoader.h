@@ -10,6 +10,6 @@ public:
 	Polymorphic_ptr<TransformableImage> loadTransformableImage() const;
 
 private:
-	TransformableImageDataHolder transformableImageData;
+	const TransformableImageDataHolder transformableImageData;
 	void addTransformationsToImage(Polymorphic_ptr<TransformableImage>& image) const;
 };

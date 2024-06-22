@@ -28,8 +28,8 @@ public:
 	void switchSession(size_t sessionIndex) const;
 	void collage(Direction idk, Image* first, Image* second); //?
 
-	void addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image);
-	void addImageToCurrentSession(Polymorphic_ptr<TransformableImage>&& image);
+	void addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image); // for convenience
+	void addImageToCurrentSession(Polymorphic_ptr<TransformableImage>&& image); // for convenience
 	void addImageToCurrentSession(const MyString& fileName);
 
 	void undo(); // 1

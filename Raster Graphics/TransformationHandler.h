@@ -1,5 +1,6 @@
 #pragma once
 #include "ImagesCollection.h"
+#include "TransformableImageDataHolder.h"
 #include "Transformation.h"
 #include "MyVector.hpp"
 #include "Polymorphic_ptr.h"
@@ -23,7 +24,7 @@ public:
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void addTransformation(Polymorphic_ptr<Transformation>&& transformation);
 
-	void close();
+	// void close();
 	/* 
 	executeAll() takes a reference to the imageCollection of the Sessionand is responsible for correcly
 	applying the transformations to the images in the collection
@@ -32,7 +33,7 @@ public:
 	there can be images added after the last transformation)
 	*/
 	void executeAll(ImagesCollection& imageCollection); // TODO : add executeAll when a fileName is given
-	void undoLastTransformation(ImagesCollection& imageCollection);
+	void undoLastTransformation(MyVector<TransformableImageDataHolder>& imageHolderCollection);
 	void printTransformations() const;
 
 private:
