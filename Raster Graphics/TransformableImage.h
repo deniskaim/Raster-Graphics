@@ -8,7 +8,7 @@
 class TransformableImage : public Image, ITransformable
 {
 public: 
-	TransformableImage(int32_t height, int32_t width, const MyString& fileName);
+	TransformableImage(int32_t height, int32_t width, const MyString& fileName, const MyString& format);
 
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void undoLastTransformation();
@@ -21,7 +21,7 @@ public:
 
 protected:
 	MyQueue<Polymorphic_ptr<Transformation>> pendingTranformations;
-
+	MyString format;
 private:
 	void applyAllTransformations(); // called by save()
 	void applyTransformation();

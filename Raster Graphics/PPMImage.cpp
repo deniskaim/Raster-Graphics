@@ -1,34 +1,80 @@
 #include "PPMImage.h"
 
-PPMImage::PPMImage(const MyVector<uint8_t>& pixels, int32_t height, int32_t width, const MyString& fileName)
-	: pixels(pixels), TransformableImage(height, width, fileName) {}
+PPMImage::PPMImage(const MyVector<Pixel>& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format)
+	: pixels(pixels), TransformableImage(height, width, fileName, format) {}
 
-PPMImage::PPMImage(MyVector<uint8_t>&& pixels, int32_t height, int32_t width, const MyString& fileName)
-	: pixels(std::move(pixels)), TransformableImage(height, width, fileName) {}
+PPMImage::PPMImage(MyVector<Pixel>&& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format)
+	: pixels(std::move(pixels)), TransformableImage(height, width, fileName, format) {}
 
 
 void PPMImage::applyGrayscale()
 {
-	for (size_t i = 0; i < width * height * 3; i += 3)
+	for (size_t i = 0; i < width * height; i ++)
 	{
-		uint8_t gray = 0.299 * pixels[i] + 0.587 * pixels[i + 1] + 0.114 * pixels[i + 2];
-		pixels[i] = pixels[i + 1] = pixels[i + 2] = gray;
+		uint8_t gray = static_cast<uint8_t>(0.299 * pixels[i].getRed() + 
+											0.587 * pixels[i].getGreen() +
+											0.114 * pixels[i].getBlue());
+		
+		pixels[i].setRed(gray);
+		pixels[i].setGreen(gray);
+		pixels[i].setBlue(gray);
 	}
 }
 void PPMImage::applyMonochrome()
 {
-	int8_t middle = maxValueColour / 2;
-	for (size_t i = 0; i < width * height * 3; i += 3)
+	int8_t middle = static_cast<uint8_t>(maxValueColour / 2);
+	for (size_t i = 0; i < width * height; i ++)
 	{
-		uint8_t gray = 0.299 * pixels[i] + 0.587 * pixels[i + 1] + 0.114 * pixels[i + 2];
-		uint8_t mono = gray > middle ? maxValueColour : 0;
-		pixels[i] = pixels[i + 1] = pixels[i + 2] = mono;
+		uint8_t gray = static_cast<uint8_t>(0.299 * pixels[i].getRed() +
+											0.587 * pixels[i].getGreen() +
+											0.114 * pixels[i].getBlue());
+
+		uint8_t mono = static_cast<uint8_t>(gray > middle ? maxValueColour : 0);
+		pixels[i].setRed(gray);
+		pixels[i].setGreen(gray);
+		pixels[i].setBlue(gray);
 	}
 }
 void PPMImage::applyNegative()
 {
-	for (size_t i = 0; i < width * height * 3; i++)
-		pixels[i] = maxValueColour - pixels[i];
+	for (size_t i = 0; i < width * height; i++)
+	{
+		pixels[i].setRed(maxValueColour - pixels[i].getRed());
+		pixels[i].setGreen(maxValueColour - pixels[i].getGreen());
+		pixels[i].setBlue(maxValueColour - pixels[i].getBlue());
+	}
+}
+void PPMImage::rotateLeft()
+{
+	MyVector<Pixel> rotatedPixels(width * height);
+
+	int index = 0;
+	for (int column = width - 1; column >= 0; column--) 
+	{
+		for (int row = 0; row < height; row++) 
+		{
+			rotatedPixels[index++] = pixels[row * width + column];
+		}
+	}
+
+	pixels = std::move(rotatedPixels);
+	std::swap(width, height); // Swap width and height after rotation
+}
+void PPMImage::rotateRight() 
+{
+	MyVector<Pixel> rotatedPixels(width * height);
+
+	int index = 0;
+	for (int column = 0; column < width; column++) 
+	{
+		for (int row = height - 1; row >= 0; row--) 
+		{
+			rotatedPixels[index++] = pixels[row * width + column];
+		}
+	}
+
+	pixels = std::move(rotatedPixels);
+	std::swap(width, height); // Swap width and height after rotation
 }
 TransformableImage* PPMImage::clone() const
 {

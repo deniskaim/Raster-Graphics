@@ -1,7 +1,7 @@
 #include "TransformableImage.h"
 
-TransformableImage::TransformableImage(int32_t height, int32_t width, const MyString& fileName) 
-	: Image(height, width, fileName) {}
+TransformableImage::TransformableImage(int32_t height, int32_t width, const MyString& fileName, const MyString& format) 
+	: Image(height, width, fileName), format(format) {}
 
 void TransformableImage::addTransformation(const Polymorphic_ptr<Transformation>& transformation)
 {
