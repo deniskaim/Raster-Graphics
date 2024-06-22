@@ -24,7 +24,7 @@ void PBMImage::serializeInASCII(const MyString& fileName) const
 
 	for (int i = 0; i < countPixels; i++)
 	{
-		ofs << static_cast<uint8_t>(pixels.contains(i));
+		ofs << static_cast<uint32_t>(pixels.contains(i));
 		if ((i + 1) % width == 0)
 			ofs << '\n';
 		else
@@ -58,13 +58,15 @@ void PBMImage::rotateLeft()
 {
 	DynamicSet rotated(width * height);
 
-	for (int column = width - 1; column >= 0; column--) 
+	for (int row = 0; row < height; row++)
 	{
-		for (int row = 0; row < height; row++) 
+		for (int column = 0; column < width; column++)
 		{
-			if (pixels.contains(row * width + column)) 
+			if (pixels.contains(row * width + column))
 			{
-				rotated.add(row + column * height);
+				int newRow = width - 1 - column;
+				int newCol = row;
+				rotated.add(newRow * height + newCol);
 			}
 		}
 	}
@@ -74,12 +76,17 @@ void PBMImage::rotateLeft()
 void PBMImage::rotateRight()
 {
 	DynamicSet rotated(width * height);
-	for (size_t column = 0; column < width; column++)
+
+	for (int row = 0; row < height; row++)
 	{
-		for (size_t row = height - 1; row >= 0; row--)
+		for (int column = 0; column < width; column++)
 		{
 			if (pixels.contains(row * width + column))
-				rotated.add((height - row - 1) + column * height);
+			{
+				int newRow = column;
+				int newCol = height - 1 - row;
+				rotated.add(newRow * height + newCol);
+			}
 		}
 	}
 	

@@ -22,7 +22,7 @@ static Polymorphic_ptr<TransformableImage> createPBMImageFromASCIIFile(const MyS
 
 	for (int i = 0; i < pixelsCount; i++)
 	{
-		int16_t currentPixel = 0;
+		int32_t currentPixel = 0;
 		ifs >> currentPixel;
 		if (currentPixel)
 			set->add(i);
