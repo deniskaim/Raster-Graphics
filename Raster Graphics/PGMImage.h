@@ -22,4 +22,10 @@ private:
 	MyVector<uint8_t> pixels;
 	uint8_t maxValueColour = 0;
 	void serializeInASCII(const MyString& fileName) const override;
+
+	void collageHorizontallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
+	void collageVerticallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
+
+	void collageHorizontallyWithPGM(const PGMImage* other, const MyString& fileName) const override;
+	void collageVerticallyWithPGM(const PGMImage* other, const MyString& fileName) const override;
 };

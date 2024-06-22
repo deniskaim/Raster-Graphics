@@ -82,6 +82,14 @@ void PGMImage::serializeInASCII(const MyString& fileName) const
 	}
 	ofs.close();
 }
+void PGMImage::collageHorizontallyInNewFile(const TransformableImage* other, const MyString& fileName) const
+{
+	other->collageHorizontallyWithPGM(this, fileName);
+}
+void PGMImage::collageVerticallyInNewFile(const TransformableImage* other, const MyString& fileName) const
+{
+	other->collageVerticallyWithPGM(this, fileName);
+}
 TransformableImage* PGMImage::clone() const
 {
 	return new PGMImage(*this);

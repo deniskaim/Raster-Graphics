@@ -101,6 +101,14 @@ void PPMImage::serializeInASCII(const MyString& fileName) const
 	}
 	ofs.close();
 }
+void PPMImage::collageHorizontallyInNewFile(const TransformableImage* other, const MyString& fileName) const
+{
+	other->collageHorizontallyWithPPM(this, fileName);
+}
+void PPMImage::collageVerticallyInNewFile(const TransformableImage* other, const MyString& fileName) const
+{
+	other->collageVerticallyWithPPM(this, fileName);
+}
 TransformableImage* PPMImage::clone() const
 {
 	return new PPMImage(*this);

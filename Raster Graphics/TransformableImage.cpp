@@ -12,6 +12,14 @@ void TransformableImage::save()
 	applyAllTransformations();
 	serialize(imageName);
 }
+void TransformableImage::collageInNewFile(const MyString& direction, const TransformableImage* other, const MyString& outimage)
+{
+	if (direction == "horizontally")
+		collageHorizontallyInNewFile(other, outimage);
+	else if (direction == "vertically")
+		collageVerticallyInNewFile(other, outimage);
+}
+
 void TransformableImage::undoLastTransformation()
 {
 	if (!pendingTranformations.empty())

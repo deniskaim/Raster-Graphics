@@ -9,7 +9,7 @@ class Session
 public:
 
 	void addImage(const MyString& imageName);
-
+	void addCollage(const MyString& direction, const MyString& firstImage, const MyString& secondImage, const MyString& outimage);
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void addTransformation(Polymorphic_ptr<Transformation>&& transformation);
 	void undo();
@@ -33,6 +33,7 @@ private:
 	void printPendingTransformations() const;
 	static size_t getNextSessionID();
 
+	size_t findImageDataHolderIndexByImageName(const MyString& imageName);
 	void loadTransformableImage(size_t imageDataHolderIndex);
 	void loadTransformableImages();
 	void addTransformationInCollectionOfDataHolders(const Polymorphic_ptr<Transformation>& transformation);

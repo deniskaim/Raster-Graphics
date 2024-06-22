@@ -93,6 +93,14 @@ void PBMImage::rotateRight()
 	pixels = std::move(rotated);
 	std::swap(width, height);
 }
+void PBMImage::collageHorizontallyInNewFile(const TransformableImage* other, const MyString& fileName) const
+{
+	other->collageHorizontallyWithPBM(this, fileName);
+}
+void PBMImage::collageVerticallyInNewFile(const TransformableImage* other, const MyString& fileName) const
+{
+	other->collageVerticallyWithPBM(this, fileName);
+}
 TransformableImage* PBMImage::clone() const
 {
 	return new PBMImage(*this);

@@ -23,4 +23,10 @@ private:
 	uint8_t maxValueColour = 0;
 
 	void serializeInASCII(const MyString& fileName) const override;
+
+	void collageHorizontallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
+	void collageVerticallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
+
+	void collageHorizontallyWithPPM(const PPMImage* other, const MyString& fileName) const override;
+	void collageVerticallyWithPPM(const PPMImage* other, const MyString& fileName) const override;
 };

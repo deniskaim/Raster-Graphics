@@ -22,4 +22,9 @@ private:
 	DynamicSet pixels;
 	void serializeInASCII(const MyString& filename) const override;
 
+	void collageHorizontallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
+	void collageVerticallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
+
+	void collageHorizontallyWithPBM(const PBMImage* other, const MyString& fileName) const override;
+	void collageVerticallyWithPBM(const PBMImage* other, const MyString& fileName) const override;
 };
