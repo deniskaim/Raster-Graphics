@@ -41,22 +41,22 @@ static Polymorphic_ptr<TransformableImage> createPGMImageFromASCIIFile(const MyS
 
 	int32_t columns, rows;
 	ifs >> columns >> rows;
+	
 
-	uint8_t maxValueColour;
+	uint32_t maxValueColour;
 	ifs >> maxValueColour;
-
 
 	size_t pixelsCount = columns * rows;
 	MyVector<uint8_t>* pixels = new MyVector<uint8_t>;
 
 	for (int i = 0; i < pixelsCount; i++)
 	{
-		uint8_t currentPixel;
+		uint32_t currentPixel;
 		ifs >> currentPixel;
-		pixels->pushBack(currentPixel);
+		pixels->pushBack(static_cast<uint8_t>(currentPixel));
 	}
 	ifs.close();
-	return new PGMImage(std::move(*pixels), rows, columns, maxValueColour, fileName, format);
+	return new PGMImage(std::move(*pixels), rows, columns, static_cast<uint8_t>(maxValueColour), fileName, format);
 }
 static Polymorphic_ptr<TransformableImage> createPPMImageFromASCIIFile(const MyString& fileName)
 {

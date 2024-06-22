@@ -31,12 +31,11 @@ void PGMImage::rotateLeft()
 {
 	MyVector<uint8_t> rotatedPixels(width * height);
 
-	int index = 0;
 	for (int column = width - 1; column >= 0; column--) 
 	{
 		for (int row = 0; row < height; row++) 
 		{
-			rotatedPixels[index++] = pixels[row * width + column];
+			rotatedPixels.pushBack(pixels[row * width + column]);
 		}
 	}
 	pixels = std::move(rotatedPixels);
@@ -46,12 +45,11 @@ void PGMImage::rotateRight()
 {
 	MyVector<uint8_t> rotatedPixels(width * height);
 
-	int index = 0;
-	for (int column = 0; column < width; column) 
+	for (int column = 0; column < width; column++) 
 	{
 		for (int row = height - 1; row >= 0; row--) 
 		{
-			rotatedPixels[index++] = pixels[row * width + column];
+			rotatedPixels.pushBack(pixels[row * width + column]);
 		}
 	}
 
@@ -71,12 +69,12 @@ void PGMImage::serializeInASCII(const MyString& fileName) const
 
 	ofs << format << '\n';
 	ofs << width << " " << height << '\n';
-	ofs << maxValueColour << '\n';
+	ofs << static_cast<uint32_t> (maxValueColour) << '\n';
 
 	size_t pixelsCount = width * height;
 	for (size_t i = 0; i < pixelsCount; i++)
 	{
-		ofs << pixels[i];
+		ofs << static_cast<uint32_t>(pixels[i]);
 		if ((i + 1) % width == 0)
 			ofs << '\n';
 		else

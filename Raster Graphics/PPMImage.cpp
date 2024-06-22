@@ -53,12 +53,11 @@ void PPMImage::rotateLeft()
 {
 	MyVector<Pixel> rotatedPixels(width * height);
 
-	int index = 0;
 	for (int column = width - 1; column >= 0; column--) 
 	{
 		for (int row = 0; row < height; row++) 
 		{
-			rotatedPixels[index++] = pixels[row * width + column];
+			rotatedPixels.pushBack(pixels[row * width + column]);
 		}
 	}
 
@@ -69,12 +68,11 @@ void PPMImage::rotateRight()
 {
 	MyVector<Pixel> rotatedPixels(width * height);
 
-	int index = 0;
 	for (int column = 0; column < width; column++) 
 	{
 		for (int row = height - 1; row >= 0; row--) 
 		{
-			rotatedPixels[index++] = pixels[row * width + column];
+			rotatedPixels.pushBack(pixels[row * width + column]);
 		}
 	}
 
