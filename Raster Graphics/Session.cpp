@@ -3,16 +3,6 @@
 
 size_t Session::sessionsCount = 1;
 
-/*
-void Session::addImage(const Polymorphic_ptr<TransformableImage>& image)
-{
-	imageCollection.pushBack(image);
-}
-void Session::addImage(Polymorphic_ptr<TransformableImage>&& image)
-{
-	imageCollection.pushBack(std::move(image));
-}
-*/
 void Session::addImage(const MyString& imageName)
 {
 	TransformableImageDataHolder imageDataHolder(imageName);
@@ -44,14 +34,6 @@ void Session::saveAs(const MyString& fileName)
 	imageCollection[0]->setImageName(fileName);
 	transformationHandler.executeAll(imageCollection);
 }
-/*
-void Session::close()
-{
-	imageCollection.clear();
-	transformationHandler.close();
-	// just popAt() in the Application class?
-}
-*/
 void Session::printInfo() const
 {
 	printID();
@@ -95,7 +77,6 @@ void Session::addTransformationInCollectionOfDataHolders(const Polymorphic_ptr<T
 		imageDataHolders[i].addTransformation(transformation);
 	}
 }
-// private 
 void Session::printID() const
 {
 	std::cout << "Current session ID = " << ID << std::endl;

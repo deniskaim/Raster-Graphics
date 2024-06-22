@@ -10,16 +10,12 @@ public:
 
 	void addImage(const MyString& imageName);
 
-	//void addImage(const Polymorphic_ptr<TransformableImage>& image);
-	// void addImage(Polymorphic_ptr<TransformableImage>&& image);
-	
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void addTransformation(Polymorphic_ptr<Transformation>&& transformation);
 	void undo();
 
 	void save();
 	void saveAs(const MyString& fileName); // only the first image under this name
-	// void close();
 	void printInfo() const;
 
 	size_t getID() const;
@@ -30,7 +26,7 @@ private:
 	ImageCollection imageCollection;
 	MyVector<TransformableImageDataHolder> imageDataHolders;
 	size_t ID = 0;
-	static size_t sessionsCount; // must initialize in cpp
+	static size_t sessionsCount; 
 
 	void printID() const;
 	void printImagesNames() const;

@@ -151,28 +151,4 @@ Polymorphic_ptr<Command> CommandFactory::createSwitchSessionCommand(std::strings
 		throw std::exception("Invalid try for creating a switch session command!");
 }
 
-/*
-static bool hasMoreInput()
-{
-	if (std::cin.peek() != '\n' && std::cin.peek() != EOF) 
-	{
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		return true;
-	}
-	// Clear the newline character from the input buffer
-	std::cin.ignore();
-	return false;
-}
-*/
 
-/*
-static MyString getLine()
-{
-	const size_t NAME_SIZE = 1024;
-	char str[NAME_SIZE];
-
-	std::cin.getline(str, NAME_SIZE);
-	
-	return MyString(str);
-}
-*/

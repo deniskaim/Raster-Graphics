@@ -50,9 +50,3 @@ void TransformationHandler::undoLastTransformation(MyVector<TransformableImageDa
 			imageCollection[i].undoLastTransformation();
 	}
 }
-/*
-void TransformationHandler::close()
-{
-	transformationsInSession.clear();
-}
-*/

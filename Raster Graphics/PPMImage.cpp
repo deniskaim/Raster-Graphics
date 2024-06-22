@@ -34,9 +34,9 @@ void PPMImage::applyMonochrome()
 											0.114 * pixels[i].getBlue());
 
 		uint8_t mono = static_cast<uint8_t>(gray > middle ? maxValueColour : 0);
-		pixels[i].setRed(gray);
-		pixels[i].setGreen(gray);
-		pixels[i].setBlue(gray);
+		pixels[i].setRed(mono);
+		pixels[i].setGreen(mono);
+		pixels[i].setBlue(mono);
 	}
 }
 void PPMImage::applyNegative()
@@ -92,7 +92,7 @@ void PPMImage::serializeInASCII(const MyString& fileName) const
 
 	ofs << format << '\n';
 	ofs << width << " " << height << '\n';
-	ofs << maxValueColour << '\n';
+	ofs << static_cast<int32_t>(maxValueColour) << '\n';
 
 	size_t countPixels = width * height;
 	for (size_t i = 0; i < countPixels; i++)

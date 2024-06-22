@@ -71,7 +71,7 @@ static Polymorphic_ptr<TransformableImage> createPPMImageFromASCIIFile(const MyS
 	int32_t columns, rows;
 	ifs >> columns >> rows;
 
-	uint8_t maxValueColour;
+	uint32_t maxValueColour;
 	ifs >> maxValueColour;
 
 	size_t pixelsCount = columns * rows;
@@ -84,7 +84,7 @@ static Polymorphic_ptr<TransformableImage> createPPMImageFromASCIIFile(const MyS
 		pixels->pushBack(currentPixel);
 	}
 	ifs.close();
-	return new PPMImage(std::move(*pixels), rows, columns, maxValueColour, fileName, format);
+	return new PPMImage(std::move(*pixels), rows, columns, static_cast<int8_t>(maxValueColour), fileName, format);
 }
 
 static Polymorphic_ptr<TransformableImage> createPBM(const MyString& fileName)
@@ -173,4 +173,6 @@ Polymorphic_ptr<TransformableImage> imageFactory(const MyString& fileName)
 	{
 		return createPPM(fileName);
 	}
+	else
+		throw std::exception("Incorrect extension of the file!");
 }

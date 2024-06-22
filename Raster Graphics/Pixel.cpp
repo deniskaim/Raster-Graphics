@@ -43,11 +43,16 @@ bool Pixel::operator!=(const Pixel& other) const
 
 std::ostream& operator<<(std::ostream& os, const Pixel& pixel)
 {
-	os << pixel.red << " " << pixel.green << " " << pixel.blue;
+	os << static_cast<int32_t>(pixel.red) << " " << static_cast<int32_t>(pixel.green) << " " << static_cast<int32_t>(pixel.blue);
 	return os;
 }
 std::istream& operator>>(std::istream& is, Pixel& pixel)
 {
-	is >> pixel.red >> pixel.green >> pixel.blue;
+
+	int32_t red, green, blue;
+	is >> red >> green >> blue;
+	pixel.setRed(static_cast<int8_t>(red));
+	pixel.setGreen(static_cast<int8_t>(green));
+	pixel.setBlue(static_cast<int8_t>(blue));
 	return is;
 }

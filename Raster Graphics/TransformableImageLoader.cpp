@@ -7,7 +7,7 @@ Polymorphic_ptr<TransformableImage> TransformableImageLoader::loadTransformableI
 {
 	Polymorphic_ptr<TransformableImage> image = imageFactory(transformableImageData.getImageName());
 	addTransformationsToImage(image);
-	return std::move(image); // no problem with the "image" instance since it's nullptr
+	return image; 
 }
 void TransformableImageLoader::addTransformationsToImage(Polymorphic_ptr<TransformableImage>& image) const
 {

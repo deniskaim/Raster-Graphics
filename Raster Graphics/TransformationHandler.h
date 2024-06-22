@@ -24,18 +24,17 @@ public:
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void addTransformation(Polymorphic_ptr<Transformation>&& transformation);
 
-	// void close();
 	/* 
-	executeAll() takes a reference to the imageCollection of the Sessionand is responsible for correcly
+	executeAll() takes a reference to the imageCollection of the Session and is responsible for correcly
 	applying the transformations to the images in the collection
 	
 	undoLastTransformation() removes the last transformation from the list of every image( which contains it, since
 	there can be images added after the last transformation)
 	*/
-	void executeAll(ImageCollection& imageCollection); // TODO : add executeAll when a fileName is given
+	void executeAll(ImageCollection& imageCollection); 
 	void undoLastTransformation(MyVector<TransformableImageDataHolder>& imageHolderCollection);
 	void printTransformations() const;
 
 private:
-	MyVector<Polymorphic_ptr<Transformation>> transformationsInSession; // necessery for the print function !
+	MyVector<Polymorphic_ptr<Transformation>> transformationsInSession; // necessary for the print function 
 };
