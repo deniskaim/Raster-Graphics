@@ -168,6 +168,10 @@ void Application::addImageToCurrentSession(const MyString& imageName)
 	Session& activeSession = getActiveSession();
 	activeSession.addImage(imageName);
 }
+void Application::addCollage(const MyString& direction, const MyString& imageOne, const MyString& imageTwo, const MyString& image)
+{
+
+}
 void Application::undo()
 {
 	checkForActiveSession();

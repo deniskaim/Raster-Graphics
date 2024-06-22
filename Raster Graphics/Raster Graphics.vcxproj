@@ -162,6 +162,7 @@
     <ClInclude Include="AddImage.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="CloseCommand.h" />
+    <ClInclude Include="Collage.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="ExitCommand.h" />
     <ClInclude Include="ImageDataHolder.h" />

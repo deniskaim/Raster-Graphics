@@ -314,5 +314,8 @@
     <ClInclude Include="Pixel.h">
       <Filter>Images\PPMImage\Pixel</Filter>
     </ClInclude>
+    <ClInclude Include="Collage.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

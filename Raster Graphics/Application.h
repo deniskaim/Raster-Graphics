@@ -21,7 +21,7 @@ public:
 
 	void getCurrentSessionInfo() const;
 	void switchSession(size_t sessionIndex) const;
-	//void collage(Direction idk, Image* first, Image* second); //?
+	void addCollage(const MyString& direction, const MyString& imageOne, const MyString& imageTwo, const MyString& outimage); 
 
 	void addImageToCurrentSession(const MyString& fileName);
 
