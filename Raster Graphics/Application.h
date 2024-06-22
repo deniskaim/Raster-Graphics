@@ -36,18 +36,18 @@ public:
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation); // transformation nasledqva komanda ()()()()()
 	void addTransformation(Polymorphic_ptr<Transformation>&& transformation);
 
-	/*const Session& getCurrentSession() const;
-	Session& getCurrentSession();
-
-	void loadNewSession(const Session& newSession);*/
 
 private:
 	Application() = default;
 	MyVector<Session> sessions;
-	mutable size_t currentSessionIndex = -1;
+	mutable size_t currentSessionID = -1;
 	bool runApp = true;
 
+	Session& getActiveSession();
+	const Session& getActiveSession() const;
+		
 	bool checkForActiveSession() const;
+	size_t findSessionIndexByID(size_t ID) const;
 	/*
 	void loadSession(const Image* const* images, size_t count);
 	void save(); // images in current session

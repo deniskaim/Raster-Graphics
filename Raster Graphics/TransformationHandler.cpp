@@ -18,7 +18,11 @@ void TransformationHandler::executeAll(ImageCollection& imageCollection)
 void TransformationHandler::printTransformations() const
 {
 	std::cout << "Pending transformations: ";
-
+	if (transformationsInSession.empty())
+	{
+		std::cout << "No pending transformations" << std::endl;
+		return;
+	}
 	for (size_t i = 0; i < transformationsInSession.getSize() - 1; i++)
 	{
 		transformationsInSession[i]->printType();

@@ -43,8 +43,8 @@ void Application::loadSession(const MyVector<MyString>& imagesNames)
 {
 	Session newSession;
 	newSession.initializeID();
+	sessions.pushBack(newSession);
 	switchSession(newSession.getID()); // shouldn't throw an exception
-	sessions.pushBack(std::move(newSession));
 
 	for (size_t i = 0; i < imagesNames.getSize(); i++)
 	{
@@ -54,21 +54,23 @@ void Application::loadSession(const MyVector<MyString>& imagesNames)
 void Application::save()
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex - 1].save();
+	Session& activeSession = getActiveSession();
+	activeSession.save();
 	close();
 }
 void Application::saveAs(const MyString& fileName)
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex - 1].saveAs(fileName);
+	Session& activeSession = getActiveSession();
+	activeSession.saveAs(fileName);
 	close();
 }
 void Application::close()
 {
 	// important to check in the other functions if the index is valid
-	sessions.popAt(currentSessionIndex - 1);
-	std::cout << sessions.getSize() << std::endl;
-	currentSessionIndex = -1;
+	size_t indexCurrentSession = findSessionIndexByID(currentSessionID);
+	sessions.popAt(indexCurrentSession);
+	currentSessionID = -1;
 }
 void Application::help()
 {
@@ -131,17 +133,22 @@ void Application::exit()
 }
 void Application::switchSession(size_t newSessionIndex) const
 {
-	if (newSessionIndex - 1 > sessions.getSize())
-		throw std::out_of_range("Invalid session index!");
+	for (size_t i = 0; i < sessions.getSize(); i++)
+	{
+		if (sessions[i].getID() == newSessionIndex)
+		{
+			currentSessionID = newSessionIndex;
+			return;
+		}
+	}
 
-	currentSessionIndex = newSessionIndex;
-
-
+	throw std::out_of_range("Invalid session index!");
 }
 void Application::getCurrentSessionInfo() const
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex - 1].printInfo();
+	const Session& activeSession = getActiveSession();
+	activeSession.printInfo();
 }
 //void Application::addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image)
 //{
@@ -155,29 +162,58 @@ void Application::getCurrentSessionInfo() const
 //}
 void Application::addImageToCurrentSession(const MyString& imageName)
 {
-	checkForActiveSession();/*
-	Polymorphic_ptr<TransformableImage> image(imageFactory(fileName));
-	addImageToCurrentSession(std::move(image));*/
-	sessions[currentSessionIndex - 1].addImage(imageName);
+	checkForActiveSession();
+	Session& activeSession = getActiveSession();
+	activeSession.addImage(imageName);
 }
 void Application::undo()
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex - 1].undo();
+	Session& activeSession = getActiveSession();
+	activeSession.undo();
 }
 void Application::addTransformation(const Polymorphic_ptr<Transformation>& transformation) // should be Transformation*
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex - 1].addTransformation(transformation);
+	Session& activeSession = getActiveSession();
+	activeSession.addTransformation(transformation);
 }
 void Application::addTransformation(Polymorphic_ptr<Transformation>&& transformation)
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex - 1].addTransformation(std::move(transformation));
+	Session& activeSession = getActiveSession();
+	activeSession.addTransformation(std::move(transformation));
 }
 
 bool Application::checkForActiveSession() const
 {
-	if (currentSessionIndex == -1)
+	if (currentSessionID == -1)
 		throw std::logic_error("No current session");
+}
+Session& Application::getActiveSession()
+{
+	for (size_t i = 0; i < sessions.getSize(); i++)
+	{
+		if (sessions[i].getID() == currentSessionID)
+			return sessions[i];
+	}
+	throw std::exception("There is no session with this ID!");
+}
+const Session& Application::getActiveSession() const
+{
+	for (size_t i = 0; i < sessions.getSize(); i++)
+	{
+		if (sessions[i].getID() == currentSessionID)
+			return sessions[i];
+	}
+	throw std::exception("There is no session with this ID!");
+}
+size_t Application::findSessionIndexByID(size_t ID) const
+{
+	for (size_t i = 0; i < sessions.getSize(); i++)
+	{
+		if (sessions[i].getID() == ID)
+			return i;
+	}
+	throw std::exception("There is no session with this ID!");
 }
