@@ -15,7 +15,6 @@ public:
 	void rotateLeft() override;
 	void rotateRight() override;
 
-	// void read(const MyString& fileName) override;
 	void serialize(const MyString& fileName) const override;
 	TransformableImage* clone() const override;
 

@@ -153,9 +153,6 @@
     <ClCompile Include="Session.cpp">
       <Filter>Session</Filter>
     </ClCompile>
-    <ClCompile Include="TransformationHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PGMImage.cpp">
       <Filter>Images\PGMImage</Filter>
     </ClCompile>
@@ -164,9 +161,6 @@
     </ClCompile>
     <ClCompile Include="ExitCommand.cpp">
       <Filter>Commands\Exit</Filter>
-    </ClCompile>
-    <ClCompile Include="TransformationHandler.cpp">
-      <Filter>Session</Filter>
     </ClCompile>
     <ClCompile Include="RotateLeft.cpp">
       <Filter>Commands\ImageTransformations\Rotate\RotateLeft</Filter>
@@ -197,6 +191,9 @@
     </ClCompile>
     <ClCompile Include="Pixel.cpp">
       <Filter>Images\PPMImage\Pixel</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformationHandler.cpp">
+      <Filter>Session</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

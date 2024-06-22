@@ -69,6 +69,8 @@ void Application::close()
 {
 	// important to check in the other functions if the index is valid
 	size_t indexCurrentSession = findSessionIndexByID(currentSessionID);
+	if (indexCurrentSession == -1)
+		throw std::exception("There is no active session to close!");
 	sessions.popAt(indexCurrentSession);
 	currentSessionID = -1;
 }
@@ -215,5 +217,5 @@ size_t Application::findSessionIndexByID(size_t ID) const
 		if (sessions[i].getID() == ID)
 			return i;
 	}
-	throw std::exception("There is no session with this ID!");
+	return -1;
 }

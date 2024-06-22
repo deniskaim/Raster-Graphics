@@ -62,7 +62,7 @@ void PPMImage::rotateLeft()
 	}
 
 	pixels = std::move(rotatedPixels);
-	std::swap(width, height); // Swap width and height after rotation
+	std::swap(width, height); 
 }
 void PPMImage::rotateRight() 
 {
@@ -77,7 +77,7 @@ void PPMImage::rotateRight()
 	}
 
 	pixels = std::move(rotatedPixels);
-	std::swap(width, height); // Swap width and height after rotation
+	std::swap(width, height);
 }
 void PPMImage::serialize(const MyString& fileName) const
 {

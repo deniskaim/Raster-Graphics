@@ -54,7 +54,7 @@ void PGMImage::rotateRight()
 	}
 
 	pixels = std::move(rotatedPixels);
-	std::swap(width, height); // Swap width and height after rotation
+	std::swap(width, height); 
 }
 void PGMImage::serialize(const MyString& fileName) const
 {

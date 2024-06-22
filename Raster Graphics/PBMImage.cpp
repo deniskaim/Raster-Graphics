@@ -71,7 +71,7 @@ void PBMImage::rotateLeft()
 		}
 	}
 	pixels = std::move(rotated);
-	std::swap(width, height); // Swap width and height after rotation
+	std::swap(width, height); 
 }
 void PBMImage::rotateRight()
 {

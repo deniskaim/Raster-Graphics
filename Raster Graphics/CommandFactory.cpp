@@ -44,7 +44,7 @@ Polymorphic_ptr<Command> CommandFactory::createCommand()
 	else if (commandString == "save" && ss.eof())
 		return new SaveCommand;
 
-	else if (commandString == "saveas" && ss.eof())
+	else if (commandString == "saveas")
 		return createSaveAsCommand(ss);
 
 	else if (commandString == "help" && ss.eof())
