@@ -1,4 +1,5 @@
 #include "PPMImage.h"
+#include <fstream>
 
 PPMImage::PPMImage(const MyVector<Pixel>& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format)
 	: pixels(pixels), TransformableImage(height, width, fileName, format) {}
@@ -9,7 +10,8 @@ PPMImage::PPMImage(MyVector<Pixel>&& pixels, int32_t height, int32_t width, cons
 
 void PPMImage::applyGrayscale()
 {
-	for (size_t i = 0; i < width * height; i ++)
+	size_t countPixels = width * height;
+	for (size_t i = 0; i < countPixels; i ++)
 	{
 		uint8_t gray = static_cast<uint8_t>(0.299 * pixels[i].getRed() + 
 											0.587 * pixels[i].getGreen() +
@@ -23,7 +25,9 @@ void PPMImage::applyGrayscale()
 void PPMImage::applyMonochrome()
 {
 	int8_t middle = static_cast<uint8_t>(maxValueColour / 2);
-	for (size_t i = 0; i < width * height; i ++)
+
+	size_t countPixels = width * height;
+	for (size_t i = 0; i < countPixels; i ++)
 	{
 		uint8_t gray = static_cast<uint8_t>(0.299 * pixels[i].getRed() +
 											0.587 * pixels[i].getGreen() +
@@ -37,7 +41,8 @@ void PPMImage::applyMonochrome()
 }
 void PPMImage::applyNegative()
 {
-	for (size_t i = 0; i < width * height; i++)
+	size_t countPixels = width * height;
+	for (size_t i = 0; i < countPixels; i++)
 	{
 		pixels[i].setRed(maxValueColour - pixels[i].getRed());
 		pixels[i].setGreen(maxValueColour - pixels[i].getGreen());
@@ -75,6 +80,28 @@ void PPMImage::rotateRight()
 
 	pixels = std::move(rotatedPixels);
 	std::swap(width, height); // Swap width and height after rotation
+}
+void PPMImage::serialize(const MyString& fileName) const
+{
+	if (format == "P3")
+		serializeInASCII(fileName);
+}
+void PPMImage::serializeInASCII(const MyString& fileName) const
+{
+	std::ofstream ofs(fileName.c_str());
+	if (!ofs.is_open())
+		throw std::exception("Could not open the file!");
+
+	ofs << format << '\n';
+	ofs << width << " " << height << '\n';
+	ofs << maxValueColour << '\n';
+
+	size_t countPixels = width * height;
+	for (size_t i = 0; i < countPixels; i++)
+	{
+		ofs << pixels[i] << '\n';
+	}
+	ofs.close();
 }
 TransformableImage* PPMImage::clone() const
 {

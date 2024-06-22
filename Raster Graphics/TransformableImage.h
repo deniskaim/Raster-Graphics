@@ -22,6 +22,9 @@ public:
 protected:
 	MyQueue<Polymorphic_ptr<Transformation>> pendingTranformations;
 	MyString format;
+
+	virtual void serializeInASCII(const MyString& fileName) const = 0;
+
 private:
 	void applyAllTransformations(); // called by save()
 	void applyTransformation();

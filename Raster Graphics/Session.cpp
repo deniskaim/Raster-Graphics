@@ -36,11 +36,12 @@ void Session::undo()
 }
 void Session::save()
 {
-
+	loadTransformableImages();
 	transformationHandler.executeAll(imageCollection);
 }
 void Session::saveAs(const MyString& fileName)
 {
+	loadTransformableImages();
 	imageCollection[0]->setImageName(fileName);
 	transformationHandler.executeAll(imageCollection);
 }
@@ -102,8 +103,8 @@ void Session::printID() const
 void Session::printImagesNames() const
 {
 	std::cout << "Name of images in the session: ";
-	for (size_t i = 0; i < imageCollection.getSize(); i++)
-		std::cout << imageCollection[i]->getFileName() << " ";
+	for (size_t i = 0; i < imageDataHolders.getSize(); i++)
+		std::cout << imageDataHolders[i].getImageName() << " ";
 
 	std::cout << '\n';
 }

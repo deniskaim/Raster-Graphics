@@ -1,12 +1,13 @@
 #pragma once
 #include "TransformableImage.h"
 #include "MyVector.hpp"
+#include "Pixel.h"
 
 class PPMImage : public TransformableImage
 {
 public:
-	PPMImage(const MyVector<uint8_t>& pixels,int32_t height, int32_t width, const MyString& fileName);
-	PPMImage(MyVector<uint8_t>&& pixels, int32_t height, int32_t width, const MyString& fileName);
+	PPMImage(const MyVector<Pixel>& pixels,int32_t height, int32_t width, const MyString& fileName, const MyString& format);
+	PPMImage(MyVector<Pixel>&& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format);
 
 	void applyGrayscale() override;
 	void applyMonochrome() override;
@@ -14,10 +15,12 @@ public:
 	void rotateLeft() override;
 	void rotateRight() override;
 
-	void write(const MyString& fileName) const override;
+	void serialize(const MyString& fileName) const override;
 	TransformableImage* clone() const override;
 
 private:
-	MyVector<uint8_t> pixels;
+	MyVector<Pixel> pixels;
 	uint8_t maxValueColour = 0;
+
+	void serializeInASCII(const MyString& fileName) const override;
 };
