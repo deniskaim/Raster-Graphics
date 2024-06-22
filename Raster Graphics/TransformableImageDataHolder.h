@@ -5,6 +5,8 @@
 #include "Transformation.h"
 #include "TransformableImage.h"
 #include "ImageDataHolder.h"
+
+
 class TransformableImageDataHolder : public ImageDataHolder
 {
 public:
@@ -19,6 +21,7 @@ public:
 	size_t getTransformationsCount() const;
 
 private:
-	MyString imageName;
 	MyVector<Polymorphic_ptr<Transformation>> pendingTransformations;
+
+	void validateImageName() const;
 };

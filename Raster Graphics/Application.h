@@ -44,7 +44,7 @@ public:
 private:
 	Application() = default;
 	MyVector<Session> sessions;
-	mutable size_t currentSessionIndex = 0;
+	mutable size_t currentSessionIndex = -1;
 	bool runApp = true;
 
 	bool checkForActiveSession() const;

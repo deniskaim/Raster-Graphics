@@ -3,9 +3,11 @@
 class ImageDataHolder
 {
 public:
+	ImageDataHolder() = default;
+	ImageDataHolder(const MyString& imageName) : imageName(imageName){}
 	virtual ~ImageDataHolder() = default;	
 	const MyString& getImageName() const { return imageName; }
 
-private:
+protected:
 	MyString imageName;
 };

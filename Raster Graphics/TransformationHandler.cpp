@@ -19,11 +19,13 @@ void TransformationHandler::printTransformations() const
 {
 	std::cout << "Pending transformations: ";
 
-	for (size_t i = 0; i < transformationsInSession.getSize(); i++)
+	for (size_t i = 0; i < transformationsInSession.getSize() - 1; i++)
 	{
 		transformationsInSession[i]->printType();
-		std::cout << " ";
+		std::cout << ", ";
 	}
+	transformationsInSession[transformationsInSession.getSize() - 1]->printType();
+	std::cout << std::endl;
 
 }
 

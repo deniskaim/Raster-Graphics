@@ -1,5 +1,6 @@
 #include "CommandFactory.h"
 #include <sstream>
+#include <iostream> 
 
 #include "LoadCommand.h"
 #include "CloseCommand.h"
@@ -28,6 +29,7 @@ Polymorphic_ptr<Command> CommandFactory::createCommand()
 
 	const size_t BUFFSIZE = 1024;
 	char buff[BUFFSIZE];
+	std::cin.getline(buff, BUFFSIZE);
 	std::stringstream ss(buff);
 
 	MyString commandString;

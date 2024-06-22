@@ -143,7 +143,7 @@ static MyString getExtension(const MyString& fileName)
 	while (iter != beg && *iter != '.')
 		iter--;
 
-	return fileName.substr(iter - beg, end - iter);
+	return fileName.substr(iter - beg + 1, end - iter - 1);
 }
 static MyString getFileFormat(const MyString& fileName)
 {

@@ -21,14 +21,13 @@ void Session::addImage(const MyString& imageName)
 void Session::addTransformation(const Polymorphic_ptr<Transformation>& transformation)
 {
 	transformationHandler.addTransformation(transformation);
-	//imageCollection.addTransformationInCollection(transformation);
 	addTransformationInCollectionOfDataHolders(transformation);
 }
 void Session::addTransformation(Polymorphic_ptr<Transformation>&& transformation)
 {
+	// important to be before the next line since the pointer will become nullptr
+	addTransformationInCollectionOfDataHolders(transformation); 
 	transformationHandler.addTransformation(std::move(transformation));
-	// imageCollection.addTransformationInCollection(transformation);
-	addTransformationInCollectionOfDataHolders(transformation);
 }
 void Session::undo()
 {
@@ -67,6 +66,7 @@ size_t Session::getID() const
 void Session::initializeID()
 {
 	ID = getNextSessionID();
+	std::cout << "Session with ID: " << ID << " started!" << std::endl;
 }
 size_t Session::getNextSessionID()
 {
@@ -98,7 +98,7 @@ void Session::addTransformationInCollectionOfDataHolders(const Polymorphic_ptr<T
 // private 
 void Session::printID() const
 {
-	std::cout << "Session ID = " << ID << std::endl;
+	std::cout << "Current session ID = " << ID << std::endl;
 }
 void Session::printImagesNames() const
 {

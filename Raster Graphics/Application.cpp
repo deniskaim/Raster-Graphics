@@ -44,6 +44,8 @@ void Application::loadSession(const MyVector<MyString>& imagesNames)
 	Session newSession;
 	newSession.initializeID();
 	switchSession(newSession.getID()); // shouldn't throw an exception
+	sessions.pushBack(std::move(newSession));
+
 	for (size_t i = 0; i < imagesNames.getSize(); i++)
 	{
 		addImageToCurrentSession(imagesNames[i]);
@@ -52,19 +54,20 @@ void Application::loadSession(const MyVector<MyString>& imagesNames)
 void Application::save()
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex].save();
+	sessions[currentSessionIndex - 1].save();
 	close();
 }
 void Application::saveAs(const MyString& fileName)
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex].saveAs(fileName);
+	sessions[currentSessionIndex - 1].saveAs(fileName);
 	close();
 }
 void Application::close()
 {
 	// important to check in the other functions if the index is valid
 	sessions.popAt(currentSessionIndex - 1);
+	std::cout << sessions.getSize() << std::endl;
 	currentSessionIndex = -1;
 }
 void Application::help()
@@ -128,15 +131,17 @@ void Application::exit()
 }
 void Application::switchSession(size_t newSessionIndex) const
 {
-	if (newSessionIndex > sessions.getSize())
+	if (newSessionIndex - 1 > sessions.getSize())
 		throw std::out_of_range("Invalid session index!");
 
 	currentSessionIndex = newSessionIndex;
+
+
 }
 void Application::getCurrentSessionInfo() const
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex].printInfo();
+	sessions[currentSessionIndex - 1].printInfo();
 }
 //void Application::addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image)
 //{
@@ -153,22 +158,22 @@ void Application::addImageToCurrentSession(const MyString& imageName)
 	checkForActiveSession();/*
 	Polymorphic_ptr<TransformableImage> image(imageFactory(fileName));
 	addImageToCurrentSession(std::move(image));*/
-	sessions[currentSessionIndex].addImage(imageName);
+	sessions[currentSessionIndex - 1].addImage(imageName);
 }
 void Application::undo()
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex].undo();
+	sessions[currentSessionIndex - 1].undo();
 }
 void Application::addTransformation(const Polymorphic_ptr<Transformation>& transformation) // should be Transformation*
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex].addTransformation(transformation);
+	sessions[currentSessionIndex - 1].addTransformation(transformation);
 }
 void Application::addTransformation(Polymorphic_ptr<Transformation>&& transformation)
 {
 	checkForActiveSession();
-	sessions[currentSessionIndex].addTransformation(std::move(transformation));
+	sessions[currentSessionIndex - 1].addTransformation(std::move(transformation));
 }
 
 bool Application::checkForActiveSession() const
@@ -176,19 +181,3 @@ bool Application::checkForActiveSession() const
 	if (currentSessionIndex == -1)
 		throw std::logic_error("No current session");
 }
-/*
-	const Session& Application::getCurrentSession() const
-	{
-		return sessions[currentSessionIndex];
-	}
-
-	Session& Application::getCurrentSession()
-	{
-		return sessions[currentSessionIndex];
-	}
-
-	void Application::loadNewSession(const Session& newSession)
-	{
-		sessions.pushBack(newSession);
-	}
-*/

@@ -91,12 +91,14 @@ void MyVector<T>::moveFrom(MyVector<T>&& other)
 
 
 template <typename T>
-MyVector<T>::MyVector() : MyVector(INITIAL_CAPACITY){}
+MyVector<T>::MyVector() : MyVector(INITIAL_CAPACITY)
+{}
 
 template <typename T>
 MyVector<T>::MyVector(size_t capacity)
 {
 	data = new T[capacity];
+	this->capacity = capacity;
 }
 
 template <typename T>

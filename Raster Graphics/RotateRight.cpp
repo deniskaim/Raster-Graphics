@@ -3,7 +3,7 @@
 
 RotateRight::RotateRight()
 {
-	type = Type::rotateLeft;
+	type = Type::rotateRight;
 }
 void RotateRight::execute() const
 {
@@ -12,7 +12,7 @@ void RotateRight::execute() const
 }
 void RotateRight::printType() const
 {
-	std::cout << "rotate left";
+	std::cout << "rotate right";
 }
 Transformation* RotateRight::clone() const
 {
