@@ -1,10 +1,10 @@
 #include "PGMImage.h"
+#include <fstream>
+PGMImage::PGMImage(const MyVector<uint8_t>& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format)
+	: pixels(pixels), TransformableImage(height, width, fileName, format) {}
 
-PGMImage::PGMImage(const MyVector<uint8_t>& pixels, int32_t height, int32_t width, const MyString& fileName)
-	: pixels(pixels), TransformableImage(height, width, fileName) {}
-
-PGMImage::PGMImage(MyVector<uint8_t>&& pixels, int32_t height, int32_t width, const MyString& fileName)
-	: pixels(std::move(pixels)), TransformableImage(height, width, fileName) {}
+PGMImage::PGMImage(MyVector<uint8_t>&& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format)
+	: pixels(std::move(pixels)), TransformableImage(height, width, fileName, format) {}
 
 void PGMImage::applyGrayscale()
 {
@@ -12,17 +12,77 @@ void PGMImage::applyGrayscale()
 }
 void PGMImage::applyMonochrome()
 {
-	uint8_t middle = maxValueColour / 2;
-	for (size_t i = 0; i < width * height; i++)
+	uint8_t middle = static_cast<uint8_t>(maxValueColour / 2);
+	size_t pixelsCount = width * height;
+	for (size_t i = 0; i < pixelsCount; i++)
 	{
-		uint8_t monoPixel = pixels[i] > middle ? maxValueColour : 0;
+		uint8_t monoPixel = static_cast<uint8_t>(pixels[i] > middle ? maxValueColour : 0);
 		pixels[i] = monoPixel;
 	}
 }
 void PGMImage::applyNegative()
 {
-	for (size_t i = 0; i < width * height; i++)
+	size_t pixelsCount = width * height;
+	for (size_t i = 0; i < pixelsCount; i++)
 		pixels[i] = maxValueColour - pixels[i];
+}
+
+void PGMImage::rotateLeft()
+{
+	MyVector<uint8_t> rotatedPixels(width * height);
+
+	int index = 0;
+	for (int column = width - 1; column >= 0; column--) 
+	{
+		for (int row = 0; row < height; row++) 
+		{
+			rotatedPixels[index++] = pixels[row * width + column];
+		}
+	}
+	pixels = std::move(rotatedPixels);
+	std::swap(width, height);
+}
+void PGMImage::rotateRight() 
+{
+	MyVector<uint8_t> rotatedPixels(width * height);
+
+	int index = 0;
+	for (int column = 0; column < width; column) 
+	{
+		for (int row = height - 1; row >= 0; row--) 
+		{
+			rotatedPixels[index++] = pixels[row * width + column];
+		}
+	}
+
+	pixels = std::move(rotatedPixels);
+	std::swap(width, height); // Swap width and height after rotation
+}
+void PGMImage::serialize(const MyString& fileName) const
+{
+	if (format == "P2")
+		serializeInASCII(fileName);
+}
+void PGMImage::serializeInASCII(const MyString& fileName) const
+{
+	std::ofstream ofs(fileName.c_str());
+	if (!ofs.is_open())
+		throw std::exception("Could not open the file!");
+
+	ofs << format << '\n';
+	ofs << width << " " << height << '\n';
+	ofs << maxValueColour << '\n';
+
+	size_t pixelsCount = width * height;
+	for (size_t i = 0; i < pixelsCount; i++)
+	{
+		ofs << pixels[i];
+		if ((i + 1) % width == 0)
+			ofs << '\n';
+		else
+			ofs << " ";
+	}
+	ofs.close();
 }
 TransformableImage* PGMImage::clone() const
 {
