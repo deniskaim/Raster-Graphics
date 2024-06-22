@@ -8,11 +8,12 @@ public:
 	static Polymorphic_ptr<Command> createCommand();
 
 private:
-	static Polymorphic_ptr<Command> createLoadCommand();
-	static Polymorphic_ptr<Command> createSaveAsCommand();
-	static Polymorphic_ptr<Command> createRotateCommand();
-	static Polymorphic_ptr<Command> createAddCommand();
-	static Polymorphic_ptr<Command> createSessionInfoCommand();
-	static Polymorphic_ptr<Command> createSwitchSessionCommand();
-	static Polymorphic_ptr<Command> createCollageCommand();
+	static Polymorphic_ptr<Command> createLoadCommand(std::stringstream& ss);
+	static Polymorphic_ptr<Command> createSaveAsCommand(std::stringstream& ss);
+	static Polymorphic_ptr<Command> createRotateCommand(std::stringstream& ss);
+	static Polymorphic_ptr<Command> createAddCommand(std::stringstream& ss);
+	static Polymorphic_ptr<Command> createSessionInfoCommand(std::stringstream& ss);
+	static Polymorphic_ptr<Command> createSwitchSessionCommand(std::stringstream& ss);
+	static Polymorphic_ptr<Command> createCollageCommand(std::stringstream& ss);
+
 };

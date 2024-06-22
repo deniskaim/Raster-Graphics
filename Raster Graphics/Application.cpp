@@ -11,8 +11,19 @@ void Application::run()
 {
 	while (runApp)
 	{
-		Polymorphic_ptr<Command> currentCommand(CommandFactory::createCommand()); // use the already allocated memory
-		currentCommand->execute();
+		try
+		{
+			Polymorphic_ptr<Command> currentCommand(CommandFactory::createCommand()); // use the already allocated memory
+			currentCommand->execute();
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+		catch(const std::logic_error& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 	}
 }
 /*

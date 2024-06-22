@@ -1,5 +1,5 @@
 #include "CommandFactory.h"
-#include "SessionFactory.h" // necessary for the loadCommand
+// #include "SessionFactory.h" // necessary for the loadCommand
 #include <sstream>
 
 #include "LoadCommand.h"
@@ -23,120 +23,135 @@ Polymorphic_ptr<Command> CommandFactory::createCommand()
 {
 	printCommandKey();
 
+	const size_t BUFFSIZE = 1024;
+	char buff[BUFFSIZE];
+	std::stringstream ss(buff);
+
 	MyString commandString;
-	std::cin >> commandString;
+	ss >> commandString;
 
 	if (commandString == "load")
-		return createLoadCommand();
+		return createLoadCommand(ss);
 
-	else if (commandString == "close" && !hasMoreInput())
+	else if (commandString == "close" && ss.eof())
 		return new CloseCommand;
 
-	else if (commandString == "save" && !hasMoreInput())
+	else if (commandString == "save" && ss.eof())
 		return new SaveCommand;
 
-	else if (commandString == "saveas" && !hasMoreInput())
-		return createSaveAsCommand();
+	else if (commandString == "saveas" && ss.eof())
+		return createSaveAsCommand(ss);
 
-	else if (commandString == "help" && !hasMoreInput())
+	else if (commandString == "help" && ss.eof())
 		return new HelpCommand;
 
-	else if (commandString == "exit" && !hasMoreInput())
+	else if (commandString == "exit" && ss.eof())
 		return new ExitCommand;
 
-	else if (commandString == "grayscale" && !hasMoreInput())
+	else if (commandString == "grayscale" && ss.eof())
 		return new Grayscale;
 
-	else if (commandString == "monochrome" && !hasMoreInput())
+	else if (commandString == "monochrome" && ss.eof())
 		return new Monochrome;
 
-	else if (commandString == "negative" && !hasMoreInput())
+	else if (commandString == "negative" && ss.eof())
 		return new Negative;
 
 	else if (commandString == "rotate")
-		return createRotateCommand();
+		return createRotateCommand(ss);
 
-	else if (commandString == "undo" && !hasMoreInput())
+	else if (commandString == "undo" && ss.eof())
 		return new UndoCommand;
 
 	else if (commandString == "add")
-		return createAddCommand();
+		return createAddCommand(ss);
 
 	else if (commandString == "session")
-		return createSessionInfoCommand();
+		return createSessionInfoCommand(ss);
 	
 	else if (commandString == "switch")
-		return createSwitchSessionCommand();
+		return createSwitchSessionCommand(ss);
 
 	else if (commandString == "collage")
-		return new createCollageCommand();
+		return createCollageCommand(ss);
 
 
-	return nullptr;
+	throw std::exception("Invalid try for creating a command!");
 
 }
-Polymorphic_ptr<Command> CommandFactory::createSaveAsCommand()
+Polymorphic_ptr<Command> CommandFactory::createSaveAsCommand(std::stringstream& ss)
 {
 	MyString imageName;
-	std::cin >> imageName;
+	ss >> imageName;
 
-	if (!hasMoreInput())
+	if (ss.eof())
 		return new SaveAsCommand(imageName);
+
 	else
-		return nullptr;
+		throw std::exception("Invalid try for creating a save as command!");
 }
-Polymorphic_ptr<Command> CommandFactory::createAddCommand()
+Polymorphic_ptr<Command> CommandFactory::createAddCommand(std::stringstream& ss)
 {
 	MyString imageName;
-	std::cin >> imageName;
+	ss >> imageName;
 	
-	if (isValidImageName() && !hasMoreInput())
+	if (ss.eof())
 		return new AddImage(imageName);
 	else
-		return nullptr;
+		throw std::exception("Invalid try for creating an add image command!");
 }
-Polymorphic_ptr<Command> CommandFactory::createLoadCommand()
+Polymorphic_ptr<Command> CommandFactory::createLoadCommand(std::stringstream& ss)
 {
-	Session* sessionPtr = createSession();
-	return new LoadCommand(sessionPtr);
+	MyVector<MyString> imagesNames;
+	while (!ss.eof())
+	{
+		MyString imageName;
+		ss >> imageName;
+		imagesNames.pushBack(imageName);
+	}
+	return new LoadCommand(imagesNames);
 }
-Polymorphic_ptr<Command> CommandFactory::createRotateCommand()
+Polymorphic_ptr<Command> CommandFactory::createRotateCommand(std::stringstream& ss)
 {
 	MyString type;
-	std::cin >> type;
-	bool hasExtraSymbols = hasMoreInput();
-	if (type == "left" && !hasExtraSymbols)
+	ss >> type;
+	if (type == "left" && ss.eof())
 		return new RotateLeft;
-	else if (type == "right" && !hasExtraSymbols)
+
+	else if (type == "right" && ss.eof())
 		return new RotateRight;
+
 	else
-		return nullptr;
+		throw std::exception("Invalid try for creating a rotate command!");
 }
-Polymorphic_ptr<Command> CommandFactory::createSessionInfoCommand()
+Polymorphic_ptr<Command> CommandFactory::createSessionInfoCommand(std::stringstream& ss)
 {
 	MyString nextWord;
-	std::cin >> nextWord;
-	bool extraSymbols = hasMoreInput();
-	if (nextWord == "info" && !extraSymbols)
+	ss >> nextWord;
+	if (nextWord == "info" && ss.eof())
 		return new SessionInfo;
+
 	else
-		return nullptr;
+		throw std::exception("Invalid try for creating a session info command!");
 }
-Polymorphic_ptr<Command> CommandFactory::createSwitchSessionCommand()
+Polymorphic_ptr<Command> CommandFactory::createSwitchSessionCommand(std::stringstream& ss)
 {
 	int index;
-	std::cin >> index;
+	ss >> index;
 	
-	if (!std::cin.fail() && !hasMoreInput())
+	if (!ss.fail() && ss.eof())
 		return new SwitchSession(index);
+
 	else
-		return nullptr;
+		throw std::exception("Invalid try for creating a switch session command!");
 }
 static void printCommandKey()
 {
 	std::cout << "> ";
 }
-static bool hasMoreInput() 
+
+/*
+static bool hasMoreInput()
 {
 	if (std::cin.peek() != '\n' && std::cin.peek() != EOF) 
 	{
@@ -147,7 +162,9 @@ static bool hasMoreInput()
 	std::cin.ignore();
 	return false;
 }
+*/
 
+/*
 static MyString getLine()
 {
 	const size_t NAME_SIZE = 1024;
@@ -157,3 +174,4 @@ static MyString getLine()
 	
 	return MyString(str);
 }
+*/

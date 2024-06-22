@@ -8,42 +8,30 @@
 Polymorphic_ptr<TransformableImage> imageFactory(const MyString& fileName)
 {
 	MyString extension = getExtension(fileName);
-	try
+	MyString format = getFileFormat(fileName);
+
+	if (extension == "pbm")
 	{
-		if (extension == "pbm")
-		{
-			DynamicSet* set = readBitMapPixels(fileName);
-			return new PBMImage(std::move(*set), fileName); 
-		}
-		else if (extension == "pgm")
-		{
-			MyVector<uint8_t>* pixels = readGrayMapAndPixMapPixels(fileName);
-			return new PGMImage(std::move(*pixels), fileName);
-		}
-		else if (extension == "ppm")
-		{
-			MyVector<uint8_t>* pixels = readGrayMapAndPixMapPixels(fileName);
-			return new PPMImage(std::move(*pixels), fileName);
-		}
+		return createPBM(fileName, format);
 	}
-	catch (const std::exception& e)
+	else if (extension == "pgm")
 	{
-		std::cout << e.what() << std::endl;
-		return nullptr;
+		return createPGM(fileName, format);
 	}
-	catch (const std::logic_error& e)
+	else if (extension == "ppm")
 	{
-		std::cout << e.what() << std::endl;
-		return nullptr;
+		return createPPM(fileName, format);
 	}
+
+	
+	
 }
-static DynamicSet* readBitMapPixels(const MyString& fileName)
+static DynamicSet* readBitMapPixels(const MyString& fileName, const MyString& format)
 {
 	std::ifstream ifs(fileName.c_str());
 	if (!ifs.is_open())
 		throw std::exception("Could not open the PBM file!");
 
-	MyString format = readStringFromFile(ifs);
 	if (format == "P1")
 		return readBitMapPixelsFromASCIIFile(ifs);
 	else
@@ -101,7 +89,22 @@ static MyVector<uint8_t>* readGrayMapAndPixMapPixelsFromASCIIFile(std::ifstream&
 	return pixels;
 }
 
+static Polymorphic_ptr<TransformableImage> createPBM(const MyString& fileName, const MyString& format)
+{
+	DynamicSet* set = readBitMapPixels(fileName, format);
+	return new PBMImage(std::move(*set), fileName);
+}
 
+static Polymorphic_ptr<TransformableImage> createPPM(const MyString& fileName, const MyString& format)
+{
+	MyVector<uint8_t>* pixels = readGrayMapAndPixMapPixels(fileName);
+	return new PGMImage(std::move(*pixels), fileName);
+}
+static Polymorphic_ptr<TransformableImage> createPGM(const MyString& fileName, const MyString& format)
+{
+	MyVector<Pixel>* pixels = readGrayMapAndPixMapPixels(fileName);
+	return new PGMImage(std::move(*pixels), fileName);
+}
 static MyString getExtension(const MyString& fileName)
 {
 	const char* beg = fileName.c_str();
@@ -113,21 +116,14 @@ static MyString getExtension(const MyString& fileName)
 
 	return fileName.substr(iter - beg, end - iter);
 }
-MyString readString()
+static MyString getFileFormat(const MyString& fileName)
 {
-	const size_t NAME_SIZE = 1024;
-	char str[NAME_SIZE];
+	std::ifstream ifs(fileName.c_str());
+	if (!ifs.is_open())
+		throw std::exception("Could not open the PBM file!");
 
-	std::cin >> str;
-	
-	return MyString(str);
-}
-static MyString readStringFromFile(std::ifstream& ifs)
-{
-	const size_t NAME_SIZE = 1024;
-	char str[NAME_SIZE];
-
-	ifs >> str;
-
-	return MyString(str);
+	MyString format;
+	ifs >> format;
+	ifs.close();
+	return format;
 }
