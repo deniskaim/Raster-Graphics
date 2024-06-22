@@ -8,10 +8,10 @@ void TransformationHandler::addTransformation(Polymorphic_ptr<Transformation>&& 
 {
 	transformationsInSession.pushBack(std::move(transformation));
 }
-void TransformationHandler::executeAll(ImagesCollection& imageCollection)
+void TransformationHandler::executeAll(ImageCollection& imageCollection)
 {
 	for (size_t i = 0; i < imageCollection.getSize(); i++)
-		imageCollection[i]->serialize();
+		imageCollection[i]->save();
 
 	std::cout << '\n';
 }
@@ -30,7 +30,9 @@ void TransformationHandler::printTransformations() const
 void TransformationHandler::undoLastTransformation(MyVector<TransformableImageDataHolder>& imageCollection)
 {
 	if (transformationsInSession.empty())
-		return;
+	{
+		throw std::logic_error("There is no pending transformation!");
+	}
 
 	else
 	{

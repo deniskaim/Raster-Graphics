@@ -13,8 +13,8 @@ public:
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);
 	void undoLastTransformation();
 
-	void serialize();
-	virtual void write(const MyString& fileName) const = 0;
+	void save();
+	virtual void serialize(const MyString& fileName) const = 0;
 
 	virtual TransformableImage* clone() const = 0;
 	virtual ~TransformableImage() = default;

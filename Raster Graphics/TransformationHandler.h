@@ -1,5 +1,5 @@
 #pragma once
-#include "ImagesCollection.h"
+#include "ImageCollection.h"
 #include "TransformableImageDataHolder.h"
 #include "Transformation.h"
 #include "MyVector.hpp"
@@ -32,7 +32,7 @@ public:
 	undoLastTransformation() removes the last transformation from the list of every image( which contains it, since
 	there can be images added after the last transformation)
 	*/
-	void executeAll(ImagesCollection& imageCollection); // TODO : add executeAll when a fileName is given
+	void executeAll(ImageCollection& imageCollection); // TODO : add executeAll when a fileName is given
 	void undoLastTransformation(MyVector<TransformableImageDataHolder>& imageHolderCollection);
 	void printTransformations() const;
 

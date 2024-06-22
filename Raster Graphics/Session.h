@@ -1,5 +1,5 @@
 #pragma once
-#include "ImagesCollection.h"
+#include "ImageCollection.h"
 #include "TransformationHandler.h"
 #include "TransformableImageDataHolder.h"
 #include "MyString.h"
@@ -27,7 +27,7 @@ public:
 
 private:
 	TransformationHandler transformationHandler;
-	ImagesCollection imageCollection;
+	ImageCollection imageCollection;
 	MyVector<TransformableImageDataHolder> imageDataHolders;
 	size_t ID = 0;
 	static size_t sessionsCount; // must initialize in cpp

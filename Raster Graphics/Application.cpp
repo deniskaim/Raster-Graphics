@@ -53,11 +53,13 @@ void Application::save()
 {
 	checkForActiveSession();
 	sessions[currentSessionIndex].save();
+	close();
 }
 void Application::saveAs(const MyString& fileName)
 {
 	checkForActiveSession();
 	sessions[currentSessionIndex].saveAs(fileName);
+	close();
 }
 void Application::close()
 {
