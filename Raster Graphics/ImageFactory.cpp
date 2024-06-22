@@ -8,37 +8,32 @@
 Polymorphic_ptr<TransformableImage> imageFactory(const MyString& fileName)
 {
 	MyString extension = getExtension(fileName);
-	MyString format = getFileFormat(fileName);
 
 	if (extension == "pbm")
 	{
-		return createPBM(fileName, format);
+		return createPBM(fileName);
 	}
 	else if (extension == "pgm")
 	{
-		return createPGM(fileName, format);
+		return createPGM(fileName);
 	}
 	else if (extension == "ppm")
 	{
-		return createPPM(fileName, format);
+		return createPPM(fileName);
 	}
 
 	
 	
 }
-static DynamicSet* readBitMapPixels(const MyString& fileName, const MyString& format)
+static Polymorphic_ptr<TransformableImage> createPBMImageFromASCIIFile(const MyString& fileName)
 {
 	std::ifstream ifs(fileName.c_str());
 	if (!ifs.is_open())
-		throw std::exception("Could not open the PBM file!");
+		throw std::exception("Could not open PBM file!");
 
-	if (format == "P1")
-		return readBitMapPixelsFromASCIIFile(ifs);
-	else
-		throw std::logic_error("Incorrect format for a PBM file!");
-}
-static DynamicSet* readBitMapPixelsFromASCIIFile(std::ifstream& ifs)
-{
+	MyString format;
+	ifs >> format;
+
 	int32_t columns, rows;
 	ifs >> columns >> rows;
 
@@ -53,26 +48,21 @@ static DynamicSet* readBitMapPixelsFromASCIIFile(std::ifstream& ifs)
 			set->add(i);
 	}
 	ifs.close();
-	return set;
+	return new PBMImage(std::move(*set),rows, columns, fileName, format);
 }
-static MyVector<uint8_t>* readGrayMapAndPixMapPixels(const MyString& fileName)
+static Polymorphic_ptr<TransformableImage> createPGMImageFromASCIIFile(const MyString& fileName)
 {
 	std::ifstream ifs(fileName.c_str());
 	if (!ifs.is_open())
-		throw std::exception("Could not open the PGM / PPM file!");
+		throw std::exception("Could not open PGM file!");
 
-	MyString format = readStringFromFile(ifs);
-	if (format == "P2" || format == "P3")
-		return readGrayMapAndPixMapPixelsFromASCIIFile(ifs);
-	else
-		throw std::logic_error("Incorrect formmat for a PGM / PPM file!");
-}
-static MyVector<uint8_t>* readGrayMapAndPixMapPixelsFromASCIIFile(std::ifstream& ifs)
-{
+	MyString format;
+	ifs >> format;
+
 	int32_t columns, rows;
 	ifs >> columns >> rows;
 
-	int32_t maxValueColour;
+	uint8_t maxValueColour;
 	ifs >> maxValueColour;
 
 
@@ -86,24 +76,83 @@ static MyVector<uint8_t>* readGrayMapAndPixMapPixelsFromASCIIFile(std::ifstream&
 		pixels->pushBack(currentPixel);
 	}
 	ifs.close();
-	return pixels;
+	return new PGMImage(std::move(*pixels), rows, columns, maxValueColour, fileName, format);
+}
+static Polymorphic_ptr<TransformableImage> createPPMImageFromASCIIFile(const MyString& fileName)
+{
+
+	std::ifstream ifs(fileName.c_str());
+	if (!ifs.is_open())
+		throw std::exception("Could not open PPM file!");
+
+	MyString format;
+	ifs >> format;
+
+	int32_t columns, rows;
+	ifs >> columns >> rows;
+
+	uint8_t maxValueColour;
+	ifs >> maxValueColour;
+
+	size_t pixelsCount = columns * rows;
+	MyVector<Pixel>* pixels = new MyVector<Pixel>;
+
+	for (int i = 0; i < pixelsCount; i++)
+	{
+		Pixel currentPixel;
+		ifs >> currentPixel;
+		pixels->pushBack(currentPixel);
+	}
+	ifs.close();
+	return new PPMImage(std::move(*pixels), rows, columns, maxValueColour, fileName, format);
 }
 
-static Polymorphic_ptr<TransformableImage> createPBM(const MyString& fileName, const MyString& format)
+static Polymorphic_ptr<TransformableImage> createPBM(const MyString& fileName)
 {
-	DynamicSet* set = readBitMapPixels(fileName, format);
-	return new PBMImage(std::move(*set), fileName);
+
+	std::ifstream ifs(fileName.c_str());
+	if (!ifs.is_open())
+		throw std::exception("Could not open the PBM file!");
+
+	MyString format;
+	ifs >> format;
+	ifs.close();
+
+	if (format == "P1")
+		return createPBMImageFromASCIIFile(fileName);
+	else
+		throw std::logic_error("Incorrect format for a PBM file!");
 }
 
-static Polymorphic_ptr<TransformableImage> createPPM(const MyString& fileName, const MyString& format)
+static Polymorphic_ptr<TransformableImage> createPGM(const MyString& fileName)
 {
-	MyVector<uint8_t>* pixels = readGrayMapAndPixMapPixels(fileName);
-	return new PGMImage(std::move(*pixels), fileName);
+	std::ifstream ifs(fileName.c_str());
+	if (!ifs.is_open())
+		throw std::exception("Could not open the PGM file!");
+
+	MyString format;
+	ifs >> format;
+	ifs.close();
+
+	if (format == "P2")
+		return createPGMImageFromASCIIFile(fileName);
+	else
+		throw std::logic_error("Incorrect format for a PGM file!");
 }
-static Polymorphic_ptr<TransformableImage> createPGM(const MyString& fileName, const MyString& format)
+static Polymorphic_ptr<TransformableImage> createPPM(const MyString& fileName)
 {
-	MyVector<Pixel>* pixels = readGrayMapAndPixMapPixels(fileName);
-	return new PGMImage(std::move(*pixels), fileName);
+	std::ifstream ifs(fileName.c_str());
+	if (!ifs.is_open())
+		throw std::exception("Could not open the PPM file!");
+
+	MyString format;
+	ifs >> format;
+	ifs.close();
+
+	if (format == "P3")
+		return createPPMImageFromASCIIFile(fileName);
+	else
+		throw std::logic_error("Incorrect format for a PPM file!");
 }
 static MyString getExtension(const MyString& fileName)
 {

@@ -1,11 +1,11 @@
 #include "PPMImage.h"
 #include <fstream>
 
-PPMImage::PPMImage(const MyVector<Pixel>& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format)
-	: pixels(pixels), TransformableImage(height, width, fileName, format) {}
+PPMImage::PPMImage(const MyVector<Pixel>& pixels, int32_t height, int32_t width, uint8_t maxValueColour, const MyString& fileName, const MyString& format)
+	: pixels(pixels), maxValueColour(maxValueColour), TransformableImage(height, width, fileName, format) {}
 
-PPMImage::PPMImage(MyVector<Pixel>&& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format)
-	: pixels(std::move(pixels)), TransformableImage(height, width, fileName, format) {}
+PPMImage::PPMImage(MyVector<Pixel>&& pixels, int32_t height, int32_t width, uint8_t maxValueColour, const MyString& fileName, const MyString& format)
+	: pixels(std::move(pixels)), maxValueColour(maxValueColour), TransformableImage(height, width, fileName, format) {}
 
 
 void PPMImage::applyGrayscale()

@@ -1,10 +1,10 @@
 #include "PGMImage.h"
 #include <fstream>
-PGMImage::PGMImage(const MyVector<uint8_t>& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format)
-	: pixels(pixels), TransformableImage(height, width, fileName, format) {}
+PGMImage::PGMImage(const MyVector<uint8_t>& pixels, int32_t height, int32_t width, uint8_t maxValueColour, const MyString& fileName, const MyString& format)
+	: pixels(pixels), maxValueColour(maxValueColour),TransformableImage(height, width, fileName, format) {}
 
-PGMImage::PGMImage(MyVector<uint8_t>&& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format)
-	: pixels(std::move(pixels)), TransformableImage(height, width, fileName, format) {}
+PGMImage::PGMImage(MyVector<uint8_t>&& pixels, int32_t height, int32_t width, uint8_t maxValueColour, const MyString& fileName, const MyString& format)
+	: pixels(std::move(pixels)), maxValueColour(maxValueColour), TransformableImage(height, width, fileName, format) {}
 
 void PGMImage::applyGrayscale()
 {

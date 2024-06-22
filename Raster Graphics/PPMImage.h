@@ -6,8 +6,8 @@
 class PPMImage : public TransformableImage
 {
 public:
-	PPMImage(const MyVector<Pixel>& pixels,int32_t height, int32_t width, const MyString& fileName, const MyString& format);
-	PPMImage(MyVector<Pixel>&& pixels, int32_t height, int32_t width, const MyString& fileName, const MyString& format);
+	PPMImage(const MyVector<Pixel>& pixels,int32_t height, int32_t width, uint8_t maxValueColour, const MyString& fileName, const MyString& format);
+	PPMImage(MyVector<Pixel>&& pixels, int32_t height, int32_t width, uint8_t maxValueColour, const MyString& fileName, const MyString& format);
 
 	void applyGrayscale() override;
 	void applyMonochrome() override;
