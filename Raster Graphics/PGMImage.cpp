@@ -100,7 +100,7 @@ void PGMImage::collageHorizontallyWithPGM(const PGMImage* other, const MyString&
 		throw std::runtime_error("Images must have the same height to be collaged horizontally");
 	
 	if (maxValueColour != other->maxValueColour)
-		throw std::runtime_error("Image must have the same max colour value to be collaged together horizontally!");
+		throw std::runtime_error("Image must have the same max colour value to be collaged together!");
 
 	int32_t newWidth = width + other->width;
 	MyVector<uint8_t> newPixelValues;
@@ -113,7 +113,7 @@ void PGMImage::collageHorizontallyWithPGM(const PGMImage* other, const MyString&
 		}
 		for (int j = 0; j < other->width; j++) 
 		{
-			newPixelValues.pushBack(other->pixels[i * width + j]);
+			newPixelValues.pushBack(other->pixels[i * other->width + j]);
 		}
 	}
 
@@ -136,7 +136,7 @@ void PGMImage::collageVerticallyWithPGM(const PGMImage* other, const MyString& f
 		throw std::runtime_error("Images must have the same width to be collaged vertically!");
 	
 	if (maxValueColour != other->maxValueColour)
-		throw std::runtime_error("Image must have the same max colour value to be collaged vertically!");
+		throw std::runtime_error("Image must have the same max colour value to be collaged together!");
 
 	int32_t newHeight = height + other->height;
 	MyVector<uint8_t> newPixelValues;

@@ -12,6 +12,7 @@
 #include "SessionInfo.h"
 #include "SwitchSession.h"
 #include "AddImage.h"
+#include "Collage.h"
 
 #include "Grayscale.h"
 #include "Monochrome.h"
@@ -150,31 +151,15 @@ Polymorphic_ptr<Command> CommandFactory::createSwitchSessionCommand(std::strings
 	else
 		throw std::exception("Invalid try for creating a switch session command!");
 }
-static MyString getExtension(const MyString& fileName)
+Polymorphic_ptr<Command> CommandFactory::createCollageCommand(std::stringstream& ss)
 {
-	const char* beg = fileName.c_str();
-	const char* end = fileName.c_str() + fileName.getSize();
+	MyString direction, image1, image2, outimage;
+	ss >> direction >> image1 >> image2 >> outimage;
+	// the validation is done with the visitor pattern
 
-	const char* iter = end;
-	while (iter != beg && *iter != '.')
-		iter--;
-
-	return fileName.substr(iter - beg + 1, end - iter - 1);
+	if (ss.eof())
+		return new Collage(direction, image1, image2, outimage);
+	else
+		throw std::exception("Invalid try for creating a collage command!");
 }
-//Polymorphic_ptr<Command> CommandFactory::createCollageCommand(std::stringstream& ss)
-//{
-//	MyString direction, image1, image2, outimage;
-//	ss >> direction >> image1 >> image2 >> outimage;
-//	if (!(direction == "horizontal" || direction == "vertical"))
-//		throw std::exception("Invalid try for creating a collage command!");
-//
-//	if (getExtension(image1) != getExtension(image2))
-//		throw std::exception("Cannot make a collage from different types!");
-//
-//	if (getExtension(image1) != getExtension(outimage))
-//		throw std::exception("Invalid type of the outimage!");
-//
-//	return new Collage(direction, image1, image2, outimage);
-//
-//}
 

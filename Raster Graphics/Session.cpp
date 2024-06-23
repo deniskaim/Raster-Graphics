@@ -6,7 +6,7 @@ size_t Session::sessionsCount = 1;
 void Session::addImage(const MyString& imageName)
 {
 	TransformableImageDataHolder imageDataHolder(imageName);
-	imageDataHolders.pushBack(imageDataHolder);
+	imageDataHolders.pushBack(std::move(imageDataHolder));
 }
 void Session::addCollage(const MyString& direction, const MyString& imageOne, const MyString& imageTwo, const MyString& outimage)
 {
@@ -15,16 +15,17 @@ void Session::addCollage(const MyString& direction, const MyString& imageOne, co
 	if (firstIndex == -1 || secondIndex == -1)
 		throw std::exception("At least one of the two images is not present in the session!");
 
-	TransformableImageDataHolder imageDataHolder(outimage);
-	imageDataHolders.pushBack(imageDataHolder);
-
 	loadTransformableImage(firstIndex);
-	Polymorphic_ptr<TransformableImage>& firstImage = imageCollection[imageCollection.getSize() - 1];
+	Polymorphic_ptr<TransformableImage> firstImage = imageCollection.popBack();
 
 	loadTransformableImage(secondIndex);
-	Polymorphic_ptr<TransformableImage>& secondImage = imageCollection[imageCollection.getSize() - 1];
+	Polymorphic_ptr<TransformableImage> secondImage = imageCollection.popBack();
 
 	firstImage->collageInNewFile(direction, secondImage.get(), outimage);
+
+	// if the collage is successful, add the new collage image in the list of images
+	TransformableImageDataHolder imageDataHolder(outimage);
+	imageDataHolders.pushBack(std::move(imageDataHolder));
 
 }
 void Session::addTransformation(const Polymorphic_ptr<Transformation>& transformation)

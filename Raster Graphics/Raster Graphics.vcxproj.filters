@@ -323,5 +323,8 @@
     <ClInclude Include="Collage.h">
       <Filter>Commands\Collage</Filter>
     </ClInclude>
+    <ClInclude Include="ICollageable.h">
+      <Filter>Images</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

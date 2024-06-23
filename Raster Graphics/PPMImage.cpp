@@ -119,7 +119,29 @@ void PPMImage::collageHorizontallyWithPGM(const PGMImage* other, const MyString&
 }
 void PPMImage::collageHorizontallyWithPPM(const PPMImage* other, const MyString& fileName) const
 {
+	if (height != other->height) 
+		throw std::runtime_error("Images must have the same height to be collaged horizontally");
 
+	if (maxValueColour != other->maxValueColour)
+		throw std::runtime_error("Image must have the same max colour value to be collaged together!");
+
+	int newWidth = width + other->width;
+	MyVector<Pixel> newPixelValues;
+
+	for (int i = 0; i < height; i++) 
+	{
+		for (int j = 0; j < width; j++) 
+		{
+			newPixelValues.pushBack(pixels[i * width + j]);
+		}
+		for (int j = 0; j < other->width; j++)
+		{
+			newPixelValues.pushBack(other->pixels[i * other->width + j]);
+		}
+	}
+
+	PPMImage newImage(std::move(newPixelValues), height, newWidth, maxValueColour, fileName, format));
+	newImage.save();
 }
 void PPMImage::collageVerticallyWithPBM(const PBMImage* other, const MyString& fileName) const
 {
@@ -131,7 +153,32 @@ void PPMImage::collageVerticallyWithPGM(const PGMImage* other, const MyString& f
 }
 void PPMImage::collageVerticallyWithPPM(const PPMImage* other, const MyString& fileName) const
 {
+	if (width != other->width) 
+		throw std::runtime_error("Images must have the same width to be collaged vertically");
 
+	if (maxValueColour != other->maxValueColour)
+		throw std::runtime_error("Image must have the same max colour value to be collaged together!");
+
+	int newHeight = height + other->height;
+	MyVector<Pixel> newPixelValues;
+
+	for (int i = 0; i < height; i++) 
+	{
+		for (int j = 0; j < width; j++) 
+		{
+			newPixelValues.pushBack(pixels[i * width + j]);
+		}
+	}
+	for (int i = 0; i < other->height; i++) 
+	{
+		for (int j = 0; j < other->width; j++) 
+		{
+			newPixelValues.pushBack(other->pixels[i * other->width + j]);
+		}
+	}
+
+	PPMImage newImage(std::move(newPixelValues), newHeight, width, maxValueColour, fileName, format);
+	newImage.save();
 }
 TransformableImage* PPMImage::clone() const
 {

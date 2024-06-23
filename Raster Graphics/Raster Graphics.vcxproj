@@ -166,6 +166,7 @@
     <ClInclude Include="Collage.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="ExitCommand.h" />
+    <ClInclude Include="ICollageable.h" />
     <ClInclude Include="ImageDataHolder.h" />
     <ClInclude Include="ImageCollection.h" />
     <ClInclude Include="Pixel.h" />

@@ -7,7 +7,7 @@ Collage::Collage(const MyString& direction, const MyString& image1, const MyStri
 void Collage::execute() const
 {
 	Application& application = Application::getInstance();
-	application.addCollage(direction, image1, image2, outimage);
+	application.addCollageToCurrentSession(direction, image1, image2, outimage);
 }
 Command* Collage::clone() const
 {

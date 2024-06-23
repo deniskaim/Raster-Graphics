@@ -15,6 +15,6 @@ private:
 	static Polymorphic_ptr<Command> createAddCommand(std::stringstream& ss);
 	static Polymorphic_ptr<Command> createSessionInfoCommand(std::stringstream& ss);
 	static Polymorphic_ptr<Command> createSwitchSessionCommand(std::stringstream& ss);
-	//static Polymorphic_ptr<Command> createCollageCommand(std::stringstream& ss);
+	static Polymorphic_ptr<Command> createCollageCommand(std::stringstream& ss);
 
 };
