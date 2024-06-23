@@ -8,4 +8,6 @@ public:
 	virtual void applyNegative() = 0;
 	virtual void rotateLeft() = 0;
 	virtual void rotateRight() = 0;
+	
+	virtual ~ITransformable() = default;
 };

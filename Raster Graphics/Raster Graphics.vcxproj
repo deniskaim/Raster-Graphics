@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="AddImage.cpp" />
     <ClCompile Include="CloseCommand.cpp" />
+    <ClCompile Include="Collage.cpp" />
     <ClCompile Include="ExitCommand.cpp" />
     <ClCompile Include="PGMImage.cpp" />
     <ClCompile Include="Pixel.cpp" />

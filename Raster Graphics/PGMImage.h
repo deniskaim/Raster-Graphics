@@ -26,6 +26,11 @@ private:
 	void collageHorizontallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
 	void collageVerticallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
 
+	void collageHorizontallyWithPBM(const PBMImage* other, const MyString& fileName) const override;
 	void collageHorizontallyWithPGM(const PGMImage* other, const MyString& fileName) const override;
+	void collageHorizontallyWithPPM(const PPMImage* other, const MyString& fileName) const override;
+
+	void collageVerticallyWithPBM(const PBMImage* other, const MyString& fileName) const override;
 	void collageVerticallyWithPGM(const PGMImage* other, const MyString& fileName) const override;
+	void collageVerticallyWithPPM(const PPMImage* other, const MyString& fileName) const override;
 };

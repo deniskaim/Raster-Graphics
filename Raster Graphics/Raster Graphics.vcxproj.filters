@@ -103,6 +103,9 @@
     <Filter Include="Images\PPMImage\Pixel">
       <UniqueIdentifier>{662c91ab-bda1-44bd-b650-6889e86afe60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands\Collage">
+      <UniqueIdentifier>{0dab57be-fccb-40fd-bb65-b5d893cffa37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Raster Graphics.cpp">
@@ -194,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="TransformationHandler.cpp">
       <Filter>Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Collage.cpp">
+      <Filter>Commands\Collage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -315,7 +321,7 @@
       <Filter>Images\PPMImage\Pixel</Filter>
     </ClInclude>
     <ClInclude Include="Collage.h">
-      <Filter>Commands</Filter>
+      <Filter>Commands\Collage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
