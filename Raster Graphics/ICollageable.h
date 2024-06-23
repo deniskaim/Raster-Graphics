@@ -11,9 +11,9 @@ class ICollageable
 public:
 	virtual void collageInNewFile(const MyString& direction, const TransformableImage* other, const MyString& outimage)
 	{
-		if (direction == "horizontally")
+		if (direction == "horizontal")
 			collageHorizontallyInNewFile(other, outimage);
-		else if (direction == "vertically")
+		else if (direction == "vertical")
 			collageVerticallyInNewFile(other, outimage);
 		else 
 			throw std::runtime_error("Invalid collage direction");

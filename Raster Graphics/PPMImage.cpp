@@ -140,7 +140,7 @@ void PPMImage::collageHorizontallyWithPPM(const PPMImage* other, const MyString&
 		}
 	}
 
-	PPMImage newImage(std::move(newPixelValues), height, newWidth, maxValueColour, fileName, format));
+	PPMImage newImage(std::move(newPixelValues), height, newWidth, maxValueColour, fileName, format);
 	newImage.save();
 }
 void PPMImage::collageVerticallyWithPBM(const PBMImage* other, const MyString& fileName) const

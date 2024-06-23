@@ -5,6 +5,10 @@ size_t Session::sessionsCount = 1;
 
 void Session::addImage(const MyString& imageName)
 {
+	size_t index = findImageDataHolderIndexByImageName(imageName);
+	if (index != -1)
+		throw std::exception("This image has already been added to this session!");
+
 	TransformableImageDataHolder imageDataHolder(imageName);
 	imageDataHolders.pushBack(std::move(imageDataHolder));
 }
@@ -15,15 +19,26 @@ void Session::addCollage(const MyString& direction, const MyString& imageOne, co
 	if (firstIndex == -1 || secondIndex == -1)
 		throw std::exception("At least one of the two images is not present in the session!");
 
-	loadTransformableImage(firstIndex);
+	bool isSuccessfulLoadImage1 = loadTransformableImage(firstIndex);
+	bool isSuccessfulLoadImage2 = loadTransformableImage(secondIndex);
+
+	int countSuccessfulLoads = isSuccessfulLoadImage1 + isSuccessfulLoadImage2;
+	if (countSuccessfulLoads == 1)
+	{
+		imageCollection.popBack();
+		return;
+	}
+	else if (countSuccessfulLoads == 0)
+		return;
+
+	// else the two images are loaded correctly
 	Polymorphic_ptr<TransformableImage> firstImage = imageCollection.popBack();
-
-	loadTransformableImage(secondIndex);
 	Polymorphic_ptr<TransformableImage> secondImage = imageCollection.popBack();
-
+	
+	// create the file
 	firstImage->collageInNewFile(direction, secondImage.get(), outimage);
 
-	// if the collage is successful, add the new collage image in the list of images
+	// if the collage is successful, add the new collage image(name) in the list of images
 	TransformableImageDataHolder imageDataHolder(outimage);
 	imageDataHolders.pushBack(std::move(imageDataHolder));
 
@@ -85,13 +100,30 @@ size_t Session::findImageDataHolderIndexByImageName(const MyString& imageName)
 	return -1;
 }
 
-void Session::loadTransformableImage(size_t imageDataHolderIndex)
+bool Session::loadTransformableImage(size_t imageDataHolderIndex)
 {
 	if (imageDataHolderIndex >= imageDataHolders.getSize())
 		throw std::out_of_range("Invalid imageDataHolder index!");
 
+	bool isSuccessful = true;
 	TransformableImageLoader imageLoader(imageDataHolders[imageDataHolderIndex]);
-	imageCollection.pushBack(imageLoader.loadTransformableImage());
+	try
+	{
+		imageCollection.pushBack(imageLoader.loadTransformableImage());
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+		isSuccessful = false;
+		return isSuccessful;
+	}
+	catch (const std::logic_error& e)
+	{
+		std::cout << e.what() << std::endl;
+		isSuccessful = false;
+		return isSuccessful;
+	}
+	return isSuccessful;
 }
 void Session::loadTransformableImages()
 {

@@ -34,7 +34,7 @@ private:
 	static size_t getNextSessionID();
 
 	size_t findImageDataHolderIndexByImageName(const MyString& imageName);
-	void loadTransformableImage(size_t imageDataHolderIndex);
+	bool loadTransformableImage(size_t imageDataHolderIndex);
 	void loadTransformableImages();
 	void addTransformationInCollectionOfDataHolders(const Polymorphic_ptr<Transformation>& transformation);
 };

@@ -122,7 +122,7 @@ void PBMImage::collageHorizontallyWithPBM(const PBMImage* other, const MyString&
 		}
 		for (int j = 0; j < other->width; j++) 
 		{
-			if (pixels.contains(i * other->width + j)) 
+			if (other->pixels.contains(i * other->width + j)) 
 			{
 				newSet.add(i * newWidth + width + j);
 			}

@@ -78,8 +78,8 @@ Polymorphic_ptr<Command> CommandFactory::createCommand()
 	else if (commandString == "switch")
 		return createSwitchSessionCommand(ss);
 
-	//else if (commandString == "collage")
-	//	return createCollageCommand(ss);
+	else if (commandString == "collage")
+		return createCollageCommand(ss);
 
 
 	throw std::exception("Invalid try for creating a command!");

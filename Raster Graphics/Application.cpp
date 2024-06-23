@@ -30,15 +30,6 @@ void Application::run()
 		}
 	}
 }
-/*
-void Application::loadSession(const Session& newSession)
-{
-	sessions.pushBack(newSession);
-}
-void Application::loadSession(Session&& newSession)
-{
-	sessions.pushBack(std::move(newSession));
-}*/
 void Application::loadSession(const MyVector<MyString>& imagesNames)
 {
 	Session newSession;
@@ -67,10 +58,11 @@ void Application::saveAs(const MyString& fileName)
 }
 void Application::close()
 {
-	// important to check in the other functions if the index is valid
 	size_t indexCurrentSession = findSessionIndexByID(currentSessionID);
 	if (indexCurrentSession == -1)
 		throw std::exception("There is no active session to close!");
+
+	std::cout << "Session with ID: " << currentSessionID << " closed!" << std::endl;
 	sessions.popAt(indexCurrentSession);
 	currentSessionID = -1;
 }
@@ -152,16 +144,7 @@ void Application::getCurrentSessionInfo() const
 	const Session& activeSession = getActiveSession();
 	activeSession.printInfo();
 }
-//void Application::addImageToCurrentSession(const Polymorphic_ptr<TransformableImage>& image)
-//{
-//	checkForActiveSession();
-//	sessions[currentSessionIndex].addImage(image);
-//}
-//void Application::addImageToCurrentSession(Polymorphic_ptr<TransformableImage>&& image)
-//{
-//	checkForActiveSession();
-//	sessions[currentSessionIndex].addImage(std::move(image));
-//}
+
 void Application::addImageToCurrentSession(const MyString& imageName)
 {
 	checkForActiveSession();
