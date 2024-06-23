@@ -10,4 +10,8 @@ public:
 	virtual void rotateRight() = 0;
 	
 	virtual ~ITransformable() = default;
+
+protected:
+	bool isGrayscale = false;
+	bool isMonochrome = false;
 };

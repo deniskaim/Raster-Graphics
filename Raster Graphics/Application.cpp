@@ -124,8 +124,6 @@ void Application::help()
 void Application::exit()
 {
 	runApp = false;
-	while (!sessions.empty())
-		sessions.popBack();
 }
 void Application::switchSession(size_t newSessionIndex) const
 {

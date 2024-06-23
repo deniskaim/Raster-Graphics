@@ -10,6 +10,9 @@ PPMImage::PPMImage(MyVector<Pixel>&& pixels, int32_t height, int32_t width, uint
 
 void PPMImage::applyGrayscale()
 {
+	if (isGrayscale)
+		return;
+
 	size_t countPixels = width * height;
 	for (size_t i = 0; i < countPixels; i ++)
 	{
@@ -21,9 +24,13 @@ void PPMImage::applyGrayscale()
 		pixels[i].setGreen(gray);
 		pixels[i].setBlue(gray);
 	}
+	isGrayscale = true;
 }
 void PPMImage::applyMonochrome()
 {
+	if (isMonochrome)
+		return;
+
 	int8_t middle = static_cast<uint8_t>(maxValueColour / 2);
 
 	size_t countPixels = width * height;
@@ -38,6 +45,8 @@ void PPMImage::applyMonochrome()
 		pixels[i].setGreen(mono);
 		pixels[i].setBlue(mono);
 	}
+	isMonochrome = true;
+	isGrayscale = true;
 }
 void PPMImage::applyNegative()
 {

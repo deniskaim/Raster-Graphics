@@ -12,6 +12,9 @@ void PGMImage::applyGrayscale()
 }
 void PGMImage::applyMonochrome()
 {
+	if (isMonochrome)
+		return;
+
 	uint8_t middle = static_cast<uint8_t>(maxValueColour / 2);
 	size_t pixelsCount = width * height;
 	for (size_t i = 0; i < pixelsCount; i++)
@@ -19,6 +22,7 @@ void PGMImage::applyMonochrome()
 		uint8_t monoPixel = static_cast<uint8_t>(pixels[i] > middle ? maxValueColour : 0);
 		pixels[i] = monoPixel;
 	}
+	isMonochrome = true;
 }
 void PGMImage::applyNegative()
 {
