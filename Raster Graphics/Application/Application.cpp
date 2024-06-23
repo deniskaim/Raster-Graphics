@@ -16,11 +16,15 @@ void Application::run()
 			Polymorphic_ptr<Command> currentCommand(CommandFactory::createCommand()); // use the already allocated memory
 			currentCommand->execute();
 		}
+		catch (const std::out_of_range& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 		catch (const std::logic_error& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
-		catch (const std::out_of_range& e)
+		catch (const std::runtime_error& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
