@@ -109,6 +109,30 @@ void PPMImage::collageVerticallyInNewFile(const TransformableImage* other, const
 {
 	other->collageVerticallyWithPPM(this, fileName);
 }
+void PPMImage::collageHorizontallyWithPBM(const PBMImage* other, const MyString& fileName) const
+{
+	throw std::runtime_error("Cannot make a collage from different types(.pbm and .ppm)");
+}
+void PPMImage::collageHorizontallyWithPGM(const PGMImage* other, const MyString& fileName) const
+{
+	throw std::runtime_error("Cannot make a collage from different types(.pgm and .ppm)");
+}
+void PPMImage::collageHorizontallyWithPPM(const PPMImage* other, const MyString& fileName) const
+{
+
+}
+void PPMImage::collageVerticallyWithPBM(const PBMImage* other, const MyString& fileName) const
+{
+	throw std::runtime_error("Cannot make a collage from different types(.pbm and .ppm)");
+}
+void PPMImage::collageVerticallyWithPGM(const PGMImage* other, const MyString& fileName) const
+{
+	throw std::runtime_error("Cannot make a collage from different types(.pgm and .ppm)");
+}
+void PPMImage::collageVerticallyWithPPM(const PPMImage* other, const MyString& fileName) const
+{
+
+}
 TransformableImage* PPMImage::clone() const
 {
 	return new PPMImage(*this);

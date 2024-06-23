@@ -90,6 +90,79 @@ void PGMImage::collageVerticallyInNewFile(const TransformableImage* other, const
 {
 	other->collageVerticallyWithPGM(this, fileName);
 }
+void PGMImage::collageHorizontallyWithPBM(const PBMImage* other, const MyString& fileName) const
+{
+	throw std::runtime_error("Cannot make a collage from different types! (.pbm and .pgm)");
+}
+void PGMImage::collageHorizontallyWithPGM(const PGMImage* other, const MyString& fileName) const
+{
+	if (this->height != other->height) 
+		throw std::runtime_error("Images must have the same height to be collaged horizontally");
+	
+	if (maxValueColour != other->maxValueColour)
+		throw std::runtime_error("Image must have the same max colour value to be collaged together horizontally!");
+
+	int32_t newWidth = width + other->width;
+	MyVector<uint8_t> newPixelValues;
+
+	for (int i = 0; i < height; i++) 
+	{
+		for (int j = 0; j < width; j++) 
+		{
+			newPixelValues.pushBack(pixels[i * width + j]);
+		}
+		for (int j = 0; j < other->width; j++) 
+		{
+			newPixelValues.pushBack(other->pixels[i * width + j]);
+		}
+	}
+
+	PGMImage newImage(std::move(newPixelValues), height, newWidth, maxValueColour, fileName, format);
+	newImage.save();
+}
+void PGMImage::collageHorizontallyWithPPM(const PPMImage* other, const MyString& fileName) const
+{
+	throw std::runtime_error("Cannot make a collage from different types! (.ppm and .pgm)");
+}
+
+
+void PGMImage::collageVerticallyWithPBM(const PBMImage* other, const MyString& fileName) const
+{
+	throw std::runtime_error("Cannot make a collage from different types! (.pbm and .pgm)");
+}
+void PGMImage::collageVerticallyWithPGM(const PGMImage* other, const MyString& fileName) const
+{
+	if (width != other->width) 
+		throw std::runtime_error("Images must have the same width to be collaged vertically!");
+	
+	if (maxValueColour != other->maxValueColour)
+		throw std::runtime_error("Image must have the same max colour value to be collaged vertically!");
+
+	int32_t newHeight = height + other->height;
+	MyVector<uint8_t> newPixelValues;
+
+	for (int i = 0; i < height; i++) 
+	{
+		for (int j = 0; j < width; j++) 
+		{
+			newPixelValues.pushBack(pixels[i * width + j]);
+		}
+	}
+	for (int i = 0; i < other->height; i++) 
+	{
+		for (int j = 0; j < other->width; j++)
+		{
+			newPixelValues.pushBack(other->pixels[i * other->width + j]);
+		}
+	}
+
+	PGMImage newImage(std::move(newPixelValues), newHeight, width, maxValueColour, fileName, format);
+	newImage.save();
+}
+void PGMImage::collageVerticallyWithPPM(const PPMImage* other, const MyString& fileName) const
+{
+	throw std::runtime_error("Cannot make a collage from different types! (.ppm and .pgm)");
+}
 TransformableImage* PGMImage::clone() const
 {
 	return new PGMImage(*this);
