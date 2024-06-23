@@ -92,7 +92,7 @@ void PGMImage::collageVerticallyInNewFile(const TransformableImage* other, const
 }
 void PGMImage::collageHorizontallyWithPBM(const PBMImage* other, const MyString& fileName) const
 {
-	throw std::runtime_error("Cannot make a collage from different types! (.pbm and .pgm)");
+	throw std::runtime_error("Cannot make a collage from different types! (.pgm and .pbm)");
 }
 void PGMImage::collageHorizontallyWithPGM(const PGMImage* other, const MyString& fileName) const
 {
@@ -122,13 +122,13 @@ void PGMImage::collageHorizontallyWithPGM(const PGMImage* other, const MyString&
 }
 void PGMImage::collageHorizontallyWithPPM(const PPMImage* other, const MyString& fileName) const
 {
-	throw std::runtime_error("Cannot make a collage from different types! (.ppm and .pgm)");
+	throw std::runtime_error("Cannot make a collage from different types! (.pgm and .ppm)");
 }
 
 
 void PGMImage::collageVerticallyWithPBM(const PBMImage* other, const MyString& fileName) const
 {
-	throw std::runtime_error("Cannot make a collage from different types! (.pbm and .pgm)");
+	throw std::runtime_error("Cannot make a collage from different types! (.pgm and .pbm)");
 }
 void PGMImage::collageVerticallyWithPGM(const PGMImage* other, const MyString& fileName) const
 {
@@ -161,7 +161,7 @@ void PGMImage::collageVerticallyWithPGM(const PGMImage* other, const MyString& f
 }
 void PGMImage::collageVerticallyWithPPM(const PPMImage* other, const MyString& fileName) const
 {
-	throw std::runtime_error("Cannot make a collage from different types! (.ppm and .pgm)");
+	throw std::runtime_error("Cannot make a collage from different types! (.pgm and .ppm)");
 }
 TransformableImage* PGMImage::clone() const
 {

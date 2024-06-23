@@ -18,12 +18,6 @@ public:
 	void serialize(const MyString& fileName) const override;
 	TransformableImage* clone() const override;
 
-private:
-	MyVector<Pixel> pixels;
-	uint8_t maxValueColour = 0;
-
-	void serializeInASCII(const MyString& fileName) const override;
-
 	void collageHorizontallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
 	void collageVerticallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
 
@@ -34,4 +28,11 @@ private:
 	void collageVerticallyWithPBM(const PBMImage* other, const MyString& fileName) const override;
 	void collageVerticallyWithPGM(const PGMImage* other, const MyString& fileName) const override;
 	void collageVerticallyWithPPM(const PPMImage* other, const MyString& fileName) const override;
+
+private:
+	MyVector<Pixel> pixels;
+	uint8_t maxValueColour = 0;
+
+	void serializeInASCII(const MyString& fileName) const override;
+
 };

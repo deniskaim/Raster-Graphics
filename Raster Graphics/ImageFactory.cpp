@@ -18,17 +18,21 @@ static Polymorphic_ptr<TransformableImage> createPBMImageFromASCIIFile(const MyS
 	ifs >> columns >> rows;
 
 	size_t pixelsCount = columns * rows;
-	DynamicSet* set = new DynamicSet(pixelsCount);
+	DynamicSet set(pixelsCount);
 
-	for (int i = 0; i < pixelsCount; i++)
+	int bitIndex = 0;
+	while (bitIndex < pixelsCount && !ifs.eof())
 	{
-		int32_t currentPixel = 0;
-		ifs >> currentPixel;
-		if (currentPixel)
-			set->add(i);
+		char ch = ifs.get();
+		if (ch == '0' || ch == '1')
+		{
+			if (ch == '1')
+				set.add(bitIndex);
+			bitIndex++;
+		}
 	}
 	ifs.close();
-	return new PBMImage(std::move(*set),rows, columns, fileName, format);
+	return new PBMImage(std::move(set),rows, columns, fileName, format);
 }
 static Polymorphic_ptr<TransformableImage> createPGMImageFromASCIIFile(const MyString& fileName)
 {
@@ -47,16 +51,16 @@ static Polymorphic_ptr<TransformableImage> createPGMImageFromASCIIFile(const MyS
 	ifs >> maxValueColour;
 
 	size_t pixelsCount = columns * rows;
-	MyVector<uint8_t>* pixels = new MyVector<uint8_t>;
+	MyVector<uint8_t> pixels;
 
 	for (int i = 0; i < pixelsCount; i++)
 	{
 		uint32_t currentPixel;
 		ifs >> currentPixel;
-		pixels->pushBack(static_cast<uint8_t>(currentPixel));
+		pixels.pushBack(static_cast<uint8_t>(currentPixel));
 	}
 	ifs.close();
-	return new PGMImage(std::move(*pixels), rows, columns, static_cast<uint8_t>(maxValueColour), fileName, format);
+	return new PGMImage(std::move(pixels), rows, columns, static_cast<uint8_t>(maxValueColour), fileName, format);
 }
 static Polymorphic_ptr<TransformableImage> createPPMImageFromASCIIFile(const MyString& fileName)
 {
@@ -75,16 +79,16 @@ static Polymorphic_ptr<TransformableImage> createPPMImageFromASCIIFile(const MyS
 	ifs >> maxValueColour;
 
 	size_t pixelsCount = columns * rows;
-	MyVector<Pixel>* pixels = new MyVector<Pixel>;
+	MyVector<Pixel> pixels;
 
 	for (int i = 0; i < pixelsCount; i++)
 	{
 		Pixel currentPixel;
 		ifs >> currentPixel;
-		pixels->pushBack(currentPixel);
+		pixels.pushBack(currentPixel);
 	}
 	ifs.close();
-	return new PPMImage(std::move(*pixels), rows, columns, static_cast<int8_t>(maxValueColour), fileName, format);
+	return new PPMImage(std::move(pixels), rows, columns, static_cast<int8_t>(maxValueColour), fileName, format);
 }
 
 static Polymorphic_ptr<TransformableImage> createPBM(const MyString& fileName)

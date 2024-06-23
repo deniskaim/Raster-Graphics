@@ -124,6 +124,8 @@ void Application::help()
 void Application::exit()
 {
 	runApp = false;
+	while (!sessions.empty())
+		sessions.popBack();
 }
 void Application::switchSession(size_t newSessionIndex) const
 {
@@ -163,7 +165,7 @@ void Application::undo()
 	Session& activeSession = getActiveSession();
 	activeSession.undo();
 }
-void Application::addTransformation(const Polymorphic_ptr<Transformation>& transformation) // should be Transformation*
+void Application::addTransformation(const Polymorphic_ptr<Transformation>& transformation) 
 {
 	checkForActiveSession();
 	Session& activeSession = getActiveSession();

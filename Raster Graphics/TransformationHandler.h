@@ -14,11 +14,6 @@ in other words it handles everything related to the transformations
 class TransformationHandler
 {
 public:
-	/*
-	TransformationHandler() = default;
-	TransformationHandler(const TransformationHandler& other) = delete;
-	TransformationHandler& operator=(const TransformationHandler& other) = delete;
-	~TransformationHandler() = default;*/
 
 	// those two functions are necessary for the transformation info
 	void addTransformation(const Polymorphic_ptr<Transformation>& transformation);

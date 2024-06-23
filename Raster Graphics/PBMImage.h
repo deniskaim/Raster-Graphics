@@ -18,10 +18,6 @@ public:
 	void serialize(const MyString& fileName) const override;
 	TransformableImage* clone() const override;
 
-private:
-	DynamicSet pixels;
-	void serializeInASCII(const MyString& filename) const override;
-
 	void collageHorizontallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
 	void collageVerticallyInNewFile(const TransformableImage* other, const MyString& fileName) const override;
 
@@ -32,4 +28,9 @@ private:
 	void collageVerticallyWithPBM(const PBMImage* other, const MyString& fileName) const override;
 	void collageVerticallyWithPGM(const PGMImage* other, const MyString& fileName) const override;
 	void collageVerticallyWithPPM(const PPMImage* other, const MyString& fileName) const override;
+
+private:
+	DynamicSet pixels;
+	void serializeInASCII(const MyString& filename) const override;
+
 };

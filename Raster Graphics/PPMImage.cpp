@@ -111,11 +111,11 @@ void PPMImage::collageVerticallyInNewFile(const TransformableImage* other, const
 }
 void PPMImage::collageHorizontallyWithPBM(const PBMImage* other, const MyString& fileName) const
 {
-	throw std::runtime_error("Cannot make a collage from different types(.pbm and .ppm)");
+	throw std::runtime_error("Cannot make a collage from different types(.ppm and .pbm)");
 }
 void PPMImage::collageHorizontallyWithPGM(const PGMImage* other, const MyString& fileName) const
 {
-	throw std::runtime_error("Cannot make a collage from different types(.pgm and .ppm)");
+	throw std::runtime_error("Cannot make a collage from different types(.ppm and .pgm)");
 }
 void PPMImage::collageHorizontallyWithPPM(const PPMImage* other, const MyString& fileName) const
 {
@@ -145,11 +145,11 @@ void PPMImage::collageHorizontallyWithPPM(const PPMImage* other, const MyString&
 }
 void PPMImage::collageVerticallyWithPBM(const PBMImage* other, const MyString& fileName) const
 {
-	throw std::runtime_error("Cannot make a collage from different types(.pbm and .ppm)");
+	throw std::runtime_error("Cannot make a collage from different types(.ppm and .pbm)");
 }
 void PPMImage::collageVerticallyWithPGM(const PGMImage* other, const MyString& fileName) const
 {
-	throw std::runtime_error("Cannot make a collage from different types(.pgm and .ppm)");
+	throw std::runtime_error("Cannot make a collage from different types(.ppm and .pgm)");
 }
 void PPMImage::collageVerticallyWithPPM(const PPMImage* other, const MyString& fileName) const
 {
